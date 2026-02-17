@@ -20,7 +20,7 @@ function Home(props: HomeProps) {
                 </div>
 
                 <div ref={props.homePPRef} className="home-profile-pic">
-                    <img id="profile-pic" src="/public/images/profile-picture.png" alt="Profile Picture"/>
+                    <img id="profile-pic" src="/images/profile-picture.png" alt="Profile Picture"/>
                 </div>
 
                 <div className="home-socials">

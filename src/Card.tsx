@@ -64,7 +64,7 @@ function Card(props: CardProperties)
 
                         <div className="card-footer">
                             <p>-{props.card.cost}</p>
-                            <img src="/public/assets/flash.svg" alt="flash"/>
+                            <img src="/assets/flash.svg" alt="flash"/>
                         </div>
                     </div>
                 </div>
