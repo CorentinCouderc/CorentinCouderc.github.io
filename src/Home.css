@@ -1,0 +1,105 @@
+.home {
+    height: 100%;
+}
+
+.home h1 {
+    font-size: 3rem;
+    font-weight: normal;
+    margin: 10px 0 40px 0;
+    line-height: 1;
+}
+
+.home h2 {
+    color: var(--ink-secondary);
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin : 5px 0;
+}
+
+.home h3 {
+    color: var(--highlight-green);
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin : 5px 0;
+}
+
+.home p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.home-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: start;
+    text-wrap: pretty;
+    height: 100vh;
+}
+
+.home-resume {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 35%;
+}
+
+.home-profile-pic {
+    text-align: center;
+    margin: auto 0 0 auto;
+    overflow: hidden;
+    height: 100vh;
+}
+
+#profile-pic {
+    height: 100vh;
+}
+
+.home-socials {
+    margin: auto 50px 75px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    z-index: 1;
+}
+.home-socials p {
+    margin: 10px 0;
+    color: var(--highlight-green);
+    font-size: 0.8rem;
+    text-wrap: nowrap;
+    writing-mode: vertical-rl;
+}
+#linkedin {
+    mask-image: url("/public/assets/linkedin.svg");
+}
+#email {
+    mask-image: url("/public/assets/mail.svg");
+}
+#linkedin, #email {
+    width: 30px;
+    height: 30px;
+    margin: 10px 0;
+    background-color: var(--highlight-green);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    transition: transform .1s ease-in-out, background-color .1s ease-in-out;
+}
+#linkedin:hover, #email:hover {
+    transform: scale(1.3);
+    background-color: var(--ink);
+}
+.home-socials .line {
+    margin: 10px 0;
+    width: 1px;
+    height: 100px;
+    background-color: var(--highlight-green);
+}
+
+.home-footer {
+    width: 100%;
+    position: absolute;
+    bottom: 4%;
+    text-align: center;
+}

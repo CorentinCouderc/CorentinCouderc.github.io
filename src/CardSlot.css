@@ -1,0 +1,19 @@
+/* Category accents */
+.card-slot.formation {--accent: var(--c-formation)}
+.card-slot.skill {--accent: var(--c-skill)}
+.card-slot.project {--accent: var(--c-project)}
+.card-slot.softSkill {--accent: var(--c-softSkill)}
+.card-slot.experience {--accent: var(--c-experience)}
+.card-slot.hobby {--accent: var(--c-hobby)}
+
+.card-slot {
+    border: 5px solid var(--accent);
+    border-radius: 5px;
+    background-color: color-mix(in srgb, var(--highlight-blue) 30%, transparent);
+
+    --card-scale: 0.75;
+
+    min-width: calc(250px * var(--card-scale));
+    width: calc(250px * var(--card-scale));
+    height: calc(350px * var(--card-scale));
+}

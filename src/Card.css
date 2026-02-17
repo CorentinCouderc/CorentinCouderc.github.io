@@ -1,0 +1,174 @@
+:root {
+    --card-background: #f8feff;
+    --card-border: #f8feff;
+    --card-scale: 1;
+    /* Categories */
+    --c-formation: #945498;
+    --c-skill: #77903d;
+    --c-project: #3d9c84;
+    --c-softSkill: #4279ac;
+    --c-experience: #b6474b;
+    --c-hobby: #dd8133;
+}
+
+/* Category accents */
+.card.formation {--accent: var(--c-formation)}
+.card.skill {--accent: var(--c-skill)}
+.card.project {--accent: var(--c-project)}
+.card.softSkill {--accent: var(--c-softSkill)}
+.card.experience {--accent: var(--c-experience)}
+.card.hobby {--accent: var(--c-hobby)}
+
+.card {
+    background: var(--card-border);
+    padding: calc(11px * var(--card-scale));
+    min-width: calc(250px * var(--card-scale));
+    width: calc(250px * var(--card-scale));
+    height: calc(350px * var(--card-scale));
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 10px rgba(var(--highlight-green-rgb), 0);
+    cursor: pointer;
+    transition: outline 0.2s ease, box-shadow 0.2s ease;
+    z-index: 1;
+}
+.card:hover, .card.selected {
+    /*outline: var(--highlight-green) 3px solid;*/
+    /*outline-offset: 5px;*/
+    box-shadow: 0 0 10px 5px rgba(var(--highlight-green-rgb), 1);
+}
+.card h1 {
+    --card-type-font-size: 1.2rem;
+    margin: 0;
+    font-size: calc(var(--card-type-font-size) * var(--card-scale));
+    font-weight: normal;
+}
+.card h2 {
+    --card-title-font-size: 1.3rem;
+    margin: 0;
+    font-size: calc(var(--card-title-font-size) * var(--card-scale));
+    font-weight: normal;
+}
+.card p {
+    --card-text-font-size: 0.9rem;
+    margin: 0;
+    font-size: calc(var(--card-text-font-size) * var(--card-scale));
+}
+
+.card-background {
+    height: 100%;
+    border-radius: 8px;
+    background-color: var(--ink);
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 15% 85%;
+    text-align: center;
+}
+.q1, .q2, .q3, .q4 {
+    background-color: var(--accent);
+    align-content: center;
+}
+.q1 { border-radius:  8px 12px 0 0; }
+.q3 { border-radius: 0 0 0 8px; }
+.q4 { border-radius: 0 12px 8px 0; }
+.q2 h1 {
+    background-color: var(--ink);
+    border-radius:  0 0 0 12px;
+
+    height: 100%;
+    color: var(--accent);
+    align-content: center;
+    --card-point-font-size: 1.8rem;
+    font-size: calc(var(--card-point-font-size) * var(--card-scale));
+}
+
+.card-body{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    text-wrap: pretty;
+}
+.card-body p { margin: 0 5%; }
+
+.card-footer{
+    position: absolute;
+    bottom: 0;
+    padding: 5% 5%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15%;
+}
+.card-footer p { font-family: var(--font-family-title), sans-serif; }
+.card-footer img {
+    --flash-size: 15px;
+    width: calc(var(--flash-size) * var(--card-scale));
+    height: calc(var(--flash-size) * var(--card-scale));
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+.card-options-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 5px;
+}
+.card-play-button, .card-discard-button {
+    color: var(--ink-highlight);
+    font-family: var(--font-family-title), sans-serif;
+    padding: 12px 20px;
+    border: white solid 1px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.card-play-button {
+    background: var(--highlight-green);
+}
+.card-play-button:hover { background: var(--highlight-green-hover); }
+.card-discard-button {
+    background: var(--highlight-blue);
+}
+.card-discard-button:hover { background: var(--highlight-blue-hover); }
+
+
+/* --------- card back ----------- */
+.card-back {
+    height: 100%;
+    border-radius: 4px;
+    background-color: var(--highlight-blue);
+    display: flex;
+    z-index: 0;
+}
+
+.card-back .card-frame {
+    background-color: var(--highlight-blue);
+    justify-content: space-around;
+}
+
+.card-back h2, .card-back p {
+    color: var(--ink);
+}
+
+.card-back a {
+    color: var(--highlight-green);
+}

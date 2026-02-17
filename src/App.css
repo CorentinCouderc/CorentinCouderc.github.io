@@ -1,42 +1,113 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+    --bg: #112236;
+    --highlight-green: #c5f802;
+    --highlight-green-rgb: 197, 248, 2;
+    --highlight-green-hover: #93c000;
+    --highlight-blue: #2d3b81;
+    --highlight-blue-hover: #1d2b71;
+    --ink: #f8feff;
+    --ink-secondary: #234369;
+    --ink-highlight: var(--bg);
+    --muted: #808080;
+    --shadow: 0 6px 20px rgba(0, 0, 0, .08);
+    --font-family-title: Audiowide, Roboto, Helvetica, Arial;
+    --font-family-text: "Noto Sans", Roboto, Helvetica, Arial;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+html, body, #root {
+    height: 100%
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+html {
+    overflow: hidden;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+    margin: 0;
+    font-family: var(--font-family-text), sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-title), sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
 }
 
-.card {
-  padding: 2em;
+.deck-link-container {
+    position: fixed;
+    top: 3%;
+    left: 3%;
+    z-index: 2;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+
+    transition: background-color 0.2s ease;
+}
+.deck-link-container h1 {
+    color: var(--highlight-green);
+    font-size: 1.5rem;
+    transition: color 0.2s ease;
+}
+#deck-link_image {
+    width: 32px;
+    height: 32px;
+    background-color: var(--highlight-green);
+    mask-image: url("/public/assets/curved-arrow-icon.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+}
+.deck-link-container:hover h1 { color: var(--ink); }
+.deck-link-container:hover #deck-link_image { background-color: var(--ink); }
+
+.button {
+    background: var(--highlight-green);
+    color: var(--ink-highlight);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.button:hover { background: var(--highlight-green-hover); }
+
+.button:disabled{
+    background: rgba(var(--highlight-green-rgb), 0.3);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.button:disabled:hover { background: rgba(var(--highlight-green-rgb), 0.5); }
+
+.scroll-button {
+    width: 32px;
+    height: 62px;
+    margin: auto;
+    border: solid 3px var(--highlight-green);
+    border-radius: 20px 20px 20px 20px;
+    cursor: pointer;
+}
+.scroll-button:hover {
+    background-color: var(--highlight-green);
 }
 
-.read-the-docs {
-  color: #888;
+.scroll-arrow {
+    width: 100%;
+    height: 100%;
+    background-color: var(--highlight-green);
+    mask-image: url("/public/assets/scroll-arrow.svg");
+    mask-repeat: no-repeat;
+    mask-position: center 10px;
+    transition: transform 0.3s ease, background-color 0.1s linear;
+}
+.scroll-button:hover .scroll-arrow {
+    background-color: var(--ink-highlight);
+    transform: translateY(10px);
 }

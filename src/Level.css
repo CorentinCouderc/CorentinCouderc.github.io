@@ -1,0 +1,61 @@
+.game-hud {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-header {
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 2%;
+    justify-content: center;
+}
+.game-board .card {
+    --card-scale: 0.75;
+}
+
+.game-footer {
+    margin: 0 5vh 1vh 5vh;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.game-hand {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    /*overflow-x: auto; !* test*!*/
+    overflow: visible;
+}
+
+.game-deck {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.game-deck h1 {
+    font-size: 1rem;
+}
+
+.card.none {
+    --card-scale: 0.5;
+}
+
+/* No hover effect on deck and board cards */
+.card.none:hover, .game-board .card:hover {
+    cursor: auto;
+    transform: none;
+    box-shadow: none;
+}
