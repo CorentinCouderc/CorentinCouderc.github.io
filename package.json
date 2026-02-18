@@ -9,6 +9,7 @@
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "postbuild": "echo \"corentincouderc.com\" > dist/CNAME",
     "lint": "eslint .",
     "preview": "vite preview"
   },
