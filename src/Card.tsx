@@ -52,7 +52,7 @@ function Card(props: CardProperties)
                             <h1>{getCategoryString(props.card.category)}</h1>
                         </div>
                         <div className="q2">
-                            <h1>+{props.card.points}</h1>
+                            <h1>+{props.card.effects.energyFlat}</h1>
                         </div>
                         <div className="q3"></div>
                         <div className="q4"></div>
@@ -61,11 +61,7 @@ function Card(props: CardProperties)
                             <h2>{props.card.title}</h2>
                             <p className="effect">{getEffectString(props.card.category)}</p>
                         </div>
-
-                        <div className="card-footer">
-                            <p>-{props.card.cost}</p>
-                            <img src="/assets/flash.svg" alt="flash"/>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -15,14 +15,16 @@ export function Level(props: LevelProps) {
 
     const cardsPerTurn = 3;
     const numberOfDiscards = 5;
+    const [hasGameStarted, setHasGameStarted] = useState(false);
     const [isLevelFinished, setIsLevelFinished] = useState(false);
-    const [score, setScore] = useState(0);
+    const [energy, setEnergy] = useState(0);
+    const [currentXP, setCurrentXP] = useState(0);
+    const [currentLevel, setCurrentLevel] = useState(0);
     const [discards, setDiscards] = useState<number>(numberOfDiscards);
     const [hand, setHand] = useState<CardData[]>([]);
     const [deck, setDeck] = useState<CardData[]>([]);
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
-    const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
 
 
@@ -66,17 +68,9 @@ export function Level(props: LevelProps) {
         return orderedCategories.indexOf(category);
     }
 
-    function selectCard (card: CardData){
-        if (selectedCard !== null && selectedCard.id === card.id)
-        {
-            setSelectedCard(null);
-        }
-        else {
-            setSelectedCard(card);
-        }
-    }
-
     const playCard = (card: CardData) => {
+        selectCard(card); // temporary
+
         const newHand = hand.filter(c => c.id !== card.id);
         setHand(newHand);
 
@@ -108,7 +102,7 @@ export function Level(props: LevelProps) {
     // }, [hand]);
 
     const endTurn = () => {
-        updateScore();
+        // updateScore(); deprecated
 
         if (deck.length === 0)
         {
@@ -121,21 +115,70 @@ export function Level(props: LevelProps) {
         setDeck(deck.slice(cardsToDraw));
     };
 
-    const updateScore = () => {
-        let newScore = score;
+
+    // New implementation
+    function addEnergy(energyToAdd: number) {
+        setEnergy(energy + energyToAdd);
+    }
+
+    function addXP(xpToAdd: number) {
+        let newXP = currentXP + xpToAdd;
+        let xpToLevelUp = 10; // TODO : Link to real data
+        while (newXP >= xpToLevelUp) {
+            newXP -= xpToLevelUp;
+            levelUp();
+        }
+        setCurrentXP(newXP);
+    }
+
+    function computeXPPerTick() {
+        let totalXpPerTick = 0;
         for (let i = 0; i < boardCards.length; i++) {
             if (boardCards[i])
             {
-                newScore += boardCards[i]!.points;
+                totalXpPerTick += boardCards[i]!.effects.xpPerTick;
             }
         }
-        setScore(newScore);
+        return totalXpPerTick;
+    }
+
+    function tick() {
+        console.log("tick");
+        addEnergy(-1);
+        const xpPerTick = computeXPPerTick();
+        addXP(xpPerTick);
+    }
+    // Call tick() method every second
+    useEffect(() => {
+        // Game has begun if there is at least one card on the board
+        if (hasGameStarted) {
+            const interval = setInterval(() => tick(), 1000);
+            return () => clearInterval(interval);
+        }
+    }, [hasGameStarted]);
+
+    function levelUp() {
+        setCurrentLevel(currentLevel + 1);
+        cardSelection();
+    }
+
+    function cardSelection() {
+        // TODO : display 3 cards to select from
+        selectCard(allCards[1]);
+    }
+
+    function selectCard(card: CardData) {
+        if (!hasGameStarted) {
+            setHasGameStarted(true);
+        }
+        addEnergy(card.effects.energyFlat);
+        addXP(card.effects.xpFlat);
     }
 
     return (
         <div className="game-hud">
             <div className="game-header">
-                <h1>Level: {props.levelData.title} | Score: {score}</h1>
+                <h1>Level: {currentLevel} {props.levelData.title} | Exp: {currentXP}/10 | Energy: {energy}</h1>
             </div>
 
             <div className="game-board">
@@ -163,7 +206,7 @@ export function Level(props: LevelProps) {
                             onCardPlayed={playCard}
                             onCardDiscard={discardCard}
                             shouldShowBack={false}
-                            isCardSelected={selectedCard?.id === card.id}/>)
+                            isCardSelected={true}/>)
                     }
                 </div>
                 <button className="button" onClick={endTurn} disabled={isLevelFinished}>Fin du tour</button>
