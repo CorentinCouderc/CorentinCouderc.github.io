@@ -23,6 +23,7 @@ function App() {
     const deckTl = useRef<gsap.core.Timeline>(null);
     const [isPlayingAnimation, setIsPlayingAnimation] = useState(false);
     const [isFullDeckDisplayed, setIsFullDeckDisplayed] = useState(false);
+    const [isGameDisplayed, setIsGameDisplayed] = useState(false);
     const timelineConfig = {
         paused: true,
         defaults: {duration: .8, ease: "power1.inOut"},
@@ -43,11 +44,11 @@ function App() {
     })
 
     useEffect(()=> {
-        if (isFullDeckDisplayed) return;
+        if (isFullDeckDisplayed || isGameDisplayed) return;
 
         window.addEventListener('wheel', handleScroll);
         return () => { window.removeEventListener('wheel', handleScroll); }
-    }, [pageIndex, isPlayingAnimation, isFullDeckDisplayed])
+    }, [pageIndex, isPlayingAnimation, isFullDeckDisplayed, isGameDisplayed])
 
     useEffect(() => {
         window.addEventListener("resize", setupScrollTimelines);
@@ -92,6 +93,7 @@ function App() {
             console.log("Scroll - set true. Next page = ", nextIndex );
             console.log("> End scroll - isPlayingAnim", isPlayingAnimation);
             updateFullDeckTimeline(nextIndex);
+            setIsGameDisplayed(nextIndex === 1);
         }
     });
 
@@ -101,6 +103,7 @@ function App() {
         const nextIndex = pageIndex + 1;
         scrollTls.current[pageIndex]?.play();
         setPageIndex(nextIndex);
+        setIsGameDisplayed(nextIndex === 1);
         setIsPlayingAnimation(true);
         updateFullDeckTimeline(nextIndex);
     });
