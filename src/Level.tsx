@@ -16,6 +16,7 @@ export function Level(props: LevelProps) {
     const cardsPerTurn = 3;
     const numberOfDiscards = 5;
     const [hasGameStarted, setHasGameStarted] = useState(false);
+    const [isGameOver, setIsGameOver] = useState(false);
     const [isLevelFinished, setIsLevelFinished] = useState(false);
     const [energy, setEnergy] = useState(0);
     const [currentXP, setCurrentXP] = useState(0);
@@ -143,7 +144,12 @@ export function Level(props: LevelProps) {
     }
 
     function tick() {
-        console.log("tick");
+        if (energy == 0) {
+            setIsGameOver(true);
+            return;
+        }
+
+        // Decrement energy 1 per tick call & add XP
         addEnergy(-1);
         const xpPerTick = computeXPPerTick();
         addXP(xpPerTick);
@@ -151,11 +157,11 @@ export function Level(props: LevelProps) {
     // Call tick() method every second
     useEffect(() => {
         // Game has begun if there is at least one card on the board
-        if (hasGameStarted) {
+        if (hasGameStarted && !isGameOver) {
             const interval = setInterval(() => tick(), 1000);
             return () => clearInterval(interval);
         }
-    }, [hasGameStarted]);
+    }, [hasGameStarted, energy]);
 
     function levelUp() {
         setCurrentLevel(currentLevel + 1);
