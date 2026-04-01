@@ -3,7 +3,7 @@ import './App.css';
 import {allCards} from "./cards.ts";
 import Home from "./Home.tsx";
 import DeckBuilder from "./DeckBuilder.tsx";
-import {Level} from "./Level.tsx";
+import {Game} from "./Game.tsx";
 
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -139,13 +139,11 @@ function App() {
             <div ref={(el) => setPageRef(el)}>
                 <Home homeResumeRef={homeResumeRef} homePPRef={homeProfilePictureRef} goToNextPage={goToNextPage} />
             </div>
-            {
-                allLevels.map((levelData) => (
-                    <div key={levelData.level} ref={(el) => setPageRef(el)} >
-                        <Level levelData={levelData}/>
-                    </div>
-                ))
-            }
+
+            <div ref={(el) => setPageRef(el)} >
+                <Game />
+            </div>
+
             <div ref={fullDeckRef}>
                 <DeckBuilder deck={allCards} closeFullDeck={() => displayDeck(false)} />
             </div>

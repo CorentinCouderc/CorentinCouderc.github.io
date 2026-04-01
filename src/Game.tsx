@@ -1,15 +1,11 @@
-import "./Level.css"
+import "./Game.css"
 import {useEffect, useState} from 'react';
 import {type CardData, ECardCategory, allCards, type CardCategory, orderedCategories} from './cards';
-import {type LevelData} from "./levels.ts";
 import CardSlot from "./CardSlot.tsx";
 import CardSelection from "./CardSelection.tsx";
 
-interface LevelProps {
-    levelData: LevelData;
-}
 
-export function Level(props: LevelProps) {
+export function Game() {
     // const numberOfRerolls = 5;
     // const [rerolls, setRerolls] = useState<number>(numberOfRerolls);
 
@@ -133,7 +129,7 @@ export function Level(props: LevelProps) {
             }
 
             <div className="game-header">
-                <h1>Level: {currentLevel} {props.levelData.title} | Exp: {currentXP}/10 | Energy: {energy}</h1>
+                <h1>Level: {currentLevel} | Exp: {currentXP}/10 | Energy: {energy}</h1>
             </div>
 
             <div className="game-board">
