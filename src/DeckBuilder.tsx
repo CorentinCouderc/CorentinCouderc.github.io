@@ -34,8 +34,6 @@ function DeckBuilder(props: DeckBuilderProps) {
                     key={card.id}
                     card={card}
                     onCardClicked={selectCard}
-                    onCardPlayed={() => {}}
-                    onCardDiscard={() => {}}
                     shouldShowBack={selectedCards.includes(card)}
                     isCardSelected={false}/>)
             }
