@@ -18,6 +18,9 @@ export function Game() {
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
 
+    const xpToNextLevel = 9; // TODO : Link to real data
+    const xpPercentage = (currentXP / xpToNextLevel) * 100;
+
     // Call tick() method every second
     useEffect(() => {
         // Game has begun if there is at least one card on the board
@@ -45,9 +48,8 @@ export function Game() {
 
     function addXP(xpToAdd: number) {
         let newXP = currentXP + xpToAdd;
-        let xpToLevelUp = 10; // TODO : Link to real data
-        while (newXP >= xpToLevelUp) {
-            newXP -= xpToLevelUp;
+        while (newXP >= xpToNextLevel) {
+            newXP -= xpToNextLevel;
             levelUp();
         }
         setCurrentXP(newXP);
@@ -63,8 +65,6 @@ export function Game() {
         }
         return totalXpPerTick;
     }
-
-
 
     function levelUp() {
         setCurrentLevel(currentLevel + 1);
@@ -129,7 +129,16 @@ export function Game() {
             }
 
             <div className="game-header">
-                <h1>Level: {currentLevel} | Exp: {currentXP}/10 | Energy: {energy}</h1>
+                <div className={"game-header-container"}>
+                    <div className={"game-header-texts"}>
+                        <h1>Lvl. {currentLevel} ({currentXP}/{xpToNextLevel} XP)</h1>
+                        <h1>Energy: {energy}</h1>
+                    </div>
+
+                    <div className={"bar-background"}>
+                        <div className="bar-fill" style={{width: `${xpPercentage}%`}} />
+                    </div>
+                </div>
             </div>
 
             <div className="game-board">
@@ -139,7 +148,6 @@ export function Game() {
                     ))
                 }
             </div>
-
         </div>
     );
 }
