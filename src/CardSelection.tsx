@@ -12,7 +12,7 @@ function CardSelection(props: CardSelectionProps) {
 
     return (
         <div className={"card-selection"}>
-            <h1 id={"levelReachedText"}>Niveau {props.levelReached}</h1>
+            <h1 id={"levelReachedText"}>Level up !</h1>
             <h2 id={"selectCardText"}>Sélectionnez une carte :</h2>
 
             <div className={"card-list"}>
