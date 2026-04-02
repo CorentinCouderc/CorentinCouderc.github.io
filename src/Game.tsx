@@ -6,6 +6,9 @@ import CardSelection from "./CardSelection.tsx";
 
 
 export function Game() {
+    const tickRate = 500; // in milliseconds
+    const baseXPToNextLevel = 10;
+    const xpScalingFactor = 1.1;
     // const numberOfRerolls = 5;
     // const [rerolls, setRerolls] = useState<number>(numberOfRerolls);
 
@@ -13,19 +16,19 @@ export function Game() {
     const [isGameOver, setIsGameOver] = useState(false);
     const [isSelectingCard, setIsSelectingCard] = useState(true);
     const [energy, setEnergy] = useState(0);
+    const [xpToNextLevel, setXpToNextLevel] = useState(baseXPToNextLevel);
     const [currentXP, setCurrentXP] = useState(0);
     const [currentLevel, setCurrentLevel] = useState(0);
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
 
-    const xpToNextLevel = 9; // TODO : Link to real data
     const xpPercentage = (currentXP / xpToNextLevel) * 100;
 
     // Call tick() method every second
     useEffect(() => {
         // Game has begun if there is at least one card on the board
         if (hasGameStarted && !isSelectingCard && !isGameOver) {
-            const interval = setInterval(() => tick(), 1000);
+            const interval = setInterval(() => tick(), tickRate);
             return () => clearInterval(interval);
         }
     }, [hasGameStarted, energy, isSelectingCard]);
@@ -68,6 +71,7 @@ export function Game() {
 
     function levelUp() {
         setCurrentLevel(currentLevel + 1);
+        setXpToNextLevel(Math.floor(Math.pow(baseXPToNextLevel * (currentLevel + 1), xpScalingFactor)));
         displayCardSelection();
     }
 
@@ -77,6 +81,7 @@ export function Game() {
 
     function pickRandomCardsToDisplay() {
         if (!hasGameStarted) {
+            // Force this card at the start of the game
             return [allCards[0], allCards[0], allCards[0]];
         }
         else {
