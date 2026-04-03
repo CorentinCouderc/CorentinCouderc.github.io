@@ -121,8 +121,12 @@ export function Game() {
         if (!hasGameStarted) {
             setHasGameStarted(true);
         }
-        addEnergy(card.effects.energyFlat);
-        addXP(card.effects.xpFlat);
+        if (card.effects.energyFlat > 0) {
+            addEnergy(card.effects.energyFlat);
+        }
+        else if (card.effects.xpFlat > 0) {
+            addXP(card.effects.xpFlat);
+        }
         addCardToBoard(card);
 
         setIsSelectingCard(false);
@@ -138,7 +142,7 @@ export function Game() {
                 <div className={"game-header-container"}>
                     <div className={"game-header-texts"}>
                         <h1>Lvl. {currentLevel} ({currentXP}/{xpToNextLevel} XP)</h1>
-                        <Energy valueText={"Énergie: " + energy.toString()} />
+                        <Energy valueText={"Énergie: " + energy.toString()} isOnHUD={true}/>
                     </div>
 
                     <div className={"bar-background"}>

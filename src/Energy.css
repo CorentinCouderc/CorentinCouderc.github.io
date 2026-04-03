@@ -1,8 +1,14 @@
 .energy {
     display: flex;
     flex-direction: row;
+    align-items: baseline;
+    justify-content: right;
+    gap: 3px;
+}
+.energy.hud {
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 10px;
 }
 
 #energyValueText {
@@ -10,10 +16,13 @@
 }
 
 .energy-icon {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 3px;
+    background-color: #00aff0;
+}
+.energy-icon.hud {
     width: 24px;
     height: 24px;
-
-    border-radius: 5px;
-    /*border: 2px solid lightblue;*/
-    background-color: #00aff0;
 }

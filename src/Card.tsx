@@ -1,6 +1,7 @@
 import {type CardData, getEffectString, getCategoryString} from "./cards.ts";
 import './Card.css';
 import * as React from "react";
+import Energy from "./Energy.tsx";
 
 interface CardProperties{
     card: CardData,
@@ -34,6 +35,13 @@ function Card(props: CardProperties)
     }
     else {
         let selectedClassName =  props.isCardSelected ? " selected" : "";
+        let displayBonus = null;
+        if (props.card.effects.energyFlat > 0) {
+            displayBonus = <Energy valueText={"+" + props.card.effects.energyFlat} isOnHUD={false}/>
+        }
+        else if (props.card.effects.xpFlat > 0) {
+            displayBonus = <h1>+ {props.card.effects.xpFlat} XP</h1>;
+        }
 
         return (
             <div className={"card " + props.card.category + selectedClassName} onClick={() => props.onCardClicked(props.card)}>
@@ -42,7 +50,9 @@ function Card(props: CardProperties)
                         <h1>{getCategoryString(props.card.category)}</h1>
                     </div>
                     <div className="q2">
-                        <h1>+{props.card.effects.energyFlat}</h1>
+                        <div className="bonus-container">
+                            {displayBonus}
+                        </div>
                     </div>
                     <div className="q3"></div>
                     <div className="q4"></div>
