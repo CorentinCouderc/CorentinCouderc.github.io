@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {type CardData, ECardCategory, allCards, type CardCategory, orderedCategories} from './cards';
 import CardSlot from "./CardSlot.tsx";
 import CardSelection from "./CardSelection.tsx";
+import Energy from "./Energy.tsx";
 
 
 export function Game() {
@@ -137,7 +138,7 @@ export function Game() {
                 <div className={"game-header-container"}>
                     <div className={"game-header-texts"}>
                         <h1>Lvl. {currentLevel} ({currentXP}/{xpToNextLevel} XP)</h1>
-                        <h1>Energy: {energy}</h1>
+                        <Energy valueText={"Énergie: " + energy.toString()} />
                     </div>
 
                     <div className={"bar-background"}>

@@ -1,0 +1,19 @@
+.energy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+#energyValueText {
+    /* Here if we need to change font size or anything*/
+}
+
+.energy-icon {
+    width: 24px;
+    height: 24px;
+
+    border-radius: 5px;
+    /*border: 2px solid lightblue;*/
+    background-color: #00aff0;
+}
