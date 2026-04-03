@@ -82,7 +82,7 @@ export const allCards: CardData[] = [
         effects: {
             energyFlat: 5,
             xpFlat: 0,
-            xpPerTick: 5,
+            xpPerTick: 2,
         },
         backContent: "Mon bac mention très bien est très bien",
         linkUrl: "https://corentincouderc.com",
@@ -93,9 +93,9 @@ export const allCards: CardData[] = [
         title: "Classe prépa Physique Chimie",
         category: ECardCategory.FORMATION,
         effects: {
-            energyFlat: 5,
+            energyFlat: 8,
             xpFlat: 0,
-            xpPerTick: 5,
+            xpPerTick: 4,
         },
         backContent: "",
         linkUrl: "",
@@ -106,9 +106,9 @@ export const allCards: CardData[] = [
         title: "Diplôme d'ingénieur CPE Lyon",
         category: ECardCategory.FORMATION,
         effects: {
-            energyFlat: 5,
+            energyFlat: 14,
             xpFlat: 0,
-            xpPerTick: 0,
+            xpPerTick: 10,
         },
         backContent: "",
         linkUrl: "",
@@ -119,9 +119,9 @@ export const allCards: CardData[] = [
         title: "Former à l'ère du digital (certification)",
         category: ECardCategory.FORMATION,
         effects: {
-            energyFlat: 5,
+            energyFlat: 20,
             xpFlat: 0,
-            xpPerTick: 0,
+            xpPerTick: 20,
         },
         backContent: "",
         linkUrl: "",
@@ -134,8 +134,8 @@ export const allCards: CardData[] = [
         title: "Stage ingénieur 12 mois Bosch Allemagne\n",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 5,
-            xpFlat: 0,
+            energyFlat: 0,
+            xpFlat: 25,
             xpPerTick: 0,
         },
         backContent: "",
@@ -147,8 +147,8 @@ export const allCards: CardData[] = [
         title: "Gamagora game show 2019\n",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 5,
-            xpFlat: 0,
+            energyFlat: 0,
+            xpFlat: 15,
             xpPerTick: 0,
         },
         backContent: "",
@@ -160,8 +160,8 @@ export const allCards: CardData[] = [
         title: "Stagiaire programmeur Artefacts",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 5,
-            xpFlat: 0,
+            energyFlat: 0,
+            xpFlat: 40,
             xpPerTick: 0,
         },
         backContent: "",
@@ -173,8 +173,8 @@ export const allCards: CardData[] = [
         title: "Programmeur gameplay Artefacts",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 5,
-            xpFlat: 0,
+            energyFlat: 0,
+            xpFlat: 100,
             xpPerTick: 0,
         },
         backContent: "",
@@ -186,8 +186,8 @@ export const allCards: CardData[] = [
         title: "Cours particuliers Terminale S",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 5,
-            xpFlat: 0,
+            energyFlat: 0,
+            xpFlat: 10,
             xpPerTick: 0,
         },
         backContent: "",
@@ -199,8 +199,8 @@ export const allCards: CardData[] = [
         title: "Management Lead programmeur",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 5,
-            xpFlat: 0,
+            energyFlat: 0,
+            xpFlat: 40,
             xpPerTick: 0,
         },
         backContent: "",
@@ -214,7 +214,7 @@ export const allCards: CardData[] = [
         title: "Sim2b",
         category: ECardCategory.PROJECT,
         effects: {
-            energyFlat: 5,
+            energyFlat: 20,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -227,7 +227,7 @@ export const allCards: CardData[] = [
         title: "Le Donjon de Naheulbeuk",
         category: ECardCategory.PROJECT,
         effects: {
-            energyFlat: 5,
+            energyFlat: 30,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -253,7 +253,7 @@ export const allCards: CardData[] = [
         title: "100 ears' war (Game Jam GMTK 2023)",
         category: ECardCategory.PROJECT,
         effects: {
-            energyFlat: 5,
+            energyFlat: 14,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -266,7 +266,7 @@ export const allCards: CardData[] = [
         title: "Hi Honey (Game Jam GMTK 2025)",
         category: ECardCategory.PROJECT,
         effects: {
-            energyFlat: 5,
+            energyFlat: 20,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -279,7 +279,7 @@ export const allCards: CardData[] = [
         title: "Rubik's cube",
         category: ECardCategory.PROJECT,
         effects: {
-            energyFlat: 5,
+            energyFlat: 10,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -292,7 +292,7 @@ export const allCards: CardData[] = [
         title: "Best Friends",
         category: ECardCategory.PROJECT,
         effects: {
-            energyFlat: 5,
+            energyFlat: 10,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -305,7 +305,7 @@ export const allCards: CardData[] = [
         title: "Bunny Horde (Survival Game)",
         category: ECardCategory.PROJECT,
         effects: {
-            energyFlat: 5,
+            energyFlat: 12,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -315,10 +315,10 @@ export const allCards: CardData[] = [
     },
     {
         id: 19,
-        title: "Spotify e-learning",
+        title: "E-learning Animation 3D Arcane",
         category: ECardCategory.PROJECT,
         effects: {
-            energyFlat: 5,
+            energyFlat: 20,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -333,7 +333,7 @@ export const allCards: CardData[] = [
         title: "Anglais courant",
         category: ECardCategory.SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 3,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -346,7 +346,7 @@ export const allCards: CardData[] = [
         title: "Unity C#",
         category: ECardCategory.SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 18,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -359,7 +359,7 @@ export const allCards: CardData[] = [
         title: "Programmation",
         category: ECardCategory.SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 11,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -372,7 +372,7 @@ export const allCards: CardData[] = [
         title: "Conception de jeu",
         category: ECardCategory.SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 35,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -385,7 +385,7 @@ export const allCards: CardData[] = [
         title: "Storyline",
         category: ECardCategory.SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 30,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -398,7 +398,7 @@ export const allCards: CardData[] = [
         title: "Outils IA",
         category: ECardCategory.SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 20,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -411,7 +411,7 @@ export const allCards: CardData[] = [
         title: "JavaScript",
         category: ECardCategory.SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 7,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -424,22 +424,9 @@ export const allCards: CardData[] = [
         title: "Fast learner",
         category: ECardCategory.SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 1,
             xpFlat: 0,
-            xpPerTick: 0,
-        },
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
-    },
-    {
-        id: 28,
-        title: "Management situationnel",
-        category: ECardCategory.SOFT_SKILL,
-        effects: {
-            energyFlat: 5,
-            xpFlat: 0,
-            xpPerTick: 0,
+            xpPerTick: 1,
         },
         backContent: "",
         linkUrl: "",
@@ -448,11 +435,24 @@ export const allCards: CardData[] = [
 
     // SOFT SKILLS
     {
+        id: 28,
+        title: "Management situationnel",
+        category: ECardCategory.SOFT_SKILL,
+        effects: {
+            energyFlat: 20,
+            xpFlat: 0,
+            xpPerTick: 0,
+        },
+        backContent: "",
+        linkUrl: "",
+        linkText: ""
+    },
+    {
         id: 29,
         title: "Fédérateur d'équipe",
         category: ECardCategory.SOFT_SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 12,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -478,7 +478,7 @@ export const allCards: CardData[] = [
         title: "Analyse et synthèse",
         category: ECardCategory.SOFT_SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 14,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -491,7 +491,7 @@ export const allCards: CardData[] = [
         title: "Leadership",
         category: ECardCategory.SOFT_SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 20,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -504,7 +504,7 @@ export const allCards: CardData[] = [
         title: "Idéation",
         category: ECardCategory.SOFT_SKILL,
         effects: {
-            energyFlat: 5,
+            energyFlat: 1,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -519,7 +519,7 @@ export const allCards: CardData[] = [
         title: "Jeux vidéo",
         category: ECardCategory.HOBBY,
         effects: {
-            energyFlat: 5,
+            energyFlat: 10,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -532,7 +532,7 @@ export const allCards: CardData[] = [
         title: "Jeux de société",
         category: ECardCategory.HOBBY,
         effects: {
-            energyFlat: 5,
+            energyFlat: 35,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -545,7 +545,7 @@ export const allCards: CardData[] = [
         title: "Chant",
         category: ECardCategory.HOBBY,
         effects: {
-            energyFlat: 5,
+            energyFlat: 60,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -558,8 +558,8 @@ export const allCards: CardData[] = [
         title: "Contenu éducatif",
         category: ECardCategory.HOBBY,
         effects: {
-            energyFlat: 5,
-            xpFlat: 0,
+            energyFlat: 0,
+            xpFlat: 10,
             xpPerTick: 0,
         },
         backContent: "",
@@ -571,7 +571,7 @@ export const allCards: CardData[] = [
         title: "Badminton",
         category: ECardCategory.HOBBY,
         effects: {
-            energyFlat: 5,
+            energyFlat: 20,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -584,7 +584,7 @@ export const allCards: CardData[] = [
         title: "Volley-ball",
         category: ECardCategory.HOBBY,
         effects: {
-            energyFlat: 5,
+            energyFlat: 10,
             xpFlat: 0,
             xpPerTick: 0,
         },
@@ -597,7 +597,7 @@ export const allCards: CardData[] = [
         title: "E-sport LoL",
         category: ECardCategory.HOBBY,
         effects: {
-            energyFlat: 5,
+            energyFlat: 25,
             xpFlat: 0,
             xpPerTick: 0,
         },
