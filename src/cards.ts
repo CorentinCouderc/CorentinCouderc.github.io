@@ -7,10 +7,19 @@ export const ECardCategory = {
     EXPERIENCE: "experience",
     HOBBY: "hobby",
 } as const
-
 export type CardCategory = typeof ECardCategory[keyof typeof ECardCategory];
 
 export const orderedCategories = [ECardCategory.FORMATION, ECardCategory.PROJECT, ECardCategory.EXPERIENCE, ECardCategory.SKILL, ECardCategory.SOFT_SKILL, ECardCategory.HOBBY];
+
+export const ETagCategory = {
+    SCIENTIST: "scientist",
+    COMPETITION: "competition",
+    VIDEO_GAME: "videoGame",
+    PROGRAMMING: "programming",
+    INTERNSHIP: "internship",
+    PEDAGOGY: "pedagogy",
+} as const
+export type CardTag = typeof ETagCategory[keyof typeof ETagCategory];
 
 export type CardEffects = {
     energyFlat: number;
@@ -23,6 +32,7 @@ export type CardData = {
     title: string;
     category: CardCategory;
     effects: CardEffects;
+    tags: CardTag[];
     backContent: string;
     linkUrl: string;
     linkText: string;
@@ -71,8 +81,6 @@ export function getCategoryString(category: CardCategory)
     }
 }
 
-export const blankCard: CardData = { id: 0, title: "", category: ECardCategory.NONE, effects: { energyFlat: 0, xpFlat: 0, xpPerTick: 0,}, backContent:"", linkUrl:"", linkText:"" };
-
 export const allCards: CardData[] = [
     // FORMATIONS
     {
@@ -84,6 +92,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 2,
         },
+        tags: [ETagCategory.SCIENTIST],
         backContent: "Mon bac mention très bien est très bien",
         linkUrl: "https://corentincouderc.com",
         linkText: "+ En savoir plus"
@@ -97,6 +106,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 4,
         },
+        tags: [ETagCategory.SCIENTIST, ETagCategory.COMPETITION],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -110,6 +120,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 10,
         },
+        tags: [ETagCategory.SCIENTIST],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -123,6 +134,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 20,
         },
+        tags: [ETagCategory.PEDAGOGY],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -138,6 +150,7 @@ export const allCards: CardData[] = [
             xpFlat: 25,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.INTERNSHIP, ETagCategory.SCIENTIST, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -151,6 +164,7 @@ export const allCards: CardData[] = [
             xpFlat: 15,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.INTERNSHIP, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -164,6 +178,7 @@ export const allCards: CardData[] = [
             xpFlat: 40,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.INTERNSHIP, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -177,6 +192,7 @@ export const allCards: CardData[] = [
             xpFlat: 100,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -190,6 +206,7 @@ export const allCards: CardData[] = [
             xpFlat: 10,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.SCIENTIST, ETagCategory.PEDAGOGY],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -203,6 +220,7 @@ export const allCards: CardData[] = [
             xpFlat: 40,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.PEDAGOGY],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -218,6 +236,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.PEDAGOGY, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -231,6 +250,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -244,6 +264,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -257,6 +278,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.COMPETITION],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -270,6 +292,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.COMPETITION],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -283,6 +306,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -296,6 +320,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -309,6 +334,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -322,6 +348,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.PEDAGOGY, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -337,6 +364,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -350,6 +378,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -363,6 +392,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -376,6 +406,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -389,6 +420,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.PEDAGOGY],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -402,6 +434,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -415,6 +448,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.PROGRAMMING],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -428,6 +462,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 1,
         },
+        tags: [],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -443,6 +478,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.PEDAGOGY],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -456,6 +492,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -469,6 +506,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.SCIENTIST],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -482,6 +520,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.SCIENTIST],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -495,6 +534,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -508,6 +548,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -523,6 +564,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.VIDEO_GAME],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -536,6 +578,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -549,6 +592,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -562,6 +606,7 @@ export const allCards: CardData[] = [
             xpFlat: 10,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.PEDAGOGY],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -575,6 +620,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.COMPETITION],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -588,6 +634,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.COMPETITION],
         backContent: "",
         linkUrl: "",
         linkText: ""
@@ -601,6 +648,7 @@ export const allCards: CardData[] = [
             xpFlat: 0,
             xpPerTick: 0,
         },
+        tags: [ETagCategory.COMPETITION, ETagCategory.VIDEO_GAME],
         backContent: "",
         linkUrl: "",
         linkText: ""
