@@ -26,3 +26,9 @@
     flex-wrap: nowrap;
     gap: 50px;
 }
+
+.reroll {
+    position: absolute;
+    right: 5%;
+    align-self: end;
+}

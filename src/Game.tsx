@@ -10,8 +10,8 @@ export function Game() {
     const tickRate = 500; // in milliseconds
     const baseXPToNextLevel = 10;
     const xpScalingFactor = 1.1;
-    // const numberOfRerolls = 5;
-    // const [rerolls, setRerolls] = useState<number>(numberOfRerolls);
+    const numberOfRerolls = 3;
+    const [rerolls, setRerolls] = useState<number>(numberOfRerolls);
 
     const [hasGameStarted, setHasGameStarted] = useState(false);
     const [isGameOver, setIsGameOver] = useState(false);
@@ -22,6 +22,8 @@ export function Game() {
     const [currentLevel, setCurrentLevel] = useState(0);
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
+    const initialRandomCards = [allCards[0], allCards[0], allCards[0]]; // Force this card at the start of the game
+    const [randomCards, setRandomCards] = useState<CardData[]>(initialRandomCards);
 
     const xpPercentage = (currentXP / xpToNextLevel) * 100;
 
@@ -78,15 +80,13 @@ export function Game() {
 
     function displayCardSelection() {
         setIsSelectingCard(true);
+        pickRandomCardsToDisplay();
     }
 
     function pickRandomCardsToDisplay() {
-        if (!hasGameStarted) {
-            // Force this card at the start of the game
-            return [allCards[0], allCards[0], allCards[0]];
-        }
-        else {
-            return [allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
+        if (hasGameStarted) {
+            const pickedCards = [allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
+            setRandomCards(pickedCards);
 
             // TODO : implement better card selection algorithm (no redraw of same card, priority in randomness etc..)
             // Start from something like this :
@@ -132,10 +132,27 @@ export function Game() {
         setIsSelectingCard(false);
     }
 
+    function addReroll(rerollToAdd: number) {
+        const newReroll = Math.max(rerolls + rerollToAdd, 0);
+        setRerolls(newReroll);
+    }
+
+    function spendReroll() {
+        pickRandomCardsToDisplay();
+        addReroll(-1);
+    }
+
     return (
         <div className="game-hud">
             {
-                isSelectingCard ? <CardSelection levelReached={currentLevel} cards={pickRandomCardsToDisplay()} selectCard={selectCard}/> : null
+                isSelectingCard ?
+                    <CardSelection
+                    levelReached={currentLevel}
+                    cards={randomCards}
+                    rerollsLeft={rerolls}
+                    onRerollClicked={spendReroll}
+                    selectCard={selectCard}/>
+                    : null
             }
 
             <div className="game-header">
