@@ -38,6 +38,27 @@ export type CardData = {
     linkText: string;
 };
 
+export function getTagString(tag: CardTag)
+{
+    switch (tag) {
+        case ETagCategory.SCIENTIST:
+            return "Scientifique";
+        case ETagCategory.COMPETITION:
+            return "Compétition";
+        case ETagCategory.VIDEO_GAME:
+            return "Jeu vidéo";
+        case ETagCategory.PROGRAMMING:
+            return "Programmation";
+        case ETagCategory.INTERNSHIP:
+            return "Stage";
+        case ETagCategory.PEDAGOGY:
+            return "Pédagogie";
+        default:
+            console.error("Unknown tag: ", tag);
+            return "";
+    }
+}
+
 export function getEffectString(category: CardCategory)
 {
     switch (category) {

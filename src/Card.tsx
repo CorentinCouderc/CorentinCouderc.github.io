@@ -1,4 +1,4 @@
-import {type CardData, getEffectString, getCategoryString} from "./cards.ts";
+import {type CardData, getEffectString, getCategoryString, getTagString} from "./cards.ts";
 import './Card.css';
 import * as React from "react";
 import Energy from "./Energy.tsx";
@@ -62,6 +62,13 @@ function Card(props: CardProperties)
                         <p className="effect">{getEffectString(props.card.category)}</p>
                     </div>
 
+                    <div className="card-footer">
+                        {
+                            props.card.tags.map(tag => (
+                                <p>{getTagString(tag)}</p>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         )
