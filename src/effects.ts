@@ -55,9 +55,9 @@ export const Sim2bImmediateEffect: CardImmediateEffect = {
 
 /* ---------------- Cards Passive Effects -----------------------*/
 export const BacPassiveEffect: CardPassiveEffect = {
-    title: "Fusion/Acquisition",
+    title: "Mention TB",
     condition: {
-        conditionType: "",
+        conditionType: EConditionType.CARD_WITH_ID,
         requiredCardId: null,
         requiredCardTags: null,
     },
