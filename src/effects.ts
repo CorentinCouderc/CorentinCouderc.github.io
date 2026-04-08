@@ -8,13 +8,13 @@ export type EffectConditionType = typeof EConditionType[keyof typeof EConditionT
 
 export type EffectCondition = {
     conditionType: EffectConditionType;
-    requiredCardId: number;
-    requiredCardTags: CardTag[];
+    requiredCardId: number | null;
+    requiredCardTags: CardTag[] | null;
 }
 
 export type CardEffect = {
     title: string;
-    condition: EffectCondition;
+    condition: EffectCondition | null;
 }
 
 export const EImmediateEffect = {
@@ -25,19 +25,36 @@ export type ImmediateEffectType = typeof EImmediateEffect[keyof typeof EImmediat
 
 export type CardImmediateEffect = CardEffect & {
     effectType: ImmediateEffectType;
-    addEnergy: number;
-    addXP: number;
+    addEnergy: number | null;
+    addXP: number | null;
 }
 
+export const Sim2bImmediateEffect: CardImmediateEffect = {
+    title: "Fusion/Acquisition",
+    condition: {
+        conditionType: EConditionType.CARD_WITH_ID,
+            requiredCardId: 7,
+            requiredCardTags: null,
+    },
+    effectType: EImmediateEffect.ADD_XP,
+    addEnergy: null,
+    addXP: 40,
+};
+
 export function canApplyEffect(effect: CardEffect) {
-    switch (effect.condition.conditionType) {
-        case EConditionType.CARD_WITH_ID:
-            break;
-        case EConditionType.CARD_WITH_TAG:
-            break;
-        default:
-            console.error("Unknown condition: ", effect.condition.conditionType);
-            break;
+    if (effect.condition === null) {
+        return true;
+    }
+    else {
+        switch (effect.condition.conditionType) {
+            case EConditionType.CARD_WITH_ID:
+                return false;
+            case EConditionType.CARD_WITH_TAG:
+                return false;
+            default:
+                console.error("Unknown condition: ", effect.condition.conditionType);
+                return false;
+        }
     }
 }
 

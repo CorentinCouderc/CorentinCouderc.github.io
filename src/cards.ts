@@ -1,4 +1,4 @@
-import type {CardImmediateEffect} from "./effects.ts";
+import {type CardImmediateEffect, Sim2bImmediateEffect} from "./effects.ts";
 
 export const ECardCategory = {
     NONE: "none",
@@ -269,7 +269,7 @@ export const allCards: CardData[] = [
             energyFlat: 20,
             xpFlat: 0,
             xpPerTick: 0,
-            immediateEffect: null,
+            immediateEffect: Sim2bImmediateEffect,
         },
         tags: [ETagCategory.PEDAGOGY, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
         backContent: "",
