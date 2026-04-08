@@ -1,4 +1,5 @@
 import type {CardTag} from "./cards.ts";
+import {numOpenSockets} from "vite";
 
 export const EConditionType = {
     CARD_WITH_ID: "cardWithID",
@@ -29,6 +30,17 @@ export type CardImmediateEffect = CardEffect & {
     addXP: number | null;
 }
 
+export const EPassiveEffect = {
+    ENERGY_BY_CARD_TYPE: "energyByCardType",
+} as const
+export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffect];
+
+export type CardPassiveEffect = CardEffect & {
+    effectType: PassiveEffectType;
+    energyByCardType: number | null;
+}
+
+/* ---------------- Cards Immediate Effects -----------------------*/
 export const Sim2bImmediateEffect: CardImmediateEffect = {
     title: "Fusion/Acquisition",
     condition: {
@@ -41,6 +53,20 @@ export const Sim2bImmediateEffect: CardImmediateEffect = {
     addXP: 40,
 };
 
+/* ---------------- Cards Passive Effects -----------------------*/
+export const BacPassiveEffect: CardPassiveEffect = {
+    title: "Fusion/Acquisition",
+    condition: {
+        conditionType: "",
+        requiredCardId: null,
+        requiredCardTags: null,
+    },
+    effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
+    energyByCardType: 5,
+};
+
+
+//TODO : move these methods to Game.tsx and implement them
 export function canApplyEffect(effect: CardEffect) {
     if (effect.condition === null) {
         return true;
