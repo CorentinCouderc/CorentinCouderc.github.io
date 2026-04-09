@@ -134,20 +134,22 @@
 .card-footer{
     position: absolute;
     bottom: 0;
-    padding: 3% 2%;
+    width: 100%;
+    padding: 3% 0;
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: end;
-    --default-gap: 5px;
+    --default-gap: 3px;
     gap: calc(var(--default-gap) * var(--card-scale));
 }
 .card-footer p {
+    margin: 0;
     padding: 0 5px;
     font-family: var(--font-family-text), sans-serif;
     font-weight: normal;
-    font-size: calc(0.65rem * var(--card-scale));
+    font-size: calc(0.6rem * var(--card-scale));
     background-color: #2f2f2f;
     --default-border-radius: 3px;
     border-radius: calc(var(--default-border-radius) * var(--card-scale));
