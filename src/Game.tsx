@@ -122,6 +122,8 @@ export function Game() {
         if (!hasGameStarted) {
             setHasGameStarted(true);
         }
+        setIsSelectingCard(false);
+
         // Basic effects on play (top right corner)
         if (card.effects.energyFlat > 0) {
             addEnergy(card.effects.energyFlat);
@@ -134,8 +136,6 @@ export function Game() {
             applyImmediateEffects(card)
         }
         addCardToBoard(card);
-
-        setIsSelectingCard(false);
     }
 
     function addReroll(rerollToAdd: number) {
