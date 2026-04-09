@@ -1,5 +1,4 @@
 import type {CardTag} from "./cards.ts";
-import {numOpenSockets} from "vite";
 
 export const EConditionType = {
     CARD_WITH_ID: "cardWithID",
@@ -15,6 +14,7 @@ export type EffectCondition = {
 
 export type CardEffect = {
     title: string;
+    description: string;
     condition: EffectCondition | null;
 }
 
@@ -26,7 +26,7 @@ export type ImmediateEffectType = typeof EImmediateEffect[keyof typeof EImmediat
 
 export type CardImmediateEffect = CardEffect & {
     effectType: ImmediateEffectType;
-    addEnergy: number | null;
+    energyToAdd: number | null;
     addXP: number | null;
 }
 
@@ -43,19 +43,21 @@ export type CardPassiveEffect = CardEffect & {
 /* ---------------- Cards Immediate Effects -----------------------*/
 export const Sim2bImmediateEffect: CardImmediateEffect = {
     title: "Fusion/Acquisition",
+    description: "+{0} XP si {1} est sur le terrain",
     condition: {
         conditionType: EConditionType.CARD_WITH_ID,
             requiredCardId: 7,
             requiredCardTags: null,
     },
     effectType: EImmediateEffect.ADD_XP,
-    addEnergy: null,
+    energyToAdd: null,
     addXP: 40,
 };
 
 /* ---------------- Cards Passive Effects -----------------------*/
 export const BacPassiveEffect: CardPassiveEffect = {
     title: "Mention TB",
+    description: "+{0} quand {1} est joué",
     condition: {
         conditionType: EConditionType.CARD_WITH_ID,
         requiredCardId: null,
@@ -64,28 +66,3 @@ export const BacPassiveEffect: CardPassiveEffect = {
     effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
     energyByCardType: 5,
 };
-
-
-//TODO : move these methods to Game.tsx and implement them
-export function canApplyEffect(effect: CardEffect) {
-    if (effect.condition === null) {
-        return true;
-    }
-    else {
-        switch (effect.condition.conditionType) {
-            case EConditionType.CARD_WITH_ID:
-                return false;
-            case EConditionType.CARD_WITH_TAG:
-                return false;
-            default:
-                console.error("Unknown condition: ", effect.condition.conditionType);
-                return false;
-        }
-    }
-}
-
-export function applyImmediateEffect(effect: CardImmediateEffect) {
-    switch (effect.effectType) {
-
-    }
-}
