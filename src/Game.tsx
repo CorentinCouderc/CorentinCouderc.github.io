@@ -4,6 +4,7 @@ import {type CardData, ECardCategory, allCards, type CardCategory, orderedCatego
 import CardSlot from "./CardSlot.tsx";
 import CardSelection from "./CardSelection.tsx";
 import Energy from "./Energy.tsx";
+import {type CardEffect, EConditionType, EImmediateEffect} from "./effects.ts";
 
 
 export function Game() {
@@ -121,11 +122,16 @@ export function Game() {
         if (!hasGameStarted) {
             setHasGameStarted(true);
         }
+        // Basic effects on play (top right corner)
         if (card.effects.energyFlat > 0) {
             addEnergy(card.effects.energyFlat);
         }
         else if (card.effects.xpFlat > 0) {
             addXP(card.effects.xpFlat);
+        }
+        // Specific effects on play
+        if (canApplyEffect(card.effects.immediateEffect)) {
+            applyImmediateEffects(card)
         }
         addCardToBoard(card);
 
@@ -140,6 +146,47 @@ export function Game() {
     function spendReroll() {
         pickRandomCardsToDisplay();
         addReroll(-1);
+    }
+
+    function canApplyEffect(effect: CardEffect | null) {
+        if (effect === null || effect.condition === null) {
+            return true;
+        }
+        switch (effect.condition.conditionType) {
+            case EConditionType.CARD_WITH_ID:
+                boardCards.forEach(boardCard => {
+                    if (boardCard !== null && boardCard.id === effect.condition?.requiredCardId) {
+                        return true;
+                    }
+                })
+                return false;
+            case EConditionType.CARD_WITH_TAG:
+                return false;
+            default:
+                console.error("Unknown condition: ", effect.condition.conditionType);
+                return false;
+        }
+    }
+
+    function applyImmediateEffects(card: CardData) {
+        const effect = card.effects.immediateEffect;
+        if (effect === null) {
+            return;
+        }
+
+        switch (effect.effectType) {
+            case EImmediateEffect.ADD_ENERGY:
+                if (!effect.energyToAdd) {
+                    console.error("Effect", effect.effectType, "not set for card:", card.id);
+                }
+                else {
+                    addEnergy(effect.energyToAdd);
+                }
+                break;
+            default:
+                console.error("Unknown effect type: ", effect.effectType);
+                break;
+        }
     }
 
     return (
