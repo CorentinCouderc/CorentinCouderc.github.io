@@ -150,15 +150,16 @@ export function Game() {
 
     function canApplyEffect(effect: CardEffect | null) {
         if (effect === null || effect.condition === null) {
-            return true;
+            return false;
         }
         switch (effect.condition.conditionType) {
             case EConditionType.CARD_WITH_ID:
-                boardCards.forEach(boardCard => {
-                    if (boardCard !== null && boardCard.id === effect.condition?.requiredCardId) {
+                for (let i = 0; i < boardCards.length; i++) {
+                    const card = boardCards[i];
+                    if (card && card.id === effect.condition?.requiredCardId) {
                         return true;
                     }
-                })
+                }
                 return false;
             case EConditionType.CARD_WITH_TAG:
                 return false;
