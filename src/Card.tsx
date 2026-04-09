@@ -1,4 +1,4 @@
-import {type CardData, getEffectString, getCategoryString, getTagString} from "./cards.ts";
+import {type CardData, getCategoryString, getTagString} from "./cards.ts";
 import './Card.css';
 import * as React from "react";
 import Energy from "./Energy.tsx";
@@ -54,13 +54,32 @@ function Card(props: CardProperties)
                             {displayBonus}
                         </div>
                     </div>
-                    <div className="q3"></div>
-                    <div className="q4"></div>
-
-                    <div className="card-body">
-                        <h2>{props.card.title}</h2>
-                        <p className="effect">{getEffectString(props.card.category)}</p>
+                    <div className="card-body-container">
+                        <div className="card-body-background">
+                            <div className="q3"></div>
+                            <div className="q4"></div>
+                        </div>
+                        <div className="card-body">
+                            <h2>{props.card.title}</h2>
+                            {
+                                props.card.effects.immediateEffect &&
+                                <div className="card-effects">
+                                    <h3 className="effect-title">{props.card.effects.immediateEffect.title} :</h3>
+                                    <p className="effect-desc">{props.card.effects.immediateEffect.description}</p>
+                                </div>
+                            }
+                            {
+                                props.card.effects.passiveEffect &&
+                                <div className="card-effects">
+                                    <h3 className="effect-title">{props.card.effects.passiveEffect.title} :</h3>
+                                    <p className="effect-desc">{props.card.effects.passiveEffect.description}</p>
+                                </div>
+                            }
+                        </div>
                     </div>
+                </div>
+
+
 
                     <div className="card-footer">
                         {
@@ -69,7 +88,6 @@ function Card(props: CardProperties)
                             ))
                         }
                     </div>
-                </div>
             </div>
         )
     }
