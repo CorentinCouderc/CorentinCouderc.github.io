@@ -174,18 +174,25 @@ export function Game() {
             return;
         }
 
+        let error = false;
         switch (effect.effectType) {
             case EImmediateEffect.ADD_ENERGY:
-                if (!effect.energyToAdd) {
-                    console.error("Effect", effect.effectType, "not set for card:", card.id);
-                }
-                else {
+                if (!effect.energyToAdd) { error = true; } else {
                     addEnergy(effect.energyToAdd);
+                }
+                break;
+            case EImmediateEffect.ADD_XP:
+                if (!effect.xpToAdd) { error = true; } else {
+                    addXP(effect.xpToAdd);
                 }
                 break;
             default:
                 console.error("Unknown effect type: ", effect.effectType);
                 break;
+        }
+
+        if (error) {
+            console.error("Effect", effect.effectType, "not set for card:", card.id);
         }
     }
 

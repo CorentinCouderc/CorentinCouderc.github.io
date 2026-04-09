@@ -27,7 +27,7 @@ export type ImmediateEffectType = typeof EImmediateEffect[keyof typeof EImmediat
 export type CardImmediateEffect = CardEffect & {
     effectType: ImmediateEffectType;
     energyToAdd: number | null;
-    addXP: number | null;
+    xpToAdd: number | null;
 }
 
 export const EPassiveEffect = {
@@ -51,7 +51,7 @@ export const Sim2bImmediateEffect: CardImmediateEffect = {
     },
     effectType: EImmediateEffect.ADD_XP,
     energyToAdd: null,
-    addXP: 40,
+    xpToAdd: 40,
 };
 
 /* ---------------- Cards Passive Effects -----------------------*/
