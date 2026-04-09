@@ -109,6 +109,13 @@
 .card-effects {
     text-align: left;
 }
+.card-effects .xpPerTick {
+    margin: 5% 0 0 0;
+    font-family: var(--font-family-text) sans-serif;
+    --card-title-font-size: 1rem;
+    font-size: calc(var(--card-title-font-size) * var(--card-scale));
+    text-align: center;
+}
 .effect-title {
     margin: 0 0 0 5%;
     text-decoration: underline;

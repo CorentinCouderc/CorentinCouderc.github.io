@@ -62,6 +62,12 @@ function Card(props: CardProperties)
                         <div className="card-body">
                             <h2>{props.card.title}</h2>
                             {
+                                props.card.effects.xpPerTick > 0 &&
+                                <div className="card-effects">
+                                    <h3 className="xpPerTick">+{props.card.effects.xpPerTick} XP / tick</h3>
+                                </div>
+                            }
+                            {
                                 props.card.effects.immediateEffect &&
                                 <div className="card-effects">
                                     <h3 className="effect-title">{props.card.effects.immediateEffect.title} :</h3>
@@ -79,15 +85,13 @@ function Card(props: CardProperties)
                     </div>
                 </div>
 
-
-
-                    <div className="card-footer">
-                        {
-                            props.card.tags.map(tag => (
-                                <p>{getTagString(tag)}</p>
-                            ))
-                        }
-                    </div>
+                <div className="card-footer">
+                    {
+                        props.card.tags.map(tag => (
+                            <p>{getTagString(tag)}</p>
+                        ))
+                    }
+                </div>
             </div>
         )
     }
