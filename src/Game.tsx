@@ -118,6 +118,12 @@ export function Game() {
         setBoardCards(newBoardCards);
     }
 
+    function removeCardFromBoard(category: CardCategory) {
+        const newBoardCards = [...boardCards];
+        newBoardCards[getCategoryIndex(category)] = null;
+        setBoardCards(newBoardCards);
+    }
+
     function selectCard(card: CardData) {
         if (!hasGameStarted) {
             setHasGameStarted(true);
@@ -190,6 +196,11 @@ export function Game() {
             case EImmediateEffect.ADD_REROLL:
                 if (!effect.rerollToAdd) { error = true; } else {
                     addReroll(effect.rerollToAdd);
+                }
+                break;
+            case EImmediateEffect.REMOVE_CARD:
+                if (!effect.categoryToRemove) { error = true; } else {
+                    removeCardFromBoard(effect.categoryToRemove);
                 }
                 break;
             default:

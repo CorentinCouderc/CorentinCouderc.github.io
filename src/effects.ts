@@ -1,4 +1,4 @@
-import type {CardTag} from "./cards.ts";
+import {type CardTag, type CardCategory, ECardCategory} from "./cards.ts";
 
 /*--------- Conditions ---------*/
 export const EConditionType = {
@@ -30,6 +30,7 @@ export const EImmediateEffect = {
     ADD_ENERGY: "addEnergy",
     ADD_XP: "addXP",
     ADD_REROLL: "addReroll",
+    REMOVE_CARD: "removeCard"
 } as const
 export type ImmediateEffectType = typeof EImmediateEffect[keyof typeof EImmediateEffect];
 
@@ -38,6 +39,7 @@ export type CardImmediateEffect = CardEffect & {
     energyToAdd: number | null;
     xpToAdd: number | null;
     rerollToAdd: number | null;
+    categoryToRemove: CardCategory | null;
 }
 
 const defaultImmediateEffect = {
@@ -48,6 +50,7 @@ const defaultImmediateEffect = {
     energyToAdd: null,
     xpToAdd: null,
     rerollToAdd: null,
+    categoryToRemove: null,
 }
 
 /*--------- Passive effects ---------*/
@@ -70,6 +73,14 @@ const defaultPassiveEffect: CardPassiveEffect = {
 }
 
 /* ---------------- Cards Immediate Effects -----------------------*/
+export const PrepaImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Khôlle",
+    description: "Retire 1 {0}",
+    effectType: EImmediateEffect.REMOVE_CARD,
+    categoryToRemove: ECardCategory.HOBBY,
+};
+
 export const Sim2bImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "Fusion/Acquisition",
