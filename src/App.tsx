@@ -1,6 +1,5 @@
 import {useEffect, useRef, useState} from "react";
 import './App.css';
-import {allCards} from "./cards.ts";
 import Home from "./Home.tsx";
 import DeckBuilder from "./DeckBuilder.tsx";
 import {Game} from "./Game.tsx";
@@ -11,6 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import {allLevels} from "./levels.ts";
 import {clamp} from "gsap/gsap-core";
+import {allCards} from "./cardList.ts";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 

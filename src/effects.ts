@@ -1,4 +1,5 @@
-import {type CardTag, type CardCategory, ECardCategory, type CardData, allCards} from "./cards.ts";
+import {type CardTag, type CardCategory} from "./cardEnums.ts";
+import {ECardCategory} from "./cardEnums.ts"
 
 /*--------- Conditions ---------*/
 export const EConditionType = {
@@ -46,7 +47,7 @@ export type CardImmediateEffect = CardEffect & {
     xpToAdd: number | null;
     rerollToAdd: number | null;
     categoryToRemove: CardCategory | null;
-    randomCardList: CardData[] | null;
+    randomCardIndexList: number[] | null;
 }
 
 const defaultImmediateEffect = {
@@ -58,7 +59,7 @@ const defaultImmediateEffect = {
     xpToAdd: null,
     rerollToAdd: null,
     categoryToRemove: null,
-    randomCardList: null,
+    randomCardIndexList: null,
 }
 
 /*--------- Passive effects ---------*/
@@ -128,7 +129,7 @@ export const DonjonNBKImmediateEffect: CardImmediateEffect = {
     title: "\"Chaussette !\"",
     description: "Gagne une compétence aléatoire ({0}, {1} ou {2})",
     effectType: EImmediateEffect.ADD_RANDOM_CARD,
-    randomCardList: [allCards[20], allCards[21], allCards[22]],
+    randomCardIndexList: [20, 21, 22],
 };
 
 export const MaitreDonjonImmediateEffect: CardImmediateEffect = {

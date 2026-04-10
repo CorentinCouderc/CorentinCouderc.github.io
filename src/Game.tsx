@@ -1,10 +1,12 @@
 import "./Game.css"
 import {useEffect, useState} from 'react';
-import {type CardData, ECardCategory, allCards, type CardCategory, orderedCategories} from './cards';
+import type {CardData} from "./cards.ts";
+import {ECardCategory, type CardCategory, orderedCategories} from './cardEnums.ts';
 import CardSlot from "./CardSlot.tsx";
 import CardSelection from "./CardSelection.tsx";
 import Energy from "./Energy.tsx";
 import {type CardEffect, EConditionType, EImmediateEffect, EPassiveEffect, type PassiveEffectType} from "./effects.ts";
+import {allCards} from "./cardList.ts";
 
 
 export function Game() {
@@ -235,9 +237,9 @@ export function Game() {
                 addXP(xpGain);
                 break;
             case EImmediateEffect.ADD_RANDOM_CARD:
-                if (!effect.randomCardList) { error = true; } else {
-                    const randomIndex = Math.floor(Math.random() * effect.randomCardList.length);
-                    selectCard(effect.randomCardList[randomIndex]);
+                if (!effect.randomCardIndexList) { error = true; } else {
+                    const randomIndex = Math.floor(Math.random() * effect.randomCardIndexList.length);
+                    selectCard(allCards[effect.randomCardIndexList[randomIndex]]);
                 }
                 break;
             case EImmediateEffect.SELECT_CARD:

@@ -1,4 +1,5 @@
-import {type CardData, getCategoryString, getTagString} from "./cards.ts";
+import {type CardData} from "./cards.ts";
+import {getCategoryString, getTagString} from "./cardEnums.ts"
 import './Card.css';
 import * as React from "react";
 import Energy from "./Energy.tsx";

@@ -1,6 +1,7 @@
 import "./CardSlot.css"
-import type {CardCategory, CardData} from "./cards.ts";
+import type {CardData} from "./cards.ts";
 import Card from "./Card.tsx";
+import type {CardCategory} from "./cardEnums.ts";
 
 interface CardSlotProps {
     category: CardCategory,
