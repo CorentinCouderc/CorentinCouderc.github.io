@@ -10,7 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import {allLevels} from "./levels.ts";
 import {clamp} from "gsap/gsap-core";
-import {allCards} from "./cardList.ts";
+import {allCards} from "./cards.ts";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 

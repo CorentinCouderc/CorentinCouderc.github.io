@@ -6,7 +6,7 @@ import CardSlot from "./CardSlot.tsx";
 import CardSelection from "./CardSelection.tsx";
 import Energy from "./Energy.tsx";
 import {type CardEffect, EConditionType, EImmediateEffect, EPassiveEffect, type PassiveEffectType} from "./effects.ts";
-import {allCards} from "./cardList.ts";
+import {allCards} from "./cards.ts";
 
 
 export function Game() {
