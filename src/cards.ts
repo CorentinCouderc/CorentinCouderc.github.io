@@ -1,4 +1,9 @@
-import {type CardImmediateEffect, type CardPassiveEffect} from "./effects.ts";
+import {
+    type CardImmediateEffect,
+    type CardPassiveEffect,
+    EducatifImmediateEffect,
+    VolleyImmediateEffect
+} from "./effects.ts";
 import {type CardCategory, type CardTag, ECardCategory, ETagCategory} from "./cardEnums.ts";
 import {
     BacPassiveEffect, DonjonNBKImmediateEffect, IdeationImmediateEffect, JeuSocieteImmediateEffect,
@@ -474,6 +479,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             xpFlat: 10,
+            immediateEffect: EducatifImmediateEffect,
         },
         tags: [ETagCategory.PEDAGOGY],
     },
@@ -496,6 +502,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 10,
+            immediateEffect: VolleyImmediateEffect,
         },
         tags: [ETagCategory.COMPETITION],
     },
