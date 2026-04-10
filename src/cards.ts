@@ -1,6 +1,6 @@
 import {
     BacPassiveEffect, type CardImmediateEffect, type CardPassiveEffect,
-    ManagementImmediateEffect, Sim2bImmediateEffect
+    ManagementImmediateEffect, PrepaImmediateEffect, RigueurImmediateEffect1, Sim2bImmediateEffect
 } from "./effects.ts";
 
 export const ECardCategory = {
@@ -157,6 +157,7 @@ export const allCards: CardData[] = [
             ...defaultEffects,
             energyFlat: 8,
             xpPerTick: 4,
+            immediateEffect: PrepaImmediateEffect,
         },
         tags: [ETagCategory.SCIENTIST, ETagCategory.COMPETITION],
     },
@@ -474,6 +475,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 5,
+            immediateEffect: RigueurImmediateEffect1,
         },
         tags: [ETagCategory.SCIENTIST],
     },

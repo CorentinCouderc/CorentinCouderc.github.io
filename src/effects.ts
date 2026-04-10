@@ -83,7 +83,19 @@ export const PrepaImmediateEffect: CardImmediateEffect = {
     categoryToRemove: ECardCategory.HOBBY,
 };
 
-export const RigueurImmediateEffect: CardImmediateEffect = {
+export const RigueurImmediateEffect1: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Bosse des maths",
+    description: "+ {0} si le nombre total de cartes jouées est pair",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.EVEN_TOTAL_CARD_PLAYED,
+    },
+    effectType: EImmediateEffect.ADD_ENERGY,
+    energyToAdd: 3,
+};
+
+export const RigueurImmediateEffect2: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "Produit vectoriel",
     description: "Gagne autant d'XP que d'énergie restant",
