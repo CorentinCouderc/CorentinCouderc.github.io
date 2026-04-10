@@ -4,7 +4,7 @@ import {type CardData, ECardCategory, allCards, type CardCategory, orderedCatego
 import CardSlot from "./CardSlot.tsx";
 import CardSelection from "./CardSelection.tsx";
 import Energy from "./Energy.tsx";
-import {type CardEffect, EConditionType, EImmediateEffect} from "./effects.ts";
+import {type CardEffect, EConditionType, EImmediateEffect, EPassiveEffect, type PassiveEffectType} from "./effects.ts";
 
 
 export function Game() {
@@ -79,6 +79,7 @@ export function Game() {
     function levelUp() {
         setCurrentLevel(currentLevel + 1);
         setXpToNextLevel(Math.floor(Math.pow(baseXPToNextLevel * (currentLevel + 1), xpScalingFactor)));
+        tryApplyPassiveEffects(EPassiveEffect.ENERGY_ON_LEVEL_UP);
         displayCardSelection();
     }
 
@@ -243,7 +244,50 @@ export function Game() {
                 displayCardSelection();
                 break;
             default:
-                console.error("Unknown effect type: ", effect.effectType);
+                console.error("Unknown immediate effect type: ", effect.effectType);
+                break;
+        }
+
+        if (error) {
+            console.error("Effect", effect.effectType, "not set for card:", card.id);
+        }
+    }
+
+    /**
+     * Try to apply effects of all boardCards for a specific type of passive effect
+     * @param passiveEffectType
+     */
+    function tryApplyPassiveEffects(passiveEffectType: PassiveEffectType) {
+        for (let i = 0; i < boardCards.length; i++) {
+            const boardCard = boardCards[i];
+            if (boardCard
+                && boardCard.effects.passiveEffect
+                && boardCard.effects.passiveEffect.effectType === passiveEffectType) {
+                applyPassiveEffects(boardCard);
+            }
+        }
+    }
+
+    function applyPassiveEffects(card: CardData) {
+        const effect = card.effects.passiveEffect;
+        if (effect === null) {
+            return;
+        }
+
+        let error = false;
+        switch (effect.effectType) {
+            case EPassiveEffect.ENERGY_BY_CARD_TYPE:
+                if (!effect.energyByCardType) { error = true; } else {
+                    addEnergy(effect.energyByCardType);
+                }
+                break;
+            case EPassiveEffect.ENERGY_ON_LEVEL_UP:
+                if (!effect.energyOnLevelUp) { error = true; } else {
+                    addEnergy(effect.energyOnLevelUp);
+                }
+                break;
+            default:
+                console.error("Unknown passive effect type: ", effect.effectType);
                 break;
         }
 

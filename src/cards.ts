@@ -1,6 +1,7 @@
 import {
     BacPassiveEffect, type CardImmediateEffect, type CardPassiveEffect,
-    DonjonNBKImmediateEffect, IdeationImmediateEffect, MaitreDonjonImmediateEffect,
+    DonjonNBKImmediateEffect, IdeationImmediateEffect, JeuSocieteImmediateEffect,
+    JeuxVideoPassiveEffect, MaitreDonjonImmediateEffect,
     ManagementImmediateEffect, PrepaImmediateEffect, RigueurImmediateEffect1,
     RubiksImmediateEffect, Sim2bImmediateEffect
 } from "./effects.ts";
@@ -526,6 +527,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 10,
+            passiveEffect: JeuxVideoPassiveEffect,
         },
         tags: [ETagCategory.VIDEO_GAME],
     },
@@ -537,6 +539,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 35,
+            immediateEffect: JeuSocieteImmediateEffect,
         },
     },
     {

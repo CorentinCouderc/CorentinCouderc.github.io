@@ -64,12 +64,14 @@ const defaultImmediateEffect = {
 /*--------- Passive effects ---------*/
 export const EPassiveEffect = {
     ENERGY_BY_CARD_TYPE: "energyByCardType",
+    ENERGY_ON_LEVEL_UP: "energyOnLevelUp",
 } as const
 export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffect];
 
 export type CardPassiveEffect = CardEffect & {
     effectType: PassiveEffectType;
     energyByCardType: number | null;
+    energyOnLevelUp: number | null;
 }
 
 const defaultPassiveEffect: CardPassiveEffect = {
@@ -78,6 +80,7 @@ const defaultPassiveEffect: CardPassiveEffect = {
     condition: null,
     effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
     energyByCardType: null,
+    energyOnLevelUp: null,
 }
 
 /* ---------------- Cards Immediate Effects -----------------------*/
@@ -163,6 +166,19 @@ export const IdeationImmediateEffect: CardImmediateEffect = {
     effectType: EImmediateEffect.SELECT_CARD,
 };
 
+export const JeuSocieteImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Source d'inspiration",
+    description: "+{0} si {1} est sur le terrain",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.CARD_WITH_ID,
+        requiredCardId: 22,
+    },
+    effectType: EImmediateEffect.ADD_ENERGY,
+    xpToAdd: 100,
+};
+
 /* ---------------- Cards Passive Effects -----------------------*/
 export const BacPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
@@ -174,4 +190,12 @@ export const BacPassiveEffect: CardPassiveEffect = {
     },
     effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
     energyByCardType: 5,
+};
+
+export const JeuxVideoPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Level up",
+    description: "+{0} par niveau gagné lorsque cette carte est sur le terrain",
+    effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
+    energyOnLevelUp: 3,
 };
