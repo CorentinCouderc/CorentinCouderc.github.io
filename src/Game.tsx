@@ -172,18 +172,38 @@ export function Game() {
 
     function canApplyEffect(effect: CardEffect | null) {
         if (!effect) { return false; }
-        if (effect.condition === null) { return true; }
+        if (!effect.condition) { return true; } // No condition means effect can be applied
 
         switch (effect.condition.conditionType) {
-            case EConditionType.CARD_WITH_ID:
+            case EConditionType.HAS_CARD_WITH_ID:
                 for (let i = 0; i < boardCards.length; i++) {
                     const card = boardCards[i];
-                    if (card && card.id === effect.condition?.requiredCardId) {
+                    if (card && card.id === effect.condition.requiredCardId) {
                         return true;
                     }
                 }
                 return false;
-            case EConditionType.CARD_WITH_TAG:
+            case EConditionType.HAS_CARD_WITH_CATEGORY:
+                for (let i = 0; i < boardCards.length; i++) {
+                    const card = boardCards[i];
+                    if (card && card.category === effect.condition.requiredCardCategory) {
+                        return true;
+                    }
+                }
+                return false;
+            case EConditionType.HAS_CARD_WITH_TAG:
+                for (let i = 0; i < boardCards.length; i++) {
+                    const card = boardCards[i];
+                    if (card && effect.condition.requiredCardTags) {
+                        let atLeastOneTag = false;
+                        for (let j = 0; j < effect.condition.requiredCardTags.length; j++) {
+                            atLeastOneTag ||= card.tags.includes(effect.condition.requiredCardTags[j]);
+                            if (atLeastOneTag) {
+                                return true;
+                            }
+                        }
+                    }
+                }
                 return false;
             case EConditionType.EVEN_TOTAL_CARD_PLAYED:
                 return playedCards.length % 2 === 0;

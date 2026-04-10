@@ -3,8 +3,9 @@ import {ECardCategory} from "./cardEnums.ts"
 
 /*--------- Conditions ---------*/
 export const EConditionType = {
-    CARD_WITH_ID: "cardWithID",
-    CARD_WITH_TAG: "cardWithTag",
+    HAS_CARD_WITH_ID: "hasCardWithID",
+    HAS_CARD_WITH_CATEGORY: "hasCardWithCategory",
+    HAS_CARD_WITH_TAG: "hasCardWithTag",
     EVEN_TOTAL_CARD_PLAYED: "eventTotalCardPlayed",
     ALL_BOARD_FILLED: "allBoardFilled",
 } as const
@@ -13,11 +14,13 @@ export type EffectConditionType = typeof EConditionType[keyof typeof EConditionT
 export type EffectCondition = {
     conditionType: EffectConditionType;
     requiredCardId: number | null;
+    requiredCardCategory: CardCategory | null;
     requiredCardTags: CardTag[] | null;
 }
 const defaultCondition: EffectCondition = {
-    conditionType: EConditionType.CARD_WITH_ID,
+    conditionType: EConditionType.HAS_CARD_WITH_ID,
     requiredCardId: null,
+    requiredCardCategory: null,
     requiredCardTags: null,
 }
 
@@ -145,7 +148,7 @@ export const Sim2bImmediateEffect: CardImmediateEffect = {
     description: "+{0} XP si {1} est sur le terrain",
     condition: {
         ...defaultCondition,
-        conditionType: EConditionType.CARD_WITH_ID,
+        conditionType: EConditionType.HAS_CARD_WITH_ID,
         requiredCardId: 7,
     },
     effectType: EImmediateEffect.ADD_XP,
@@ -173,11 +176,32 @@ export const JeuSocieteImmediateEffect: CardImmediateEffect = {
     description: "+{0} si {1} est sur le terrain",
     condition: {
         ...defaultCondition,
-        conditionType: EConditionType.CARD_WITH_ID,
+        conditionType: EConditionType.HAS_CARD_WITH_ID,
         requiredCardId: 22,
     },
     effectType: EImmediateEffect.ADD_ENERGY,
-    xpToAdd: 100,
+    energyToAdd: 100,
+};
+
+export const EducatifImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "C'est pas sorcier !",
+    description: "",
+    effectType: EImmediateEffect.ADD_XP,
+    xpToAdd: 0,
+};
+
+export const VolleyImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Esprit d'équipe",
+    description: "+{0} si il y a un {1} sur le terrain",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.HAS_CARD_WITH_CATEGORY,
+        requiredCardCategory: ECardCategory.HOBBY,
+    },
+    effectType: EImmediateEffect.ADD_ENERGY,
+    energyToAdd: 5,
 };
 
 /* ---------------- Cards Passive Effects -----------------------*/
@@ -187,7 +211,7 @@ export const BacPassiveEffect: CardPassiveEffect = {
     description: "+{0} quand {1} est joué",
     condition: {
         ...defaultCondition,
-        conditionType: EConditionType.CARD_WITH_ID,
+        conditionType: EConditionType.HAS_CARD_WITH_ID,
     },
     effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
     energyByCardType: 5,
