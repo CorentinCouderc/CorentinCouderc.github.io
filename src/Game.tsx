@@ -27,6 +27,7 @@ export function Game() {
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
     const [playedCards, setPlayedCards] = useState<(CardData | null)[]>([]);
+    const [cardToAddDelayed, setCardToAddDelayed] = useState<CardData | null>(null);
 
     const initialRandomCards = [allCards[0], allCards[0], allCards[0]]; // Force this card at the start of the game
     const [randomCards, setRandomCards] = useState<CardData[]>(initialRandomCards);
@@ -92,7 +93,7 @@ export function Game() {
 
     function pickRandomCardsToDisplay() {
         if (hasGameStarted) {
-            const pickedCards = [allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
+            const pickedCards = [allCards[11], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
             setRandomCards(pickedCards);
 
             // TODO : implement better card selection algorithm (no redraw of same card, priority in randomness etc..)
@@ -151,6 +152,14 @@ export function Game() {
         addCardToBoard(card);
     }
 
+    // When an effect from a card is adding a card, we wait next redraw to add it
+    useEffect(() => {
+        if (cardToAddDelayed) {
+            selectCard(cardToAddDelayed);
+            setCardToAddDelayed(null);
+        }
+    }, [cardToAddDelayed]);
+
     function addReroll(rerollToAdd: number) {
         const newReroll = Math.max(rerolls + rerollToAdd, 0);
         setRerolls(newReroll);
@@ -162,9 +171,9 @@ export function Game() {
     }
 
     function canApplyEffect(effect: CardEffect | null) {
-        if (effect === null || effect.condition === null) {
-            return false;
-        }
+        if (!effect) { return false; }
+        if (effect.condition === null) { return true; }
+
         switch (effect.condition.conditionType) {
             case EConditionType.CARD_WITH_ID:
                 for (let i = 0; i < boardCards.length; i++) {
@@ -239,7 +248,7 @@ export function Game() {
             case EImmediateEffect.ADD_RANDOM_CARD:
                 if (!effect.randomCardIndexList) { error = true; } else {
                     const randomIndex = Math.floor(Math.random() * effect.randomCardIndexList.length);
-                    selectCard(allCards[effect.randomCardIndexList[randomIndex]]);
+                    setCardToAddDelayed(allCards[effect.randomCardIndexList[randomIndex]]);
                 }
                 break;
             case EImmediateEffect.SELECT_CARD:
