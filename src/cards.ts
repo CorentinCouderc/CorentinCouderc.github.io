@@ -1,4 +1,7 @@
-import {BacPassiveEffect, type CardImmediateEffect, type CardPassiveEffect, Sim2bImmediateEffect} from "./effects.ts";
+import {
+    BacPassiveEffect, type CardImmediateEffect, type CardPassiveEffect,
+    ManagementImmediateEffect, Sim2bImmediateEffect
+} from "./effects.ts";
 
 export const ECardCategory = {
     NONE: "none",
@@ -246,9 +249,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             xpFlat: 40,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
+            immediateEffect: ManagementImmediateEffect,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.PEDAGOGY],
     },

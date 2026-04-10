@@ -83,6 +83,14 @@ export const Sim2bImmediateEffect: CardImmediateEffect = {
     xpToAdd: 40,
 };
 
+export const ManagementImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "C'est moi le chef",
+    description: "+{0} relances",
+    effectType: EImmediateEffect.ADD_REROLL,
+    rerollToAdd: 2,
+};
+
 /* ---------------- Cards Passive Effects -----------------------*/
 export const BacPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,

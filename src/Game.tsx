@@ -187,6 +187,11 @@ export function Game() {
                     addXP(effect.xpToAdd);
                 }
                 break;
+            case EImmediateEffect.ADD_REROLL:
+                if (!effect.rerollToAdd) { error = true; } else {
+                    addReroll(effect.rerollToAdd);
+                }
+                break;
             default:
                 console.error("Unknown effect type: ", effect.effectType);
                 break;
