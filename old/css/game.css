@@ -1,0 +1,177 @@
+header {
+	position: sticky;
+}
+
+.center {
+	text-align: center;
+}
+
+.hidden{
+	display: none;
+}
+
+
+
+/* Game page*/
+#game {
+	margin: 0;
+	padding: 1% 0;
+	
+	background: url("../images/ios-linen.jpg") no-repeat center fixed;
+	background-size: cover;
+}
+
+#game h1 {
+	font-size: 4.0em;
+	margin: 10px;
+	color: #fefefe;
+	font-family: 'Schoolbell', sans-serif;
+	font-weight: normal;
+}
+
+#game h2 {
+	margin: 0;
+	padding: 10px;
+	color: #eeeeee;
+}
+
+#game p {
+	margin: 0;
+	padding: 10px;
+}
+
+#container{
+	display: inline-block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 15px;
+	height: 610px;
+	width: 610px;
+	position: relative;
+}
+@media only screen and (max-height:800px){
+	#container{
+	height: 550px;
+	width: 550px;
+	}
+}
+@media only screen and (max-height:700px){
+	#container{
+	height: 490px;
+	width: 490px;
+	}
+}
+
+#container:hover{
+	cursor: pointer;
+}
+
+#canvas{
+	border: 5px solid #222;
+	background-color: rgba(68,68,68,1.0);
+	height: 100%;
+	width: 100%;
+	border-radius: 10px;
+}
+
+#side{
+	display: inline-block;
+	position: absolute;
+	margin-left: 2%;
+}
+#reset{
+	width: 50px;
+	height: 50px;
+	background-color: rgba(68,68,68,1.0);
+	border: 3px solid #222;
+	border-radius: 50%;
+	margin-top: 10%;
+	padding: 5%;
+}
+#reset img{
+	display: block;
+	width: 40px;
+	height: 40px;
+	margin: 9%;
+}
+#reset img:last-child{display: none;}
+#score{
+	background-color: rgba(68,68,68,1.0);
+	border: 3px solid #222;
+	border-radius: 5px;
+	min-width: 100px;
+	margin-top: 20%;
+	color: #eeeeee;
+	font-size: 1.2em;
+}
+
+#reset:hover{
+	cursor: pointer;
+}
+#reset:hover img:first-child{
+	display: none;
+}
+#reset:hover img:last-child{
+	display: block;
+}
+
+#victoryWin{
+	position: absolute;
+	border: 5px solid #49a0ff;
+	background-color: rgba(10,10,10,0.7);
+	margin-right: 10px;
+	height: 100%;
+	width: 100%;
+	border-radius: 10px;
+}
+
+#victoryWin h2{
+	font-size: 2.0em;
+	margin-top: 30%;
+}
+
+#victoryWin p{
+	font-size: 1.2em;
+}
+
+#solve_plays{
+	color: #eeeeee;
+}
+
+div#retry_button{
+	margin-left: 32%;
+	float: left;
+}
+div#next_button{
+	margin-right: 32%;
+	float: right;
+}
+
+#retry_icon{
+	background: url("../images/refresh.png") center/contain no-repeat;
+	height: 30px;
+	margin-top: 10%;
+}	
+#next_icon{
+	background: url("../images/next.png") center/contain no-repeat;
+	height: 30px;
+	margin-top: 10%;
+}
+
+div#retry_button, div#next_button{
+	color: #eeeeee;
+	padding-top: 2%;
+}
+div#retry_button:hover, div#next_button:hover{
+	color: #49a0ff;
+}
+div#retry_button:hover #retry_icon{
+	background: url("../images/refresh-blue.png") center/contain no-repeat;
+	max-height: 30px;
+	margin-top: 10%;
+}
+div#next_button:hover #next_icon{
+	background: url("../images/next-blue.png") center/contain no-repeat;
+	max-height: 30px;
+	margin-top: 10%;
+}

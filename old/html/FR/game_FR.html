@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="My website"/>
+		<meta name="keywords" content="Corentin, Couderc, projects, game, developer, software, engineer"/>
+		<meta name="author" content="develop" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Corentin Couderc - Unblock me</title>
+		<link rel="icon" type="image/png" href="../../images/favicon.png" />
+		<!--[if IE]>
+			<link rel="shortcut icon" type="image/x-icon" href="../image/favicon.ico" />
+		<![endif]-->
+        <!--[if lt IE] 9><script type="text/javascript" src="../../scripts/excanvas.js">
+		</script><![endif]-->
+        
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Gloria+Hallelujah|Walter+Turncoat|Schoolbell" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/header-footer_mobile.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/game.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/game_mobile.css" />
+	</head>
+	
+	<body>
+		<header class="nav-down">
+			<nav id="myTopnav" class="topnav">
+				<a class="header_img float_left" href="home_FR.html">
+                    <div id="home_img"></div>
+				</a>
+				<a class="float_left" href="projects_FR.html">Projets</a>
+				<a class="float_left" href="experiences_FR.html">Expérience</a>
+				<a class="float_left" href="Corentin_Couderc_CV.pdf" target="blank">CV</a>
+				<a id="game_link" class="float_left" href="game_FR.html">Jouer</a>
+				<a class="float_right" href="../EN/game_EN.html">EN</a>
+                <a href="javascript:void(0);" class="icon" onclick="burgerNav()">
+                    <i class="fa fa-bars"></i>
+                </a>
+			</nav>
+		</header>
+		
+		<div class="center" id="game">
+			<h1>Unblock Me</h1>
+			
+			<div id="container">
+				<div class="hidden" id="victoryWin">
+					<h2>Puzzle solved!</h2>
+					<p id="solve_plays"></p>
+					<div id="retry_button">
+						<div id="retry_icon"></div>
+						<p id="retry">Retry</p>
+					</div>
+					<div id="next_button">
+						<div id="next_icon"></div>
+						<p id="next">Next</p>
+					</div>
+				</div>
+				<canvas id="canvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre à jour pour jouer</canvas>
+			</div>
+			
+			<div id="side">
+				<div id="reset">
+					<img src="../../images/refresh.png" alt="refresh">				
+					<img src="../../images/refresh-blue.png" alt="refresh-blue">				
+				</div>
+				<div id="score">
+					<p>Moves :</p>
+					<p id="nb_plays">0</p>
+				</div>
+			</div>
+			
+		</div>
+		
+		<footer>
+			<a class="float_left" id ="credentials" href="https://fr.icons8.com/icon/new-icons/all" target="_blank">Icon credentials</a> 
+			<a class="float_right" id="itchio_logo" href="https://corentincouderc.itch.io/" target="_blank">
+				<img src="../../images/itchio-logo-textless-white.png" alt="Itch.io">					
+			</a>
+			<a class="float_right" id="linkedin_icon" href="https://www.linkedin.com/in/corentin-couderc-86251813b/" target="_blank">
+				<img src="../../images/linkedin_icon.png" alt="Linkedin">					
+			</a>
+			<a class="float_right" id="github_logo" href="https://github.com/CorentinCouderc" target="_blank">
+				<img id="github-logo" src="../../images/github-logo.png" alt="GitHub logo"><img id="github-text" src="../../images/github.png" alt="GitHub">					
+			</a>
+		</footer>
+	
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../../scripts/burger_menu.js"></script>
+		<script type="text/javascript" src="../../scripts/getHW_game.js"></script>
+		<script type="text/javascript" src="../../scripts/scrollnav.js"></script>
+		<script type="text/javascript" src="../../scripts/class/block.js"></script>
+		<script type="text/javascript" src="../../scripts/unblockme.js"></script>
+	</body>
+</html>

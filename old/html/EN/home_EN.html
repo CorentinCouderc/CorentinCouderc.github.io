@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="My website"/>
+		<meta name="keywords" content="Corentin, Couderc, projects, game, developer, software, engineer"/>
+		<meta name="author" content="develop" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Corentin Couderc - Website</title>
+		<link rel="icon" type="image/png" href="../../images/favicon.png" />
+		<!--[if IE]>
+			<link rel="shortcut icon" type="image/x-icon" href="../image/favicon.ico" />
+		<![endif]-->
+		
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Gloria+Hallelujah|Walter+Turncoat|Schoolbell" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Michroma|Orbitron" />
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fjalla+One|Nunito|Oswald" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/header-footer_mobile.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/home_page.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/home_page_mobile.css" />	
+    </head>
+	
+	<body onload="showSlides(1)">
+		<header class="nav-down">
+			<nav id="myTopnav" class="topnav">
+				<a class="header_img float_left" href="home_EN.html">
+					<div id="home_img"></div>
+				</a>
+				<a class="float_left" href="projects_EN.html">Projects</a>
+				<a class="float_left" href="experiences_EN.html">Experience</a>
+				<a class="float_left" href="Corentin_Couderc_CV.pdf" target="blank">Resume</a>
+				<a id="game_link" class="float_left" href="game_EN.html">Play</a>
+				<a class="float_right" href="../FR/home_FR.html">FR</a>
+                <a href="javascript:void(0);" class="icon" onclick="burgerNav()">
+                    <i class="fa fa-bars"></i>
+                </a>
+			</nav>
+		</header>
+		
+		<div id="home">
+			
+			<div class="slideshow-container">
+                
+                <div class="mySlides fade">
+                    <a href="projects_EN.html">
+                        <img src="../../images/Rubiks-Shuffle.png" class="slide_img">			
+                        <div class="slide-description">
+                            <h2>Rubik's Cube</h2>
+                            <p class="text">
+                                If you like puzzles, you'll love playing with this virtual Rubik's Cube. It's just like a real one, but better!
+                            </p>					
+                        </div>
+                    </a>
+				</div>
+                <div class="mySlides fade">
+                    <a href="projects_EN.html">
+                        <img src="../../images/gamebuino-meta.jpg" class="slide_img">
+                        <div class="slide-description">
+                            <h2>Slide'n'Ride</h2>
+                            <p class="text">
+                                Will you be able to give (8 bits) colour to every white square? Be careful, the frozen ground is very slippery and can crumble at any moment.
+                            </p>			
+                        </div>
+                    </a>
+				</div>
+				<div class="mySlides fade">
+                    <a href="projects_EN.html">
+                        <img src="../../images/TequenneFull.png" class="slide_img">
+                        <div class="slide-description">
+                            <h2>Tequenne</h2>
+                            <p class="text">
+                                Ready? Fight! Find Heihachi in a remastered version of the famous fighting game Tekken 3!
+                            </p>			
+                        </div>
+                    </a>
+				</div>
+				
+				<div class="center-top">
+					<span class="dot" onclick="currentSlide(1)"></span><span class="dot" onclick="currentSlide(2)"></span><span class="dot" onclick="currentSlide(3)"></span>
+				</div>	
+			</div>
+			
+			<div class="center" id="me">
+				<img id="profile_img" src="../../images/PhotoCV.jpg" alt="Corentin Couderc">
+                <h1>Corentin Couderc</h1>
+                <h2>Software engineer - Gameplay programmer</h2>
+
+                <div id = "description">
+                    <p>After obtaining my engineering degree in electronics-informatics at CPE Lyon (specialization in Image Processing and 3D Modeling), I decided to focus on videogame programming. This field allows me to apply all the theoretical aspects learned during my studies and to combine them with my passion for gaming. This environment makes me feel completely fulfilled. Being naturally very curious, autonomous and versatile, I am always looking for intellectual stimulation, and the challenges brought by video game programming are not lacking.</p>
+                    <p>During the past year I participated in the Gamagora Game Show 2019 (as an external programmer) thanks to the partnership between my school and the Gamagora video game training. I was able to bring my engineering know-how to integrate an AI to the <a href="https://gamagora.itch.io/silverlining" target="_blank">Silverlining</a> game, but also to implement shaders (outline, glow ...).</p>
+                    <p>I was then recruited at Artefacts Studio to work on the game <a href="https://store.steampowered.com/app/970830/Le_Donjon_de_Naheulbeuk__LAmulette_du_Dsordre/" target="_blank">The Dungeon of Naheulbeuk</a>. I started with a 6-month internship to validate my diploma, before getting recruited as a Junior Gameplay Programmer for another 6 months. I was in charge of the implementation of a spontaneous character speaking system, as well as the passive skills system and boss fights.</p>
+                    <p>I invite you through this website, to discover my universe and my experience by presenting you the different projects I have realized.</p>
+                    <p id="jouer">And if you get bored, just use the "Play" tab</p>
+                </div>
+                
+                <div id="contact">
+                    <p>E-mail : corentin.couderc@cpe.fr</p>
+				    <p>Tel : +33 7 60 06 81 01</p>
+                </div>
+			</div>
+						
+		</div>
+		
+		<footer>
+			<a class="float_left" id ="credentials" href="https://fr.icons8.com/icon/new-icons/all" target="_blank">Icon credentials</a> 
+			<a class="float_right" id="itchio_logo" href="https://corentincouderc.itch.io/" target="_blank">
+				<img src="../../images/itchio-logo-textless-white.png" alt="Itch.io">					
+			</a>
+			<a class="float_right" id="linkedin_icon" href="https://www.linkedin.com/in/corentin-couderc-86251813b/" target="_blank">
+				<img src="../../images/linkedin_icon.png" alt="Linkedin">					
+			</a>
+			<a class="float_right" id="github_logo" href="https://github.com/CorentinCouderc" target="_blank">
+				<img id="github-logo" src="../../images/github-logo.png" alt="GitHub logo"><img id="github-text" src="../../images/github.png" alt="GitHub">					
+			</a>
+		</footer>
+	
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../../scripts/burger_menu.js"></script>
+		<script type="text/javascript" src="../../scripts/slideshow.js"></script>
+		<script type="text/javascript" src="../../scripts/scrollnav.js"></script>
+	</body>
+</html>

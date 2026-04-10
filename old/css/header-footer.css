@@ -1,0 +1,127 @@
+html, body{
+	background-color: white;
+	font-family: "Open Sans", sans-serif;
+	
+	margin: 0;
+	padding: 0;
+}
+
+a:focus
+{
+    outline:0;
+    border: none;
+}
+
+a img
+{
+    border: none;
+} 
+
+
+/* Navigation bar */
+header{
+	position: fixed;
+	width: 100%;
+	top: 0;
+	box-shadow: 0 5px 10px 0 rgba(0,0,0,0.25), 0 5px 10px 0 rgba(0,0,0,0.25);
+	z-index: 1;
+	overflow: hidden;
+	background-color: #252525;
+	transition: top 0.3s ease-in-out;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.nav-up{
+	top: -100px;
+}
+
+.float_left{
+	float: left;
+}
+
+.float_right{
+	float: right;
+}
+
+header a{
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 28px 2%;
+	text-decoration: none;
+	font-size: 15px;
+}
+
+header a:hover{
+	/*background-color: #555;*/
+    color: #b9b9b9;
+    transition: 1s;
+}
+
+.header_img{
+	padding: 16px 2%;
+}
+
+#home_img{
+    background-image: url("../images/home_white.png");
+    height: 30px;
+    margin-top: 8px;
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.header_img:hover #home_img{
+	background-image: url("../images/home_hover.png");
+    transition: 1s;
+}
+
+
+
+/* Footer */
+footer{
+	background-color: #252525;
+	height: 70px;
+	overflow: hidden;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
+
+#credentials{
+	margin-top: 26px;
+	margin-left: 10%;
+	color: #dedede;
+	text-decoration: none;
+	font-size: 0.9em;
+}
+#credentials:hover{
+	color: #49a0ff;
+}
+
+#itchio_logo{
+	margin-top: 23px;
+	margin-right: 10%;
+}
+#itchio_logo img{
+	height: 32px;
+}
+
+#linkedin_icon{
+	margin-top: 23px;
+	margin-right: 40px;
+}
+#linkedin_icon img{
+	height: 32px;
+}
+
+#github_logo{
+	margin-top: 23px;
+	margin-right: 40px;
+}
+#github_logo img{
+	height: 32px;
+}

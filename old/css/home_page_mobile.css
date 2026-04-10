@@ -1,0 +1,79 @@
+@media (max-width: 640px) {
+	* {
+		box-sizing: border-box;
+	}
+    
+    #jouer{
+        display: none;
+    }
+    
+    
+    
+    /* Slideshow container */
+    .slideshow-container {
+      height: 100vh;
+    }
+
+    
+    
+    /* Caption text */
+    
+    .slide-description h2{
+      font-size: 2.1em;
+      padding-left: 7%;
+      margin: 1.5% 0;
+    }
+    
+    .text{
+        font-size: 0.9em;
+        padding: 3% 8%;
+        text-indent: 1em;
+        text-align: left;
+        line-height: 1.3em;
+    }
+    
+    .center-top {
+        margin-top: 70px;
+    }
+    
+    .slide_img{
+    width:100%; 
+    height:100%;
+    margin-top: 50%;
+    }
+    
+    
+    
+    /* Profile */
+    #me h1{
+        font-size: 2.1em;
+    }
+
+    #me p{
+        font-size: 0.9em;
+        line-height: 1.5em;
+    }
+
+    #description{
+        margin: 0 7%;
+        text-align: left;
+    }
+
+    #description p{
+        font-size: 0.9em;
+        text-indent: 1em;
+        margin-top: 4%;
+        line-height: 1.5em;
+    }
+
+    #contact{
+        margin-top: 7%;
+    }
+
+    #profile_img{
+        width: 15%;
+        min-width: 130px;
+        margin-top: 3%;
+        max-height: 140px;
+    }
+}

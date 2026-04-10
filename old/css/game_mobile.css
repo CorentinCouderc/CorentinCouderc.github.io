@@ -1,0 +1,72 @@
+@media only screen and (max-width: 640px) {
+	* {
+		box-sizing: border-box;
+	}
+    
+    footer{
+        display: none;
+    }
+    
+    #game h1 {
+        font-size: 2.5em;
+        margin: 15px;
+    }
+
+    #game h2 {
+        padding: 10px;
+    }
+
+    #game p {
+        padding: 10px;
+    }
+
+    #container{
+        height: 310px;
+        width: 310px;
+	}
+    
+    #victoryWin h2{
+        font-size: 1.6em;
+    }
+
+    #victoryWin p{
+        font-size: 1.0em;
+    }
+    
+    div#retry_button{
+        margin-left: 30%;
+    }
+    div#next_button{
+        margin-right: 30%;
+    }
+    
+    
+    #side{
+        display: inline-flex;
+        position: relative;
+        margin-left: 0;
+        padding-left: 70px;
+        width: 310px;
+        margin-top: 5%
+    }
+    
+    #reset{
+        width: 50px;
+        height: 50px;
+        margin-top: 10%;
+        padding: 0;
+    }
+    #reset img{
+        width: 30px;
+        height: 30px;
+        margin-top: 16%;
+        margin-left: 14%;
+    }
+    
+    #score{
+        min-width: 90px;
+        margin-top: 0;
+        margin-left: 10%;
+        font-size: 1.0em;
+    }
+}

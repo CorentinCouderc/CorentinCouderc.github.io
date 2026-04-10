@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="My website"/>
+		<meta name="keywords" content="Corentin, Couderc, projects, game, developer, software, engineer"/>
+		<meta name="author" content="develop" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Corentin Couderc - Site Web</title>
+		<link rel="icon" type="image/png" href="../../images/favicon.png" />
+		<!--[if IE]>
+			<link rel="shortcut icon" type="image/x-icon" href="../image/favicon.ico" />
+		<![endif]-->
+        
+        <!-- Open Graph data, pour facebook -->
+	    <meta property="og:title" content="Corentin Couderc - Site Web"/>
+	    <meta property="og:type" content="website"/>
+	    <!--<meta property="og:url" content="http://www.be$tfriends.com/"/>-->
+	    <meta property="og:image" content="http://www.corentincouderc.com/images/TequenneFull.png"/>
+	    <meta property="og:description" content="Découvrez mes projets et mon expérience sur mon site web!"/>
+        
+        
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Gloria+Hallelujah|Walter+Turncoat" />
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Michroma|Orbitron|Schoolbell" />
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fjalla+One|Nunito|Oswald" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/header-footer_mobile.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/home_page.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/home_page_mobile.css" />
+	</head>
+	
+	<body onload="showSlides(1)">
+		<header class="nav-down">
+			<nav id="myTopnav" class="topnav">
+				<a class="header_img float_left" href="home_FR.html">
+                    <div id="home_img"></div>
+				</a>
+				<a class="float_left" href="projects_FR.html">Projets</a>
+				<a class="float_left" href="experiences_FR.html">Expérience</a>
+				<a class="float_left" href="Corentin_Couderc_CV.pdf" target="blank">CV</a>
+				<a id="game_link" class="float_left" href="game_FR.html">Jouer</a>
+				<a class="float_right" href="../EN/home_EN.html">EN</a>
+                <a href="javascript:void(0);" class="icon" onclick="burgerNav()">
+                    <i class="fa fa-bars"></i>
+                </a>
+			</nav>
+		</header>
+		
+		<div id="home">
+			
+			<div class="slideshow-container">
+                
+                <div class="mySlides fade">
+                    <a href="projects_FR.html">
+                        <img src="../../images/Rubiks-Shuffle.png" class="slide_img">			
+                        <div class="slide-description">
+                            <h2>Rubik's Cube</h2>
+                            <p class="text">
+                                Si vous aimez les casse-têtes, vous adorerez jouer avec ce Rubik's Cube virtuel. C'est comme un vrai, mais en mieux !
+                            </p>					
+                        </div>
+                    </a>
+				</div>
+                <div class="mySlides fade">
+                    <a href="projects_FR.html">
+                        <img src="../../images/gamebuino-meta.jpg" class="slide_img">
+                        <div class="slide-description">
+                            <h2>Slide'n'Ride</h2>
+                            <p class="text">
+                                Arriveras-tu à donner de la couleur (8 bits) à chaque case blanche ? Attention le sol gelé est très glissant et peut s'effriter à tout moment.
+                            </p>			
+                        </div>
+                    </a>
+				</div>
+				<div class="mySlides fade">
+                    <a href="projects_FR.html">
+                        <img src="../../images/TequenneFull.png" class="slide_img">
+                        <div class="slide-description">
+                            <h2>Tequenne</h2>
+                            <p class="text">
+                                Ready? Fight! Retrouvez Heihachi dans une version remasterisée du célèbre jeu de combat Tekken 3 !
+                            </p>			
+                        </div>
+                    </a>
+				</div>
+				<div class="center-top">
+					<span class="dot" onclick="currentSlide(1)"></span><span class="dot" onclick="currentSlide(2)"></span><span class="dot" onclick="currentSlide(3)"></span>
+				</div>	
+			</div>
+			
+			<div class="center" id="me">
+				<img id="profile_img" src="../../images/PhotoCV.jpg" alt="Corentin Couderc">
+                <h1>Corentin Couderc</h1>
+				<h2>Ingénieur en informatique - Programmeur gameplay</h2>
+
+                <div id = "description">
+                    <p>Après avoir obtenu mon diplôme d'ingénieur en électronique-informatique à CPE Lyon (spécialité Traitement d'image et Modélisation 3D), j'ai décidé de m'orienter vers la programmation pour le jeu vidéo. En me permettant de mettre en application tous les aspects théoriques appris pendant ma formation et d'y allier ma passion de joueur, cet univers m'épanouit entièrement. D'un naturel très curieux, autonome et touche-à-tout, je suis toujours à la recherche d'une stimulation intellectuelle, et les défis apportés par la programmation dans le jeu vidéo ne manquent pas.</p>
+                    <p>Au cours de l'année passée j'ai participé au Gamagora Game Show 2019 (en tant que programmeur externe) grâce au partenariat entre mon école et la formation jeu vidéo Gamagora. J'ai pu apporter mon savoir-faire d'ingénieur pour intégrer une I.A. au jeu de <a href="https://gamagora.itch.io/silverlining" target="_blank">Silverlining</a>, mais aussi implémenter des shaders (outline, glow ...).</p>
+                    <p>J'ai ensuite été recruté chez Artefacts Studio pour travailler sur le jeu <a href="https://store.steampowered.com/app/970830/Le_Donjon_de_Naheulbeuk__LAmulette_du_Dsordre/" target="_blank">Le Donjon de Naheulbeuk</a>. J'y ai d'abord fait un stage de 6 mois me permettant de valider mon diplôme, avant d'être recruté en tant que Programmeur Gameplay junior pour 6 mois supplémentaires. J'ai pu notamment participer à l'implémentation d'un système de prise de parole spontanée des personnages, ainsi que du système de compétences passives et des combats de boss.</p>
+                    <p>Je vous invite à travers ce site web à découvrir mon univers et mon expérience en vous présentant les différents projets que j'ai pu réaliser.</p>
+                    <p id="jouer">Et si vous vous ennuyez, utilisez simplement l'onglet "Jouer"</p>
+                </div>
+                <div id="contact">
+                    <p>E-mail : corentin.couderc@cpe.fr</p>
+				    <p>Tel : 07 60 06 81 01</p>
+                </div>
+			</div>
+						
+		</div>
+		
+		<footer>
+			<a class="float_left" id ="credentials" href="https://fr.icons8.com/icon/new-icons/all" target="_blank">Icon credentials</a> 
+			<a class="float_right" id="itchio_logo" href="https://corentincouderc.itch.io/" target="_blank">
+				<img src="../../images/itchio-logo-textless-white.png" alt="Itch.io">					
+			</a>
+			<a class="float_right" id="linkedin_icon" href="https://www.linkedin.com/in/corentin-couderc-86251813b/" target="_blank">
+				<img src="../../images/linkedin_icon.png" alt="Linkedin">					
+			</a>
+			<a class="float_right" id="github_logo" href="https://github.com/CorentinCouderc" target="_blank">
+				<img id="github-logo" src="../../images/github-logo.png" alt="GitHub logo"><img id="github-text" src="../../images/github.png" alt="GitHub">					
+			</a>
+		</footer>
+	
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../../scripts/burger_menu.js"></script>
+		<script type="text/javascript" src="../../scripts/slideshow.js"></script>
+		<script type="text/javascript" src="../../scripts/scrollnav.js"></script>
+	</body>
+</html>

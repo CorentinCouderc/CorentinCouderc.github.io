@@ -1,0 +1,167 @@
+#home{
+	margin: 0;
+	padding: 0;
+}
+
+.center{
+	text-align: center;
+}
+
+.center-top{
+	position: absolute;
+	top: 0px;
+	text-align: center;
+	width: 100%;
+	margin-top: 82px;
+}
+
+.mySlides {
+    display: none;
+    text-align: center;
+}
+
+.text{
+    color: #f2f2f2;
+    font-size: 17px;
+    padding: 0 12%;
+    padding-bottom: 2%;
+    text-indent: 3.0em;
+    margin: 0;
+}
+
+.slide_img{
+    width:auto; 
+    height:100vh;
+}
+
+a{
+    color: #f2f2f2;
+    text-decoration: underline;
+}
+
+a:hover{
+	color: #4286f4;
+}
+
+
+
+
+/* Slideshow container */
+
+.slideshow-container {
+  height: 100%;
+  position: relative;
+  margin: auto;
+  background-color: black;
+}
+
+/* Caption text */
+.slide-description {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+    text-align:  left;
+}
+
+.slide-description h2{
+  font-size: 40px;
+  padding-left: 10%;
+  margin: 1.5% 0;
+}
+
+
+.mySlides a:hover h2{
+	color: #4286f4;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 4px;
+  background-color: #7b7b7b;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  z-index: 5
+}
+
+.active, .dot:hover {
+  background-color: #eee;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2.5s;
+  animation-name: fade;
+  animation-duration: 2.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .5}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .5}
+  to {opacity: 1}
+}
+
+
+
+
+/* Profile */
+#me{
+    /*background-color: #595959;*/
+    background: url("../images/back2.jpg") repeat center fixed;
+    padding: 4% 0;
+}
+
+#me h1{
+	font-size: 4.0em;
+	margin: 0;
+	color: #fefefe;
+	font-family: "Walter Turncoat", sans-serif;
+}
+
+#me h2{
+	font-size: 2.0em;
+	font-style: normal;
+	color: #fefefe;
+	font-family: "Walter Turncoat", cursive;
+}
+
+#me p{
+	color: #fefefe;
+	margin: 0;
+}
+
+#description{
+    margin: 0 20%;
+    margin-top: 2%;
+    text-align: justify;
+}
+
+#description p{
+    font-size: 0.95em;
+    margin-top: 1%;
+}
+
+#contact{
+    margin-top: 4%;
+}
+
+#profile_img{
+	display: block;
+	margin: auto;
+	width: 15%;
+	min-width: 200px;
+	border-radius: 50%;
+	background-color: black;
+	margin-top: 1%;
+	margin-bottom: 1%;
+    max-height: 300px;
+}
