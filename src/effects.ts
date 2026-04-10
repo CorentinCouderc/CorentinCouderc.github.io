@@ -1,4 +1,4 @@
-import {type CardTag, type CardCategory} from "./cardEnums.ts";
+import {type CardTag, type CardCategory, ETagCategory} from "./cardEnums.ts";
 import {ECardCategory} from "./cardEnums.ts"
 
 /*--------- Conditions ---------*/
@@ -69,6 +69,7 @@ const defaultImmediateEffect = {
 export const EPassiveEffect = {
     ENERGY_BY_CARD_TYPE: "energyByCardType",
     ENERGY_ON_LEVEL_UP: "energyOnLevelUp",
+    ENERGY_BY_CARD_WITH: "energyByCardWith",
 } as const
 export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffect];
 
@@ -76,6 +77,9 @@ export type CardPassiveEffect = CardEffect & {
     effectType: PassiveEffectType;
     energyByCardType: number | null;
     energyOnLevelUp: number | null;
+    energyByCardWithAmount: number | null;
+    energyByCardWithCategory: CardCategory | null;
+    energyByCardWithTags: CardTag[] | null;
 }
 
 const defaultPassiveEffect: CardPassiveEffect = {
@@ -85,6 +89,9 @@ const defaultPassiveEffect: CardPassiveEffect = {
     effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
     energyByCardType: null,
     energyOnLevelUp: null,
+    energyByCardWithAmount: null,
+    energyByCardWithCategory: null,
+    energyByCardWithTags: null,
 }
 
 /* ---------------- Cards Immediate Effects -----------------------*/
@@ -215,6 +222,16 @@ export const BacPassiveEffect: CardPassiveEffect = {
     },
     effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
     energyByCardType: 5,
+};
+
+export const CoursParticulierPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Professeur",
+    description: "+{0} par {1} avec le tag {2}",
+    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
+    energyByCardWithAmount: 5,
+    energyByCardWithCategory: ECardCategory.PROJECT,
+    energyByCardWithTags: [ETagCategory.PEDAGOGY],
 };
 
 export const JeuxVideoPassiveEffect: CardPassiveEffect = {

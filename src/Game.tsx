@@ -150,6 +150,8 @@ export function Game() {
         }
         setPlayedCards([...playedCards, card]);
         addCardToBoard(card);
+
+        tryApplyPassiveEffects(EPassiveEffect.ENERGY_BY_CARD_WITH, card);
     }
 
     // When an effect from a card is adding a card, we wait next redraw to add it
@@ -195,12 +197,9 @@ export function Game() {
                 for (let i = 0; i < boardCards.length; i++) {
                     const card = boardCards[i];
                     if (card && effect.condition.requiredCardTags) {
-                        let atLeastOneTag = false;
-                        for (let j = 0; j < effect.condition.requiredCardTags.length; j++) {
-                            atLeastOneTag ||= card.tags.includes(effect.condition.requiredCardTags[j]);
-                            if (atLeastOneTag) {
-                                return true;
-                            }
+                        const atLeastOne = effect.condition.requiredCardTags.some(tag => card.tags.includes(tag));
+                        if (atLeastOne) {
+                            return true;
                         }
                     }
                 }
@@ -287,19 +286,20 @@ export function Game() {
     /**
      * Try to apply effects of all boardCards for a specific type of passive effect
      * @param passiveEffectType
+     * @param cardAdded
      */
-    function tryApplyPassiveEffects(passiveEffectType: PassiveEffectType) {
+    function tryApplyPassiveEffects(passiveEffectType: PassiveEffectType, cardAdded: CardData | null = null) {
         for (let i = 0; i < boardCards.length; i++) {
             const boardCard = boardCards[i];
             if (boardCard
                 && boardCard.effects.passiveEffect
                 && boardCard.effects.passiveEffect.effectType === passiveEffectType) {
-                applyPassiveEffects(boardCard);
+                applyPassiveEffects(boardCard, cardAdded);
             }
         }
     }
 
-    function applyPassiveEffects(card: CardData) {
+    function applyPassiveEffects(card: CardData, cardAdded: CardData | null) {
         const effect = card.effects.passiveEffect;
         if (effect === null) {
             return;
@@ -317,13 +317,26 @@ export function Game() {
                     addEnergy(effect.energyOnLevelUp);
                 }
                 break;
+            case EPassiveEffect.ENERGY_BY_CARD_WITH:
+                if (!effect.energyByCardWithAmount || !effect.energyByCardWithCategory || !effect.energyByCardWithTags) {
+                    error = true;
+                } else if (!cardAdded) {
+                    console.error("PassiveEffect", EPassiveEffect.ENERGY_BY_CARD_WITH, "called but cardAdded was null for card", card.title);
+                } else {
+                    if (cardAdded.category === effect.energyByCardWithCategory
+                        && effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
+                    {
+                        addEnergy(effect.energyByCardWithAmount);
+                    }
+                }
+                break;
             default:
                 console.error("Unknown passive effect type: ", effect.effectType);
                 break;
         }
 
         if (error) {
-            console.error("Effect", effect.effectType, "not set for card:", card.id);
+            console.error("Effect", effect.effectType, "not set for card:", card.title);
         }
     }
 

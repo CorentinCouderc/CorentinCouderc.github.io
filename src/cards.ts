@@ -1,6 +1,6 @@
 import {
     type CardImmediateEffect,
-    type CardPassiveEffect,
+    type CardPassiveEffect, CoursParticulierPassiveEffect,
     EducatifImmediateEffect,
     VolleyImmediateEffect
 } from "./effects.ts";
@@ -161,6 +161,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             xpFlat: 10,
+            passiveEffect: CoursParticulierPassiveEffect,
         },
         tags: [ETagCategory.SCIENTIST, ETagCategory.PEDAGOGY],
     },
