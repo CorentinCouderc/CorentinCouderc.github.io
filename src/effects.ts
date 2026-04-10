@@ -1,4 +1,4 @@
-import {type CardTag, type CardCategory, ECardCategory} from "./cards.ts";
+import {type CardTag, type CardCategory, ECardCategory, type CardData, allCards} from "./cards.ts";
 
 /*--------- Conditions ---------*/
 export const EConditionType = {
@@ -35,6 +35,7 @@ export const EImmediateEffect = {
     REMOVE_CARD: "removeCard",
     XP_BY_ENERGY_LEFT: "xpByEnergyLeft",
     REAPPLY_FLAT_GAIN: "reapplyFlatGain",
+    ADD_RANDOM_CARD: "addRandomCard",
 } as const
 export type ImmediateEffectType = typeof EImmediateEffect[keyof typeof EImmediateEffect];
 
@@ -44,6 +45,7 @@ export type CardImmediateEffect = CardEffect & {
     xpToAdd: number | null;
     rerollToAdd: number | null;
     categoryToRemove: CardCategory | null;
+    randomCardList: CardData[] | null;
 }
 
 const defaultImmediateEffect = {
@@ -55,6 +57,7 @@ const defaultImmediateEffect = {
     xpToAdd: null,
     rerollToAdd: null,
     categoryToRemove: null,
+    randomCardList: null,
 }
 
 /*--------- Passive effects ---------*/
@@ -114,6 +117,14 @@ export const RubiksImmediateEffect: CardImmediateEffect = {
     },
     effectType: EImmediateEffect.ADD_XP,
     xpToAdd: 10,
+};
+
+export const DonjonNBKImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "\"Chaussette !\"",
+    description: "Gagne une compétence aléatoire ({0}, {1} ou {2})",
+    effectType: EImmediateEffect.ADD_RANDOM_CARD,
+    randomCardList: [allCards[20], allCards[21], allCards[22]],
 };
 
 export const MaitreDonjonImmediateEffect: CardImmediateEffect = {

@@ -233,6 +233,12 @@ export function Game() {
                 addEnergy(energyGain);
                 addXP(xpGain);
                 break;
+            case EImmediateEffect.ADD_RANDOM_CARD:
+                if (!effect.randomCardList) { error = true; } else {
+                    const randomIndex = Math.floor(Math.random() * effect.randomCardList.length);
+                    selectCard(effect.randomCardList[randomIndex]);
+                }
+                break;
             default:
                 console.error("Unknown effect type: ", effect.effectType);
                 break;
