@@ -34,6 +34,7 @@ export const EImmediateEffect = {
     ADD_REROLL: "addReroll",
     REMOVE_CARD: "removeCard",
     XP_BY_ENERGY_LEFT: "xpByEnergyLeft",
+    REAPPLY_FLAT_GAIN: "reapplyFlatGain",
 } as const
 export type ImmediateEffectType = typeof EImmediateEffect[keyof typeof EImmediateEffect];
 
@@ -113,6 +114,13 @@ export const RubiksImmediateEffect: CardImmediateEffect = {
     },
     effectType: EImmediateEffect.ADD_XP,
     xpToAdd: 10,
+};
+
+export const MaitreDonjonImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Oui maîîîître",
+    description: "Réapplique les gains de toutes les cartes sur le plateau",
+    effectType: EImmediateEffect.REAPPLY_FLAT_GAIN,
 };
 
 export const Sim2bImmediateEffect: CardImmediateEffect = {

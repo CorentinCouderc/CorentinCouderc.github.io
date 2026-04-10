@@ -1,5 +1,5 @@
 import {
-    BacPassiveEffect, type CardImmediateEffect, type CardPassiveEffect,
+    BacPassiveEffect, type CardImmediateEffect, type CardPassiveEffect, MaitreDonjonImmediateEffect,
     ManagementImmediateEffect, PrepaImmediateEffect, RigueurImmediateEffect1,
     RubiksImmediateEffect, Sim2bImmediateEffect
 } from "./effects.ts";
@@ -288,6 +288,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 5,
+            immediateEffect: MaitreDonjonImmediateEffect,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
     },

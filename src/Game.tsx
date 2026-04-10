@@ -220,6 +220,19 @@ export function Game() {
             case EImmediateEffect.XP_BY_ENERGY_LEFT:
                 addXP(energy);
                 break;
+            case EImmediateEffect.REAPPLY_FLAT_GAIN:
+                let energyGain = 0;
+                let xpGain = 0;
+                for (let i = 0; i < boardCards.length; i++) {
+                    const boardCard = boardCards[i];
+                    if (boardCard !== null) {
+                        energyGain += boardCard.effects.energyFlat;
+                        xpGain += boardCard.effects.xpFlat;
+                    }
+                }
+                addEnergy(energyGain);
+                addXP(xpGain);
+                break;
             default:
                 console.error("Unknown effect type: ", effect.effectType);
                 break;
