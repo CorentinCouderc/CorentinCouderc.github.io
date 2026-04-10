@@ -203,6 +203,9 @@ export function Game() {
                     removeCardFromBoard(effect.categoryToRemove);
                 }
                 break;
+            case EImmediateEffect.XP_BY_ENERGY_LEFT:
+                addXP(energy);
+                break;
             default:
                 console.error("Unknown effect type: ", effect.effectType);
                 break;

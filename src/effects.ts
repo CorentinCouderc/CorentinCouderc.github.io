@@ -30,7 +30,8 @@ export const EImmediateEffect = {
     ADD_ENERGY: "addEnergy",
     ADD_XP: "addXP",
     ADD_REROLL: "addReroll",
-    REMOVE_CARD: "removeCard"
+    REMOVE_CARD: "removeCard",
+    XP_BY_ENERGY_LEFT: "xpByEnergyLeft",
 } as const
 export type ImmediateEffectType = typeof EImmediateEffect[keyof typeof EImmediateEffect];
 
@@ -79,6 +80,13 @@ export const PrepaImmediateEffect: CardImmediateEffect = {
     description: "Retire 1 {0}",
     effectType: EImmediateEffect.REMOVE_CARD,
     categoryToRemove: ECardCategory.HOBBY,
+};
+
+export const RigueurImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Produit vectoriel",
+    description: "Gagne autant d'XP que d'énergie restant",
+    effectType: EImmediateEffect.XP_BY_ENERGY_LEFT,
 };
 
 export const Sim2bImmediateEffect: CardImmediateEffect = {
