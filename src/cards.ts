@@ -31,6 +31,14 @@ export type CardEffects = {
     passiveEffect: CardPassiveEffect | null;
 }
 
+const defaultEffects: CardEffects = {
+    energyFlat: 0,
+    xpFlat: 0,
+    xpPerTick: 0,
+    immediateEffect: null,
+    passiveEffect: null,
+}
+
 export type CardData = {
     id: number;
     title: string;
@@ -41,6 +49,19 @@ export type CardData = {
     linkUrl: string;
     linkText: string;
 };
+
+const defaultCard: CardData = {
+    id: -1,
+    title: "TODO",
+    category: ECardCategory.NONE,
+    effects: {
+        ...defaultEffects
+    },
+    tags: [],
+    backContent: "",
+    linkUrl: "",
+    linkText: "",
+}
 
 export function getTagString(tag: CardTag)
 {
@@ -109,14 +130,14 @@ export function getCategoryString(category: CardCategory)
 export const allCards: CardData[] = [
     // FORMATIONS
     {
+        ...defaultCard,
         id: 1,
         title: "Bac mention TB",
         category: ECardCategory.FORMATION,
         effects: {
+            ...defaultEffects,
             energyFlat: 5,
-            xpFlat: 0,
             xpPerTick: 2,
-            immediateEffect: null,
             passiveEffect: BacPassiveEffect,
         },
         tags: [ETagCategory.SCIENTIST],
@@ -125,637 +146,442 @@ export const allCards: CardData[] = [
         linkText: "+ En savoir plus"
     },
     {
+        ...defaultCard,
         id: 2,
         title: "Classe prépa Physique Chimie",
         category: ECardCategory.FORMATION,
         effects: {
+            ...defaultEffects,
             energyFlat: 8,
-            xpFlat: 0,
             xpPerTick: 4,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.SCIENTIST, ETagCategory.COMPETITION],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 3,
         title: "Diplôme d'ingénieur CPE Lyon",
         category: ECardCategory.FORMATION,
         effects: {
+            ...defaultEffects,
             energyFlat: 14,
-            xpFlat: 0,
             xpPerTick: 10,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.SCIENTIST],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 4,
         title: "Former à l'ère du digital (certification)",
         category: ECardCategory.FORMATION,
         effects: {
+            ...defaultEffects,
             energyFlat: 20,
-            xpFlat: 0,
             xpPerTick: 20,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PEDAGOGY],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
 
     // EXPERIENCES
     {
+        ...defaultCard,
         id: 5,
         title: "Stage ingénieur 12 mois Bosch Allemagne\n",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 0,
+            ...defaultEffects,
             xpFlat: 25,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.INTERNSHIP, ETagCategory.SCIENTIST, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 6,
         title: "Gamagora game show 2019\n",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 0,
+            ...defaultEffects,
             xpFlat: 15,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.INTERNSHIP, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 7,
         title: "Stagiaire programmeur Artefacts",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 0,
+            ...defaultEffects,
             xpFlat: 40,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.INTERNSHIP, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 8,
         title: "Programmeur gameplay Artefacts",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 0,
+            ...defaultEffects,
             xpFlat: 100,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 9,
         title: "Cours particuliers Terminale S",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 0,
+            ...defaultEffects,
             xpFlat: 10,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.SCIENTIST, ETagCategory.PEDAGOGY],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 10,
         title: "Management Lead programmeur",
         category: ECardCategory.EXPERIENCE,
         effects: {
-            energyFlat: 0,
+            ...defaultEffects,
             xpFlat: 40,
             xpPerTick: 0,
             immediateEffect: null,
             passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.PEDAGOGY],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
 
     // PROJECTS
     {
+        ...defaultCard,
         id: 11,
         title: "Sim2b",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 20,
-            xpFlat: 0,
-            xpPerTick: 0,
             immediateEffect: Sim2bImmediateEffect,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PEDAGOGY, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 12,
         title: "Le Donjon de Naheulbeuk",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 30,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 13,
         title: "Le Maître du Donjon de Naheulbeuk",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 5,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 14,
         title: "100 ears' war (Game Jam GMTK 2023)",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 14,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.COMPETITION],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 15,
         title: "Hi Honey (Game Jam GMTK 2025)",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 20,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.COMPETITION],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 16,
         title: "Rubik's cube",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 10,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 17,
         title: "Best Friends",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 10,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 18,
         title: "Bunny Horde (Survival Game)",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 12,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 19,
         title: "E-learning Animation 3D Arcane",
         category: ECardCategory.PROJECT,
         effects: {
+            ...defaultEffects,
             energyFlat: 20,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PEDAGOGY, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
 
     // SKILLS
     {
+        ...defaultCard,
         id: 20,
         title: "Anglais courant",
         category: ECardCategory.SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 3,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
-        tags: [],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 21,
         title: "Unity C#",
         category: ECardCategory.SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 18,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 22,
         title: "Programmation",
         category: ECardCategory.SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 11,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 23,
         title: "Conception de jeu",
         category: ECardCategory.SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 35,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 24,
         title: "Storyline",
         category: ECardCategory.SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 30,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PEDAGOGY],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 25,
         title: "Outils IA",
         category: ECardCategory.SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 20,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
-        tags: [],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 26,
         title: "JavaScript",
         category: ECardCategory.SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 7,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PROGRAMMING],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 27,
         title: "Fast learner",
         category: ECardCategory.SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 1,
-            xpFlat: 0,
             xpPerTick: 1,
-            immediateEffect: null,
-            passiveEffect: null,
         },
-        tags: [],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
 
     // SOFT SKILLS
     {
+        ...defaultCard,
         id: 28,
         title: "Management situationnel",
         category: ECardCategory.SOFT_SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 20,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PEDAGOGY],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 29,
         title: "Fédérateur d'équipe",
         category: ECardCategory.SOFT_SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 12,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
-        tags: [],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 30,
         title: "Rigueur scientifique",
         category: ECardCategory.SOFT_SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 5,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.SCIENTIST],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 31,
         title: "Analyse et synthèse",
         category: ECardCategory.SOFT_SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 14,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.SCIENTIST],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 32,
         title: "Leadership",
         category: ECardCategory.SOFT_SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 20,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
-        tags: [],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 33,
         title: "Idéation",
         category: ECardCategory.SOFT_SKILL,
         effects: {
+            ...defaultEffects,
             energyFlat: 1,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
-        tags: [],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
 
     // HOBBIES
     {
+        ...defaultCard,
         id: 34,
         title: "Jeux vidéo",
         category: ECardCategory.HOBBY,
         effects: {
+            ...defaultEffects,
             energyFlat: 10,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.VIDEO_GAME],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 35,
         title: "Jeux de société",
         category: ECardCategory.HOBBY,
         effects: {
+            ...defaultEffects,
             energyFlat: 35,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
-        tags: [],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 36,
         title: "Chant",
         category: ECardCategory.HOBBY,
         effects: {
+            ...defaultEffects,
             energyFlat: 60,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
-        tags: [],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 37,
         title: "Contenu éducatif",
         category: ECardCategory.HOBBY,
         effects: {
-            energyFlat: 0,
+            ...defaultEffects,
             xpFlat: 10,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.PEDAGOGY],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 38,
         title: "Badminton",
         category: ECardCategory.HOBBY,
         effects: {
+            ...defaultEffects,
             energyFlat: 20,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.COMPETITION],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 39,
         title: "Volley-ball",
         category: ECardCategory.HOBBY,
         effects: {
+            ...defaultEffects,
             energyFlat: 10,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.COMPETITION],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
     {
+        ...defaultCard,
         id: 40,
         title: "E-sport LoL",
         category: ECardCategory.HOBBY,
         effects: {
+            ...defaultEffects,
             energyFlat: 25,
-            xpFlat: 0,
-            xpPerTick: 0,
-            immediateEffect: null,
-            passiveEffect: null,
         },
         tags: [ETagCategory.COMPETITION, ETagCategory.VIDEO_GAME],
-        backContent: "",
-        linkUrl: "",
-        linkText: ""
     },
 ];
