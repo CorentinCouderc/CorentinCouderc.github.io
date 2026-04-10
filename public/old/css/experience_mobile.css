@@ -1,0 +1,80 @@
+@media (max-width: 640px) {
+	* {
+		box-sizing: border-box;
+	}
+    
+    /* Experience page*/
+    #experience h1 {
+        font-size: 2.5em;
+    }
+
+    #experience h2 {
+        margin: 0;
+        padding: 10px;
+        color: #eeeeee;
+        font-size: 1.1em;
+    }
+
+    #experience h3 {
+        margin: 0;
+        padding: 10px;
+        color: #49a0ff;
+        text-align: left;
+        font-size: 1em;
+    }
+
+    #experience p {
+        margin: 0;
+        color: #eeeeee;
+        text-align: left;
+        font-size: 0.9em;
+        line-height: 1.5em;
+        padding: 2% 0;
+    }
+
+
+
+    /* Accordion of experiences*/
+    #overview {
+        margin: 2% 8%;
+        padding: 3% 3%;
+    }
+
+    div.accordion{
+        padding: 15px;
+        font-size: 0.95em;
+    }
+
+    div.accordion:hover{
+        background-color: #333;
+        box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    div.accordion.active{
+        background-color: #333;
+        box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    div.accordion:after {
+        content: "\002B";
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    div.accordion.active:after {
+        content: "\2212";
+    }
+
+    div.panel {
+        padding: 5px 8px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out; 
+    }
+
+    div.panel p{
+        text-align: left;
+        text-indent: 0;
+    }
+}
