@@ -1,7 +1,7 @@
 import {
     type CardImmediateEffect,
     type CardPassiveEffect, CoursParticulierPassiveEffect,
-    EducatifImmediateEffect,
+    EducatifImmediateEffect, GamagoraPassiveEffect, StageATFPassiveEffect, StageBoschPassiveEffect,
     VolleyImmediateEffect
 } from "./effects.ts";
 import {type CardCategory, type CardTag, ECardCategory, ETagCategory} from "./cardEnums.ts";
@@ -117,6 +117,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             xpFlat: 25,
+            passiveEffect: StageBoschPassiveEffect,
         },
         tags: [ETagCategory.INTERNSHIP, ETagCategory.SCIENTIST, ETagCategory.PROGRAMMING],
     },
@@ -128,6 +129,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             xpFlat: 15,
+            passiveEffect: GamagoraPassiveEffect,
         },
         tags: [ETagCategory.INTERNSHIP, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
     },
@@ -139,6 +141,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             xpFlat: 40,
+            passiveEffect: StageATFPassiveEffect,
         },
         tags: [ETagCategory.INTERNSHIP, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
     },

@@ -234,6 +234,36 @@ export const CoursParticulierPassiveEffect: CardPassiveEffect = {
     energyByCardWithTags: [ETagCategory.PEDAGOGY],
 };
 
+export const StageBoschPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "",
+    description: "+{0} par {1} avec le tag {2}",
+    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
+    energyByCardWithAmount: 3,
+    energyByCardWithCategory: ECardCategory.PROJECT,
+    energyByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.SCIENTIST],
+};
+
+export const GamagoraPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "",
+    description: "+{0} par {1} avec le tag {2}",
+    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
+    energyByCardWithAmount: 3,
+    energyByCardWithCategory: ECardCategory.PROJECT,
+    energyByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
+};
+
+export const StageATFPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "",
+    description: "+{0} par {1} avec le tag {2}",
+    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
+    energyByCardWithAmount: 3,
+    energyByCardWithCategory: ECardCategory.PROJECT,
+    energyByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
+};
+
 export const JeuxVideoPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Level up",
