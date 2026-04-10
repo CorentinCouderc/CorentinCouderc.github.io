@@ -5,6 +5,7 @@ export const EConditionType = {
     CARD_WITH_ID: "cardWithID",
     CARD_WITH_TAG: "cardWithTag",
     EVEN_TOTAL_CARD_PLAYED: "eventTotalCardPlayed",
+    ALL_BOARD_FILLED: "allBoardFilled",
 } as const
 export type EffectConditionType = typeof EConditionType[keyof typeof EConditionType];
 
@@ -100,6 +101,18 @@ export const RigueurImmediateEffect2: CardImmediateEffect = {
     title: "Produit vectoriel",
     description: "Gagne autant d'XP que d'énergie restant",
     effectType: EImmediateEffect.XP_BY_ENERGY_LEFT,
+};
+
+export const RubiksImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Casse-tête",
+    description: "+ {0} XP si tous les emplacements ont une carte",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.ALL_BOARD_FILLED,
+    },
+    effectType: EImmediateEffect.ADD_XP,
+    xpToAdd: 10,
 };
 
 export const Sim2bImmediateEffect: CardImmediateEffect = {

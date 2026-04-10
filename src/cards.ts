@@ -1,6 +1,7 @@
 import {
     BacPassiveEffect, type CardImmediateEffect, type CardPassiveEffect,
-    ManagementImmediateEffect, PrepaImmediateEffect, RigueurImmediateEffect1, Sim2bImmediateEffect
+    ManagementImmediateEffect, PrepaImmediateEffect, RigueurImmediateEffect1,
+    RubiksImmediateEffect, Sim2bImmediateEffect
 } from "./effects.ts";
 
 export const ECardCategory = {
@@ -320,6 +321,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 10,
+            immediateEffect: RubiksImmediateEffect,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
     },

@@ -175,6 +175,14 @@ export function Game() {
                 return false;
             case EConditionType.EVEN_TOTAL_CARD_PLAYED:
                 return playedCards.length % 2 === 0;
+            case EConditionType.ALL_BOARD_FILLED:
+                let boardCardCount = 0;
+                for (let i = 0; i < boardCards.length; i++) {
+                    if (boardCards[i] !== null) {
+                        boardCardCount += 1;
+                    }
+                }
+                return boardCards.length === boardCardCount;
             default:
                 console.error("Unknown condition: ", effect.condition.conditionType);
                 return false;
