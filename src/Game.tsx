@@ -239,6 +239,9 @@ export function Game() {
                     selectCard(effect.randomCardList[randomIndex]);
                 }
                 break;
+            case EImmediateEffect.SELECT_CARD:
+                displayCardSelection();
+                break;
             default:
                 console.error("Unknown effect type: ", effect.effectType);
                 break;

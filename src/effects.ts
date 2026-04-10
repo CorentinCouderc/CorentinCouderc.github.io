@@ -36,6 +36,7 @@ export const EImmediateEffect = {
     XP_BY_ENERGY_LEFT: "xpByEnergyLeft",
     REAPPLY_FLAT_GAIN: "reapplyFlatGain",
     ADD_RANDOM_CARD: "addRandomCard",
+    SELECT_CARD: "selectCard",
 } as const
 export type ImmediateEffectType = typeof EImmediateEffect[keyof typeof EImmediateEffect];
 
@@ -153,6 +154,13 @@ export const ManagementImmediateEffect: CardImmediateEffect = {
     description: "+{0} relances",
     effectType: EImmediateEffect.ADD_REROLL,
     rerollToAdd: 2,
+};
+
+export const IdeationImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "MacGyver",
+    description: "Sélectionne une nouvelle carte parmi 3",
+    effectType: EImmediateEffect.SELECT_CARD,
 };
 
 /* ---------------- Cards Passive Effects -----------------------*/
