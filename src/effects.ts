@@ -4,6 +4,7 @@ import {type CardTag, type CardCategory, ECardCategory} from "./cards.ts";
 export const EConditionType = {
     CARD_WITH_ID: "cardWithID",
     CARD_WITH_TAG: "cardWithTag",
+    EVEN_TOTAL_CARD_PLAYED: "eventTotalCardPlayed",
 } as const
 export type EffectConditionType = typeof EConditionType[keyof typeof EConditionType];
 

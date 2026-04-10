@@ -21,8 +21,11 @@ export function Game() {
     const [xpToNextLevel, setXpToNextLevel] = useState(baseXPToNextLevel);
     const [currentXP, setCurrentXP] = useState(0);
     const [currentLevel, setCurrentLevel] = useState(0);
+
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
+    const [playedCards, setPlayedCards] = useState<(CardData | null)[]>([]);
+
     const initialRandomCards = [allCards[0], allCards[0], allCards[0]]; // Force this card at the start of the game
     const [randomCards, setRandomCards] = useState<CardData[]>(initialRandomCards);
 
@@ -141,6 +144,7 @@ export function Game() {
         if (canApplyEffect(card.effects.immediateEffect)) {
             applyImmediateEffects(card)
         }
+        setPlayedCards([...playedCards, card]);
         addCardToBoard(card);
     }
 
@@ -169,6 +173,8 @@ export function Game() {
                 return false;
             case EConditionType.CARD_WITH_TAG:
                 return false;
+            case EConditionType.EVEN_TOTAL_CARD_PLAYED:
+                return playedCards.length % 2 === 0;
             default:
                 console.error("Unknown condition: ", effect.condition.conditionType);
                 return false;
