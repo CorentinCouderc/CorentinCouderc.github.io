@@ -27,7 +27,8 @@ export function Game() {
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
     const [playedCards, setPlayedCards] = useState<(CardData | null)[]>([]);
-    const [cardToAddDelayed, setCardToAddDelayed] = useState<CardData | null>(null);
+    const [cardImmediateEffectDelayed, setCardImmediateEffectDelayed] = useState<CardData | null>(null);
+    const [cardPassiveEffectDelayed, setCardPassiveEffectDelayed] = useState<CardData | null>(null);
 
     const initialRandomCards = [allCards[0], allCards[0], allCards[0]]; // Force this card at the start of the game
     const [randomCards, setRandomCards] = useState<CardData[]>(initialRandomCards);
@@ -144,23 +145,30 @@ export function Game() {
         else if (card.effects.xpFlat > 0) {
             addXP(card.effects.xpFlat);
         }
-        // Specific effects on play
-        if (canApplyEffect(card.effects.immediateEffect)) {
-            applyImmediateEffects(card)
-        }
         setPlayedCards([...playedCards, card]);
         addCardToBoard(card);
 
-        tryApplyPassiveEffects(EPassiveEffect.ENERGY_BY_CARD_WITH, card);
+        // Will apply immediate effects on next redraw
+        setCardImmediateEffectDelayed(card);
+        setCardPassiveEffectDelayed(card);
     }
 
-    // When an effect from a card is adding a card, we wait next redraw to add it
+    // Delay effect activation to avoid overruling other gains
     useEffect(() => {
-        if (cardToAddDelayed) {
-            selectCard(cardToAddDelayed);
-            setCardToAddDelayed(null);
+        if (cardImmediateEffectDelayed) {
+            // Specific effects on play
+            if (canApplyEffect(cardImmediateEffectDelayed.effects.immediateEffect)) {
+                applyImmediateEffects(cardImmediateEffectDelayed);
+            }
+            setCardImmediateEffectDelayed(null);
         }
-    }, [cardToAddDelayed]);
+
+        if (cardPassiveEffectDelayed) {
+            // Passive effect when selecting a card
+            tryApplyPassiveEffects(EPassiveEffect.ENERGY_BY_CARD_WITH, cardPassiveEffectDelayed);
+            setCardPassiveEffectDelayed(null);
+        }
+    }, [cardImmediateEffectDelayed, cardPassiveEffectDelayed]);
 
     function addReroll(rerollToAdd: number) {
         const newReroll = Math.max(rerolls + rerollToAdd, 0);
@@ -267,7 +275,7 @@ export function Game() {
             case EImmediateEffect.ADD_RANDOM_CARD:
                 if (!effect.randomCardIndexList) { error = true; } else {
                     const randomIndex = Math.floor(Math.random() * effect.randomCardIndexList.length);
-                    setCardToAddDelayed(allCards[effect.randomCardIndexList[randomIndex]]);
+                    selectCard(allCards[effect.randomCardIndexList[randomIndex]]);
                 }
                 break;
             case EImmediateEffect.SELECT_CARD:
