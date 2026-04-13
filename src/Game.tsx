@@ -328,16 +328,31 @@ export function Game() {
                 }
                 break;
             case EPassiveEffect.ENERGY_BY_CARD_WITH:
-                if (!effect.energyByCardWithAmount || !effect.energyByCardWithCategory || !effect.energyByCardWithTags) {
+                if (!effect.energyByCardWithAmount
+                    || (!effect.energyByCardWithCategory && effect.energyByCardWithTags)
+                    || (effect.energyByCardWithCategory && !effect.energyByCardWithTags)) {
                     error = true;
                 } else if (!cardAdded) {
                     console.error("PassiveEffect", EPassiveEffect.ENERGY_BY_CARD_WITH, "called but cardAdded was null for card", card.title);
                 } else {
-                    if (card !== cardAdded
-                        && cardAdded.category === effect.energyByCardWithCategory
-                        && effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
-                    {
-                        addEnergy(effect.energyByCardWithAmount);
+                    if (card === cardAdded) { break; }
+
+                    if (effect.energyByCardWithCategory && effect.energyByCardWithTags) {
+                        if (cardAdded.category === effect.energyByCardWithCategory
+                            && effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
+                        {
+                            addEnergy(effect.energyByCardWithAmount);
+                        }
+                    }
+                    else if (effect.energyByCardWithCategory) {
+                        if (cardAdded.category === effect.energyByCardWithCategory) {
+                            addEnergy(effect.energyByCardWithAmount);
+                        }
+                    }
+                    else if (effect.energyByCardWithTags) {
+                        if (effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag))) {
+                            addEnergy(effect.energyByCardWithAmount);
+                        }
                     }
                 }
                 break;
