@@ -165,7 +165,7 @@ export function Game() {
 
         if (cardPassiveEffectDelayed) {
             // Passive effect when selecting a card
-            tryApplyPassiveEffects(EPassiveEffect.ENERGY_BY_CARD_WITH, cardPassiveEffectDelayed);
+            tryApplyPassiveEffects(EPassiveEffect.BONUS_BY_CARD_WITH, cardPassiveEffectDelayed);
             setCardPassiveEffectDelayed(null);
         }
     }, [cardImmediateEffectDelayed, cardPassiveEffectDelayed]);
@@ -327,37 +327,41 @@ export function Game() {
                     addEnergy(effect.energyOnLevelUp);
                 }
                 break;
-            case EPassiveEffect.ENERGY_BY_CARD_WITH:
-                if (!effect.energyByCardWithAmount) {
+            case EPassiveEffect.BONUS_BY_CARD_WITH:
+                if (!effect.bonusByCardWithEnergyAmount || !effect.bonusByCardWithXPAmount) {
                     error = true;
                 } else if (!cardAdded) {
-                    console.error("PassiveEffect", EPassiveEffect.ENERGY_BY_CARD_WITH, "called but cardAdded was null for card", card.title);
+                    console.error("PassiveEffect", EPassiveEffect.BONUS_BY_CARD_WITH, "called but cardAdded was null for card", card.title);
                 } else {
                     if (card === cardAdded) { break; }
 
-                    if (effect.energyByCardWithCategory && effect.energyByCardWithTags) {
+                    if (effect.bonusByCardWithCategory && effect.bonusByCardWithTags) {
                         // Card with specific category and tags
-                        if (cardAdded.category === effect.energyByCardWithCategory
-                            && effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
+                        if (cardAdded.category === effect.bonusByCardWithCategory
+                            && effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
                         {
-                            addEnergy(effect.energyByCardWithAmount);
+                            addEnergy(effect.bonusByCardWithEnergyAmount);
+                            addXP(effect.bonusByCardWithXPAmount);
                         }
                     }
-                    else if (effect.energyByCardWithCategory) {
+                    else if (effect.bonusByCardWithCategory) {
                         // Card with specific category only
-                        if (cardAdded.category === effect.energyByCardWithCategory) {
-                            addEnergy(effect.energyByCardWithAmount);
+                        if (cardAdded.category === effect.bonusByCardWithCategory) {
+                            addEnergy(effect.bonusByCardWithEnergyAmount);
+                            addXP(effect.bonusByCardWithXPAmount);
                         }
                     }
-                    else if (effect.energyByCardWithTags) {
+                    else if (effect.bonusByCardWithTags) {
                         // Card with specific tags only
-                        if (effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag))) {
-                            addEnergy(effect.energyByCardWithAmount);
+                        if (effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag))) {
+                            addEnergy(effect.bonusByCardWithEnergyAmount);
+                            addXP(effect.bonusByCardWithXPAmount);
                         }
                     }
                     else {
                         // No specific requirements
-                        addEnergy(effect.energyByCardWithAmount);
+                        addEnergy(effect.bonusByCardWithEnergyAmount);
+                        addXP(effect.bonusByCardWithXPAmount);
                     }
                 }
                 break;

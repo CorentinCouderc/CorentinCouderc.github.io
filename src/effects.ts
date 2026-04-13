@@ -72,7 +72,7 @@ const defaultImmediateEffect = {
 export const EPassiveEffect = {
     ENERGY_BY_CARD_TYPE: "energyByCardType",
     ENERGY_ON_LEVEL_UP: "energyOnLevelUp",
-    ENERGY_BY_CARD_WITH: "energyByCardWith",
+    BONUS_BY_CARD_WITH: "bonusByCardWith",
 } as const
 export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffect];
 
@@ -80,9 +80,10 @@ export type CardPassiveEffect = CardEffect & {
     effectType: PassiveEffectType;
     energyByCardType: number | null;
     energyOnLevelUp: number | null;
-    energyByCardWithAmount: number | null;
-    energyByCardWithCategory: CardCategory | null;
-    energyByCardWithTags: CardTag[] | null;
+    bonusByCardWithEnergyAmount: number | null;
+    bonusByCardWithXPAmount: number | null;
+    bonusByCardWithCategory: CardCategory | null;
+    bonusByCardWithTags: CardTag[] | null;
 }
 
 const defaultPassiveEffect: CardPassiveEffect = {
@@ -92,9 +93,10 @@ const defaultPassiveEffect: CardPassiveEffect = {
     effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
     energyByCardType: null,
     energyOnLevelUp: null,
-    energyByCardWithAmount: null,
-    energyByCardWithCategory: null,
-    energyByCardWithTags: null,
+    bonusByCardWithEnergyAmount: 0,
+    bonusByCardWithXPAmount: 0,
+    bonusByCardWithCategory: null,
+    bonusByCardWithTags: null,
 }
 
 /* ---------------- Cards Immediate Effects -----------------------*/
@@ -253,9 +255,19 @@ export const PrepaPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Concours",
     description: "+{0} quand une carte avec le tag {2} est jouée",
-    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
-    energyByCardWithAmount: 10,
-    energyByCardWithTags: [ETagCategory.COMPETITION],
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 10,
+    bonusByCardWithTags: [ETagCategory.COMPETITION],
+};
+
+export const CPEPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Stagiaire",
+    description: "+{0} XP si {1} avec le tag {2} est jouée",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithXPAmount: 20,
+    bonusByCardWithCategory: ECardCategory.EXPERIENCE,
+    bonusByCardWithTags: [ETagCategory.INTERNSHIP],
 };
 
 // Projets
@@ -277,40 +289,40 @@ export const CoursParticulierPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Professeur",
     description: "+{0} par {1} avec le tag {2}",
-    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
-    energyByCardWithAmount: 5,
-    energyByCardWithCategory: ECardCategory.PROJECT,
-    energyByCardWithTags: [ETagCategory.PEDAGOGY],
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 5,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.PEDAGOGY],
 };
 
 export const StageBoschPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "",
     description: "+{0} par {1} avec le tag {2}",
-    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
-    energyByCardWithAmount: 3,
-    energyByCardWithCategory: ECardCategory.PROJECT,
-    energyByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.SCIENTIST],
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 3,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.SCIENTIST],
 };
 
 export const GamagoraPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "",
     description: "+{0} par {1} avec le tag {2}",
-    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
-    energyByCardWithAmount: 3,
-    energyByCardWithCategory: ECardCategory.PROJECT,
-    energyByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 3,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
 };
 
 export const StageATFPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "",
     description: "+{0} par {1} avec le tag {2}",
-    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
-    energyByCardWithAmount: 3,
-    energyByCardWithCategory: ECardCategory.PROJECT,
-    energyByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 3,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
 };
 
 // Compétences
@@ -318,8 +330,8 @@ export const AnglaisPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Fluent",
     description: "+{0} par carte posée lorsque cette carte est sur le terrain",
-    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
-    energyByCardWithAmount: 4,
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 4,
 };
 
 // Soft skills
