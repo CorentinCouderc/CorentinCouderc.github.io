@@ -302,7 +302,9 @@ export function Game() {
             if (boardCard
                 && boardCard.effects.passiveEffect
                 && boardCard.effects.passiveEffect.effectType === passiveEffectType) {
-                applyPassiveEffects(boardCard, cardAdded);
+                if (canApplyEffect(boardCard.effects.passiveEffect)) {
+                    applyPassiveEffects(boardCard, cardAdded);
+                }
             }
         }
     }

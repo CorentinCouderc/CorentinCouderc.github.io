@@ -8,6 +8,7 @@ export const EConditionType = {
     HAS_CARD_WITH_TAG: "hasCardWithTag",
     EVEN_TOTAL_CARD_PLAYED: "eventTotalCardPlayed",
     ALL_BOARD_FILLED: "allBoardFilled",
+    MAX_ENERGY_ON_LEVEL_UP: "maxEnergyOnLevelUp",
 } as const
 export type EffectConditionType = typeof EConditionType[keyof typeof EConditionType];
 
@@ -16,12 +17,14 @@ export type EffectCondition = {
     requiredCardId: number | null;
     requiredCardCategory: CardCategory | null;
     requiredCardTags: CardTag[] | null;
+    maxEnergyOnLevelUp: number | null;
 }
 const defaultCondition: EffectCondition = {
     conditionType: EConditionType.HAS_CARD_WITH_ID,
     requiredCardId: null,
     requiredCardCategory: null,
     requiredCardTags: null,
+    maxEnergyOnLevelUp: null,
 }
 
 /*--------- Effect base ---------*/
@@ -262,6 +265,19 @@ export const StageATFPassiveEffect: CardPassiveEffect = {
     energyByCardWithAmount: 3,
     energyByCardWithCategory: ECardCategory.PROJECT,
     energyByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
+};
+
+export const BestFriendsPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Paris entre amis",
+    description: "+{0} si il reste moins de {1} lors du level up",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.MAX_ENERGY_ON_LEVEL_UP,
+        maxEnergyOnLevelUp: 5,
+    },
+    effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
+    energyOnLevelUp: 10,
 };
 
 export const JeuxVideoPassiveEffect: CardPassiveEffect = {
