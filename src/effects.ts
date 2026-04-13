@@ -98,6 +98,7 @@ const defaultPassiveEffect: CardPassiveEffect = {
 }
 
 /* ---------------- Cards Immediate Effects -----------------------*/
+// Formations
 export const PrepaImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "Khôlle",
@@ -106,25 +107,7 @@ export const PrepaImmediateEffect: CardImmediateEffect = {
     categoryToRemove: ECardCategory.HOBBY,
 };
 
-export const RigueurImmediateEffect1: CardImmediateEffect = {
-    ...defaultImmediateEffect,
-    title: "Bosse des maths",
-    description: "+ {0} si le nombre total de cartes jouées est pair",
-    condition: {
-        ...defaultCondition,
-        conditionType: EConditionType.EVEN_TOTAL_CARD_PLAYED,
-    },
-    effectType: EImmediateEffect.ADD_ENERGY,
-    energyToAdd: 3,
-};
-
-export const RigueurImmediateEffect2: CardImmediateEffect = {
-    ...defaultImmediateEffect,
-    title: "Produit vectoriel",
-    description: "Gagne autant d'XP que d'énergie restant",
-    effectType: EImmediateEffect.XP_BY_ENERGY_LEFT,
-};
-
+// Projets
 export const RubiksImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "Casse-tête",
@@ -135,6 +118,19 @@ export const RubiksImmediateEffect: CardImmediateEffect = {
     },
     effectType: EImmediateEffect.ADD_XP,
     xpToAdd: 10,
+};
+
+export const Sim2bImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Fusion/Acquisition",
+    description: "+{0} XP si {1} est sur le terrain",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.HAS_CARD_WITH_ID,
+        requiredCardId: 7,
+    },
+    effectType: EImmediateEffect.ADD_XP,
+    xpToAdd: 40,
 };
 
 export const DonjonNBKImmediateEffect: CardImmediateEffect = {
@@ -152,17 +148,28 @@ export const MaitreDonjonImmediateEffect: CardImmediateEffect = {
     effectType: EImmediateEffect.REAPPLY_FLAT_GAIN,
 };
 
-export const Sim2bImmediateEffect: CardImmediateEffect = {
+// Expériences
+
+// Compétences
+
+// Soft skills
+export const RigueurImmediateEffect1: CardImmediateEffect = {
     ...defaultImmediateEffect,
-    title: "Fusion/Acquisition",
-    description: "+{0} XP si {1} est sur le terrain",
+    title: "Bosse des maths",
+    description: "+ {0} si le nombre total de cartes jouées est pair",
     condition: {
         ...defaultCondition,
-        conditionType: EConditionType.HAS_CARD_WITH_ID,
-        requiredCardId: 7,
+        conditionType: EConditionType.EVEN_TOTAL_CARD_PLAYED,
     },
-    effectType: EImmediateEffect.ADD_XP,
-    xpToAdd: 40,
+    effectType: EImmediateEffect.ADD_ENERGY,
+    energyToAdd: 3,
+};
+
+export const RigueurImmediateEffect2: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Produit vectoriel",
+    description: "Gagne autant d'XP que d'énergie restant",
+    effectType: EImmediateEffect.XP_BY_ENERGY_LEFT,
 };
 
 export const FederateurImmediateEffect: CardImmediateEffect = {
@@ -193,6 +200,7 @@ export const IdeationImmediateEffect: CardImmediateEffect = {
     effectType: EImmediateEffect.SELECT_CARD,
 };
 
+// Hobbies
 export const JeuSocieteImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "Source d'inspiration",
@@ -209,9 +217,9 @@ export const JeuSocieteImmediateEffect: CardImmediateEffect = {
 export const EducatifImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "C'est pas sorcier !",
-    description: "",
-    effectType: EImmediateEffect.ADD_XP,
-    xpToAdd: 0,
+    description: "+{0}",
+    effectType: EImmediateEffect.ADD_ENERGY,
+    energyToAdd: 5,
 };
 
 export const VolleyImmediateEffect: CardImmediateEffect = {
@@ -228,6 +236,7 @@ export const VolleyImmediateEffect: CardImmediateEffect = {
 };
 
 /* ---------------- Cards Passive Effects -----------------------*/
+// Formations
 export const BacPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Mention TB",
@@ -249,6 +258,21 @@ export const PrepaPassiveEffect: CardPassiveEffect = {
     energyByCardWithTags: [ETagCategory.COMPETITION],
 };
 
+// Projets
+export const BestFriendsPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Paris entre amis",
+    description: "+{0} si il reste moins de {1} lors du level up",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.MAX_ENERGY_ON_LEVEL_UP,
+        maxEnergyOnLevelUp: 5,
+    },
+    effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
+    energyOnLevelUp: 10,
+};
+
+// Expériences
 export const CoursParticulierPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Professeur",
@@ -289,19 +313,18 @@ export const StageATFPassiveEffect: CardPassiveEffect = {
     energyByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
 };
 
-export const BestFriendsPassiveEffect: CardPassiveEffect = {
+// Compétences
+export const AnglaisPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
-    title: "Paris entre amis",
-    description: "+{0} si il reste moins de {1} lors du level up",
-    condition: {
-        ...defaultCondition,
-        conditionType: EConditionType.MAX_ENERGY_ON_LEVEL_UP,
-        maxEnergyOnLevelUp: 5,
-    },
-    effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
-    energyOnLevelUp: 10,
+    title: "Fluent",
+    description: "+{0} par carte posée lorsque cette carte est sur le terrain",
+    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
+    energyByCardWithAmount: 4,
 };
 
+// Soft skills
+
+// Hobbies
 export const JeuxVideoPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Level up",

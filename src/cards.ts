@@ -1,4 +1,5 @@
 import {
+    AnglaisPassiveEffect,
     BestFriendsPassiveEffect,
     type CardImmediateEffect,
     type CardPassiveEffect,
@@ -304,6 +305,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 3,
+            passiveEffect: AnglaisPassiveEffect,
         },
     },
     {

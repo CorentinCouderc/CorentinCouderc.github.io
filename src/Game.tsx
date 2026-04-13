@@ -328,9 +328,7 @@ export function Game() {
                 }
                 break;
             case EPassiveEffect.ENERGY_BY_CARD_WITH:
-                if (!effect.energyByCardWithAmount
-                    || (!effect.energyByCardWithCategory && effect.energyByCardWithTags)
-                    || (effect.energyByCardWithCategory && !effect.energyByCardWithTags)) {
+                if (!effect.energyByCardWithAmount) {
                     error = true;
                 } else if (!cardAdded) {
                     console.error("PassiveEffect", EPassiveEffect.ENERGY_BY_CARD_WITH, "called but cardAdded was null for card", card.title);
@@ -338,6 +336,7 @@ export function Game() {
                     if (card === cardAdded) { break; }
 
                     if (effect.energyByCardWithCategory && effect.energyByCardWithTags) {
+                        // Card with specific category and tags
                         if (cardAdded.category === effect.energyByCardWithCategory
                             && effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
                         {
@@ -345,14 +344,20 @@ export function Game() {
                         }
                     }
                     else if (effect.energyByCardWithCategory) {
+                        // Card with specific category only
                         if (cardAdded.category === effect.energyByCardWithCategory) {
                             addEnergy(effect.energyByCardWithAmount);
                         }
                     }
                     else if (effect.energyByCardWithTags) {
+                        // Card with specific tags only
                         if (effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag))) {
                             addEnergy(effect.energyByCardWithAmount);
                         }
+                    }
+                    else {
+                        // No specific requirements
+                        addEnergy(effect.energyByCardWithAmount);
                     }
                 }
                 break;
