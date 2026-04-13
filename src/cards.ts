@@ -1,4 +1,5 @@
 import {
+    BestFriendsPassiveEffect,
     type CardImmediateEffect,
     type CardPassiveEffect, CoursParticulierPassiveEffect,
     EducatifImmediateEffect, GamagoraPassiveEffect, StageATFPassiveEffect, StageBoschPassiveEffect,
@@ -260,6 +261,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 10,
+            passiveEffect: BestFriendsPassiveEffect,
         },
         tags: [ETagCategory.PROGRAMMING],
     },
