@@ -331,7 +331,8 @@ export function Game() {
                 } else if (!cardAdded) {
                     console.error("PassiveEffect", EPassiveEffect.ENERGY_BY_CARD_WITH, "called but cardAdded was null for card", card.title);
                 } else {
-                    if (cardAdded.category === effect.energyByCardWithCategory
+                    if (card !== cardAdded
+                        && cardAdded.category === effect.energyByCardWithCategory
                         && effect.energyByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
                     {
                         addEnergy(effect.energyByCardWithAmount);
