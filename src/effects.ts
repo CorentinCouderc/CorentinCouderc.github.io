@@ -165,6 +165,19 @@ export const Sim2bImmediateEffect: CardImmediateEffect = {
     xpToAdd: 40,
 };
 
+export const FederateurImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Capitaine",
+    description: "+{0} si {1} est sur le terrain",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.HAS_CARD_WITH_ID,
+        requiredCardId: 38,
+    },
+    effectType: EImmediateEffect.ADD_ENERGY,
+    energyToAdd: 20,
+};
+
 export const ManagementImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "C'est moi le chef",
@@ -225,6 +238,15 @@ export const BacPassiveEffect: CardPassiveEffect = {
     },
     effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
     energyByCardType: 5,
+};
+
+export const PrepaPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Concours",
+    description: "+{0} quand une carte avec le tag {2} est jouée",
+    effectType: EPassiveEffect.ENERGY_BY_CARD_WITH,
+    energyByCardWithAmount: 10,
+    energyByCardWithTags: [ETagCategory.COMPETITION],
 };
 
 export const CoursParticulierPassiveEffect: CardPassiveEffect = {

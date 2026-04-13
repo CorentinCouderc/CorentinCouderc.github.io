@@ -1,8 +1,14 @@
 import {
     BestFriendsPassiveEffect,
     type CardImmediateEffect,
-    type CardPassiveEffect, CoursParticulierPassiveEffect,
-    EducatifImmediateEffect, GamagoraPassiveEffect, StageATFPassiveEffect, StageBoschPassiveEffect,
+    type CardPassiveEffect,
+    CoursParticulierPassiveEffect,
+    EducatifImmediateEffect,
+    FederateurImmediateEffect,
+    GamagoraPassiveEffect,
+    PrepaPassiveEffect,
+    StageATFPassiveEffect,
+    StageBoschPassiveEffect,
     VolleyImmediateEffect
 } from "./effects.ts";
 import {type CardCategory, type CardTag, ECardCategory, ETagCategory} from "./cardEnums.ts";
@@ -81,6 +87,7 @@ export const allCards: CardData[] = [
             energyFlat: 8,
             xpPerTick: 4,
             immediateEffect: PrepaImmediateEffect,
+            passiveEffect: PrepaPassiveEffect,
         },
         tags: [ETagCategory.SCIENTIST, ETagCategory.COMPETITION],
     },
@@ -396,6 +403,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 12,
+            immediateEffect: FederateurImmediateEffect,
         },
     },
     {
