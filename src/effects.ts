@@ -327,6 +327,26 @@ export const StageATFPassiveEffect: CardPassiveEffect = {
     bonusByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
 };
 
+export const ProgGameplayPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "",
+    description: "+{0} par {1} avec le tag {2}",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 15,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME],
+};
+
+export const ManagementPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "",
+    description: "+{0} par {1} avec le tag {2}",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 10,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.PROGRAMMING, ETagCategory.VIDEO_GAME, ETagCategory.PEDAGOGY],
+};
+
 // Compétences
 export const AnglaisPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
@@ -384,4 +404,12 @@ export const JeuxVideoPassiveEffect: CardPassiveEffect = {
     description: "+{0} par niveau gagné lorsque cette carte est sur le terrain",
     effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
     energyOnLevelUp: 3,
+};
+
+export const LoLEsportPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "\"Let's go G2!\"",
+    description: "+{0} par niveau gagné lorsque cette carte est sur le terrain",
+    effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
+    energyOnLevelUp: 10,
 };

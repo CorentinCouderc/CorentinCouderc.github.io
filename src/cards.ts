@@ -6,8 +6,8 @@ import {
     CoursParticulierPassiveEffect, CPEPassiveEffect,
     EducatifImmediateEffect,
     FederateurImmediateEffect,
-    GamagoraPassiveEffect, JavascriptPassiveEffect,
-    PrepaPassiveEffect, ProgrammationPassiveEffect,
+    GamagoraPassiveEffect, JavascriptPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
+    PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
     StageATFPassiveEffect,
     StageBoschPassiveEffect, UnityPassiveEffect1,
     VolleyImmediateEffect
@@ -163,6 +163,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             xpFlat: 100,
+            passiveEffect: ProgGameplayPassiveEffect,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
     },
@@ -187,6 +188,7 @@ export const allCards: CardData[] = [
             ...defaultEffects,
             xpFlat: 40,
             immediateEffect: ManagementImmediateEffect,
+            passiveEffect: ManagementPassiveEffect,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.PEDAGOGY],
     },
@@ -534,6 +536,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 25,
+            passiveEffect: LoLEsportPassiveEffect,
         },
         tags: [ETagCategory.COMPETITION, ETagCategory.VIDEO_GAME],
     },
