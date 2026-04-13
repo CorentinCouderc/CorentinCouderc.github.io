@@ -264,7 +264,7 @@ export function Game() {
                 let xpGain = 0;
                 for (let i = 0; i < boardCards.length; i++) {
                     const boardCard = boardCards[i];
-                    if (boardCard !== null) {
+                    if (boardCard !== null && boardCard !== card) {
                         energyGain += boardCard.effects.energyFlat;
                         xpGain += boardCard.effects.xpFlat;
                     }
