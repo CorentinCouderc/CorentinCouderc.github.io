@@ -6,10 +6,10 @@ import {
     CoursParticulierPassiveEffect, CPEPassiveEffect,
     EducatifImmediateEffect,
     FederateurImmediateEffect,
-    GamagoraPassiveEffect,
-    PrepaPassiveEffect,
+    GamagoraPassiveEffect, JavascriptPassiveEffect,
+    PrepaPassiveEffect, ProgrammationPassiveEffect,
     StageATFPassiveEffect,
-    StageBoschPassiveEffect,
+    StageBoschPassiveEffect, UnityPassiveEffect1,
     VolleyImmediateEffect
 } from "./effects.ts";
 import {type CardCategory, type CardTag, ECardCategory, ETagCategory} from "./cardEnums.ts";
@@ -317,6 +317,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 18,
+            passiveEffect: UnityPassiveEffect1,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
     },
@@ -328,6 +329,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 11,
+            passiveEffect: ProgrammationPassiveEffect,
         },
         tags: [ETagCategory.PROGRAMMING],
     },
@@ -371,6 +373,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 7,
+            passiveEffect: JavascriptPassiveEffect,
         },
         tags: [ETagCategory.PROGRAMMING],
     },

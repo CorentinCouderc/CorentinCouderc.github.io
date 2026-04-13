@@ -80,8 +80,9 @@ export type CardPassiveEffect = CardEffect & {
     effectType: PassiveEffectType;
     energyByCardType: number | null;
     energyOnLevelUp: number | null;
-    bonusByCardWithEnergyAmount: number | null;
-    bonusByCardWithXPAmount: number | null;
+    bonusByCardWithEnergyAmount: number;
+    bonusByCardWithXPAmount: number;
+    bonusByCardWithMultiplier: number;
     bonusByCardWithCategory: CardCategory | null;
     bonusByCardWithTags: CardTag[] | null;
 }
@@ -95,6 +96,7 @@ const defaultPassiveEffect: CardPassiveEffect = {
     energyOnLevelUp: null,
     bonusByCardWithEnergyAmount: 0,
     bonusByCardWithXPAmount: 0,
+    bonusByCardWithMultiplier: 0,
     bonusByCardWithCategory: null,
     bonusByCardWithTags: null,
 }
@@ -332,6 +334,45 @@ export const AnglaisPassiveEffect: CardPassiveEffect = {
     description: "+{0} par carte posée lorsque cette carte est sur le terrain",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithEnergyAmount: 4,
+};
+
+export const JavascriptPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "World Wide Web",
+    description: "+{0} par {1} joué si cette carte est sur le terrain",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 8,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+};
+
+export const ProgrammationPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "\"Hello World!\"",
+    description: "x{0} énergie gagnée par les {1} avec le tag {2}",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithMultiplier: 2,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.PROGRAMMING],
+};
+
+export const UnityPassiveEffect1: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Tutoriel",
+    description: "+{0} XP par {1} avec le tag {2}",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithXPAmount: 15,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.VIDEO_GAME],
+};
+
+export const UnityPassiveEffect2: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Pro Gamer Master",
+    description: "+{0} XP par {1} avec le tag {2}",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithXPAmount: 40,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.VIDEO_GAME],
 };
 
 // Soft skills

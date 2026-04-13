@@ -328,39 +328,38 @@ export function Game() {
                 }
                 break;
             case EPassiveEffect.BONUS_BY_CARD_WITH:
-                if (!effect.bonusByCardWithEnergyAmount || !effect.bonusByCardWithXPAmount) {
-                    error = true;
-                } else if (!cardAdded) {
+                if (!cardAdded) {
                     console.error("PassiveEffect", EPassiveEffect.BONUS_BY_CARD_WITH, "called but cardAdded was null for card", card.title);
                 } else {
                     if (card === cardAdded) { break; }
 
+                    const bonusEnergyFromMultiplier = cardAdded.effects.energyFlat * effect.bonusByCardWithMultiplier;
                     if (effect.bonusByCardWithCategory && effect.bonusByCardWithTags) {
                         // Card with specific category and tags
                         if (cardAdded.category === effect.bonusByCardWithCategory
                             && effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
                         {
-                            addEnergy(effect.bonusByCardWithEnergyAmount);
+                            addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
                             addXP(effect.bonusByCardWithXPAmount);
                         }
                     }
                     else if (effect.bonusByCardWithCategory) {
                         // Card with specific category only
                         if (cardAdded.category === effect.bonusByCardWithCategory) {
-                            addEnergy(effect.bonusByCardWithEnergyAmount);
+                            addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
                             addXP(effect.bonusByCardWithXPAmount);
                         }
                     }
                     else if (effect.bonusByCardWithTags) {
                         // Card with specific tags only
                         if (effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag))) {
-                            addEnergy(effect.bonusByCardWithEnergyAmount);
+                            addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
                             addXP(effect.bonusByCardWithXPAmount);
                         }
                     }
                     else {
                         // No specific requirements
-                        addEnergy(effect.bonusByCardWithEnergyAmount);
+                        addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
                         addXP(effect.bonusByCardWithXPAmount);
                     }
                 }
