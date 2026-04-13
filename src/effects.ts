@@ -142,6 +142,14 @@ export const Sim2bImmediateEffect: CardImmediateEffect = {
     xpToAdd: 40,
 };
 
+export const HundredEarsWarImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Première fois",
+    description: "+{0} XP",
+    effectType: EImmediateEffect.ADD_XP,
+    xpToAdd: 200,
+};
+
 export const DonjonNBKImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "\"Chaussette !\"",

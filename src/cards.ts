@@ -7,7 +7,8 @@ import {
     EducatifImmediateEffect,
     FederateurImmediateEffect,
     GamagoraPassiveEffect,
-    HiHoneyPassiveEffect, JavascriptPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
+    HiHoneyPassiveEffect,
+    HundredEarsWarImmediateEffect, JavascriptPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
     PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
     StageATFPassiveEffect,
     StageBoschPassiveEffect, UnityPassiveEffect1,
@@ -239,6 +240,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 14,
+            immediateEffect: HundredEarsWarImmediateEffect,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.COMPETITION],
     },
