@@ -23,6 +23,7 @@ export function Game() {
     const [xpToNextLevel, setXpToNextLevel] = useState(baseXPToNextLevel);
     const [currentXP, setCurrentXP] = useState(0);
     const [currentLevel, setCurrentLevel] = useState(0);
+    const [energySpent, setEnergySpent] = useState(0);
 
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
@@ -52,9 +53,14 @@ export function Game() {
 
         // Decrement energy 1 per tick call & add XP
         addEnergy(-1);
+        setEnergySpent(energySpent + 1);
         const xpPerTick = computeXPPerTick();
         addXP(xpPerTick);
     }
+
+    useEffect(() => {
+        tryApplyPassiveEffects(EPassiveEffect.XP_BY_ENERGY_SPENT);
+    }, [energySpent]);
 
     function addEnergy(energyToAdd: number) {
         setEnergy(energy + energyToAdd);
@@ -361,6 +367,13 @@ export function Game() {
                         // No specific requirements
                         addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
                         addXP(effect.bonusByCardWithXPAmount);
+                    }
+                }
+                break;
+            case EPassiveEffect.XP_BY_ENERGY_SPENT:
+                if (!effect.byEnergySpent || !effect.byEnergySpentXPAmount) { error = true; } else {
+                    if (energySpent > 0 && energySpent % effect.byEnergySpent === 0) {
+                        addXP(effect.byEnergySpentXPAmount);
                     }
                 }
                 break;

@@ -73,6 +73,7 @@ export const EPassiveEffect = {
     ENERGY_BY_CARD_TYPE: "energyByCardType",
     ENERGY_ON_LEVEL_UP: "energyOnLevelUp",
     BONUS_BY_CARD_WITH: "bonusByCardWith",
+    XP_BY_ENERGY_SPENT: "xpByEnergySpent",
 } as const
 export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffect];
 
@@ -85,6 +86,8 @@ export type CardPassiveEffect = CardEffect & {
     bonusByCardWithMultiplier: number;
     bonusByCardWithCategory: CardCategory | null;
     bonusByCardWithTags: CardTag[] | null;
+    byEnergySpent: number | null;
+    byEnergySpentXPAmount: number | null;
 }
 
 const defaultPassiveEffect: CardPassiveEffect = {
@@ -99,6 +102,8 @@ const defaultPassiveEffect: CardPassiveEffect = {
     bonusByCardWithMultiplier: 0,
     bonusByCardWithCategory: null,
     bonusByCardWithTags: null,
+    byEnergySpent: null,
+    byEnergySpentXPAmount: null,
 }
 
 /* ---------------- Cards Immediate Effects -----------------------*/
@@ -284,6 +289,15 @@ export const BestFriendsPassiveEffect: CardPassiveEffect = {
     },
     effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
     energyOnLevelUp: 10,
+};
+
+export const HiHoneyPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Travail d'équipe",
+    description: "+{0} XP tous les {1} dépensés",
+    effectType: EPassiveEffect.XP_BY_ENERGY_SPENT,
+    byEnergySpent: 10,
+    byEnergySpentXPAmount: 15,
 };
 
 // Expériences

@@ -6,7 +6,8 @@ import {
     CoursParticulierPassiveEffect, CPEPassiveEffect,
     EducatifImmediateEffect,
     FederateurImmediateEffect,
-    GamagoraPassiveEffect, JavascriptPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
+    GamagoraPassiveEffect,
+    HiHoneyPassiveEffect, JavascriptPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
     PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
     StageATFPassiveEffect,
     StageBoschPassiveEffect, UnityPassiveEffect1,
@@ -249,6 +250,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 20,
+            passiveEffect: HiHoneyPassiveEffect,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.COMPETITION],
     },
