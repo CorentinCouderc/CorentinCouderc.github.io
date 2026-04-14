@@ -9,6 +9,7 @@ import {
     GamagoraPassiveEffect,
     HiHoneyPassiveEffect,
     HundredEarsWarImmediateEffect, JavascriptPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
+    ManagementPassiveEffect1,
     PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
     StageATFPassiveEffect,
     StageBoschPassiveEffect, UnityPassiveEffect1,
@@ -406,6 +407,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 20,
+            passiveEffect: ManagementPassiveEffect1,
         },
         tags: [ETagCategory.PEDAGOGY],
     },

@@ -438,6 +438,22 @@ export const UnityPassiveEffect2: CardPassiveEffect = {
 };
 
 // Soft skills
+export const ManagementPassiveEffect1: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Daily meeting",
+    description: "+{0} XP tous les {1} dépensés",
+    effectType: EPassiveEffect.XP_BY_ENERGY_SPENT,
+    byEnergySpentXPAmount: 50,
+    byEnergySpent: 5,
+};
+
+export const ManagementPassiveEffect2: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Discours motivationnel",
+    description: "+{0} pour chaque nouvelle carte jouée",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 20,
+};
 
 // Hobbies
 export const JeuxVideoPassiveEffect: CardPassiveEffect = {
