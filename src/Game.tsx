@@ -24,6 +24,7 @@ export function Game() {
     const [currentXP, setCurrentXP] = useState(0);
     const [currentLevel, setCurrentLevel] = useState(0);
     const [energySpent, setEnergySpent] = useState(0);
+    const [randomRequiredCategory, setRandomRequiredCategory] = useState<CardCategory>(ECardCategory.NONE);
 
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
@@ -137,7 +138,6 @@ export function Game() {
         newBoardCards[getCategoryIndex(category)] = null;
         setBoardCards(newBoardCards);
     }
-
     function selectCard(card: CardData) {
         if (!hasGameStarted) {
             setHasGameStarted(true);
@@ -157,6 +157,7 @@ export function Game() {
         // Will apply immediate effects on next redraw
         setCardImmediateEffectDelayed(card);
         setCardPassiveEffectDelayed(card);
+        tryChangeRequiredCategory();
     }
 
     // Delay effect activation to avoid overruling other gains
@@ -175,6 +176,22 @@ export function Game() {
             setCardPassiveEffectDelayed(null);
         }
     }, [cardImmediateEffectDelayed, cardPassiveEffectDelayed]);
+
+    function tryChangeRequiredCategory() {
+        const index = boardCards.findIndex((boardCard) => {
+            boardCard !== null
+            && boardCard.effects?.passiveEffect?.effectType === EPassiveEffect.BONUS_BY_CARD_WITH
+            && boardCard.effects?.passiveEffect?.bonusByCardWithCategoryUseRandom
+        });
+
+        if (index >= 0) {
+            // Change required category
+            const newCategory = orderedCategories[Math.floor(Math.random() * orderedCategories.length)];
+            setRandomRequiredCategory(newCategory);
+            // TODO: update description with new Category !
+            // boardCards[index]?.effects?.passiveEffect?.description
+        }
+    }
 
     function addReroll(rerollToAdd: number) {
         const newReroll = Math.max(rerolls + rerollToAdd, 0);
@@ -344,7 +361,10 @@ export function Game() {
                     const bonusEnergyFromMultiplier = cardAdded.effects.energyFlat * effect.bonusByCardWithMultiplier;
                     if (effect.bonusByCardWithCategory && effect.bonusByCardWithTags) {
                         // Card with specific category and tags
-                        if (cardAdded.category === effect.bonusByCardWithCategory
+                        const correctCategory = effect.bonusByCardWithCategoryUseRandom
+                            ? cardAdded.category === randomRequiredCategory
+                            : cardAdded.category === effect.bonusByCardWithCategory;
+                        if (correctCategory
                             && effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
                         {
                             energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
@@ -353,7 +373,10 @@ export function Game() {
                     }
                     else if (effect.bonusByCardWithCategory) {
                         // Card with specific category only
-                        if (cardAdded.category === effect.bonusByCardWithCategory) {
+                        const correctCategory = effect.bonusByCardWithCategoryUseRandom
+                            ? cardAdded.category === randomRequiredCategory
+                            : cardAdded.category === effect.bonusByCardWithCategory;
+                        if (correctCategory) {
                             energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
                             xpGain += effect.bonusByCardWithXPAmount;
                         }

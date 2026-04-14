@@ -8,7 +8,8 @@ import {
     FederateurImmediateEffect,
     GamagoraPassiveEffect,
     HiHoneyPassiveEffect,
-    HundredEarsWarImmediateEffect, JavascriptPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
+    HundredEarsWarImmediateEffect, JavascriptPassiveEffect,
+    LeadershipPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
     ManagementPassiveEffect1,
     PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
     StageATFPassiveEffect,
@@ -453,6 +454,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 20,
+            passiveEffect: LeadershipPassiveEffect,
         },
     },
     {

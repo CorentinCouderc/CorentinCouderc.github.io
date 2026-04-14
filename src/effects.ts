@@ -84,6 +84,7 @@ export type CardPassiveEffect = CardEffect & {
     bonusByCardWithXPAmount: number;
     bonusByCardWithMultiplier: number;
     bonusByCardWithCategory: CardCategory | null;
+    bonusByCardWithCategoryUseRandom: boolean;
     bonusByCardWithTags: CardTag[] | null;
     byEnergySpent: number | null;
     byEnergySpentXPAmount: number | null;
@@ -100,6 +101,7 @@ const defaultPassiveEffect: CardPassiveEffect = {
     bonusByCardWithXPAmount: 0,
     bonusByCardWithMultiplier: 0,
     bonusByCardWithCategory: null,
+    bonusByCardWithCategoryUseRandom: false,
     bonusByCardWithTags: null,
     byEnergySpent: null,
     byEnergySpentXPAmount: null,
@@ -447,6 +449,16 @@ export const ManagementPassiveEffect2: CardPassiveEffect = {
     description: "+{0} pour chaque nouvelle carte jouée",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithEnergyAmount: 20,
+};
+
+export const LeadershipPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Suivez le guide",
+    description: "+{0} si la prochaine catégorie jouée est {1} (choisi aléatoirement)",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 25,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithCategoryUseRandom: true,
 };
 
 // Hobbies
