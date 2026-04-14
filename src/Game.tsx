@@ -59,7 +59,7 @@ export function Game() {
     }
 
     useEffect(() => {
-        tryApplyPassiveEffects(EPassiveEffect.XP_BY_ENERGY_SPENT);
+        tryApplyPassiveEffects([EPassiveEffect.XP_BY_ENERGY_SPENT, EPassiveEffect.REVIVE]);
     }, [energySpent]);
 
     function addEnergy(energyToAdd: number) {
@@ -89,7 +89,7 @@ export function Game() {
     function levelUp() {
         setCurrentLevel(currentLevel + 1);
         setXpToNextLevel(Math.floor(Math.pow(baseXPToNextLevel * (currentLevel + 1), xpScalingFactor)));
-        tryApplyPassiveEffects(EPassiveEffect.ENERGY_ON_LEVEL_UP);
+        tryApplyPassiveEffects([EPassiveEffect.ENERGY_ON_LEVEL_UP]);
         displayCardSelection();
     }
 
@@ -171,7 +171,7 @@ export function Game() {
 
         if (cardPassiveEffectDelayed) {
             // Passive effect when selecting a card
-            tryApplyPassiveEffects(EPassiveEffect.BONUS_BY_CARD_WITH, cardPassiveEffectDelayed);
+            tryApplyPassiveEffects([EPassiveEffect.BONUS_BY_CARD_WITH], cardPassiveEffectDelayed);
             setCardPassiveEffectDelayed(null);
         }
     }, [cardImmediateEffectDelayed, cardPassiveEffectDelayed]);
@@ -299,15 +299,17 @@ export function Game() {
 
     /**
      * Try to apply effects of all boardCards for a specific type of passive effect
-     * @param passiveEffectType
+     * @param passiveEffectTypes
      * @param cardAdded
      */
-    function tryApplyPassiveEffects(passiveEffectType: PassiveEffectType, cardAdded: CardData | null = null) {
+    function tryApplyPassiveEffects(passiveEffectTypes: PassiveEffectType[], cardAdded: CardData | null = null) {
+        let totalEnergyGain = 0;
+        let totalXPGain = 0;
         for (let i = 0; i < boardCards.length; i++) {
             const boardCard = boardCards[i];
             if (boardCard
                 && boardCard.effects.passiveEffect
-                && boardCard.effects.passiveEffect.effectType === passiveEffectType) {
+                && passiveEffectTypes.includes(boardCard.effects.passiveEffect.effectType)) {
                 if (canApplyEffect(boardCard.effects.passiveEffect)) {
                     applyPassiveEffects(boardCard, cardAdded);
                 }
