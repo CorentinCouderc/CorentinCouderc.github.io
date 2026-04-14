@@ -408,6 +408,15 @@ export const ProgrammationPassiveEffect: CardPassiveEffect = {
     bonusByCardWithTags: [ETagCategory.PROGRAMMING],
 };
 
+export const ConceptionJeuPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Hideo Kojima",
+    description: "Les cartes avec le tag {0} scorent x{1}",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithMultiplier: 3,
+    bonusByCardWithTags: [ETagCategory.VIDEO_GAME],
+};
+
 export const UnityPassiveEffect1: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Tutoriel",
