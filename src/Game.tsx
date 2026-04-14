@@ -317,8 +317,12 @@ export function Game() {
                 }
             }
         }
-        addEnergy(totalEnergyGain);
-        addXP(totalXPGain);
+        if (totalEnergyGain !== 0) {
+            addEnergy(totalEnergyGain);
+        }
+        if (totalXPGain !== 0) {
+            addXP(totalXPGain);
+        }
     }
 
     function applyPassiveEffects(card: CardData, cardAdded: CardData | null): [number, number] {
