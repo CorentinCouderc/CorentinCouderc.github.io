@@ -311,28 +311,34 @@ export function Game() {
                 && boardCard.effects.passiveEffect
                 && passiveEffectTypes.includes(boardCard.effects.passiveEffect.effectType)) {
                 if (canApplyEffect(boardCard.effects.passiveEffect)) {
-                    applyPassiveEffects(boardCard, cardAdded);
+                    let [energyGain, xpGain] = applyPassiveEffects(boardCard, cardAdded);
+                    totalEnergyGain += energyGain;
+                    totalXPGain += xpGain;
                 }
             }
         }
+        addEnergy(totalEnergyGain);
+        addXP(totalXPGain);
     }
 
-    function applyPassiveEffects(card: CardData, cardAdded: CardData | null) {
+    function applyPassiveEffects(card: CardData, cardAdded: CardData | null): [number, number] {
         const effect = card.effects.passiveEffect;
         if (effect === null) {
-            return;
+            return [0, 0];
         }
 
+        let energyGain = 0;
+        let xpGain = 0;
         let error = false;
         switch (effect.effectType) {
             case EPassiveEffect.ENERGY_BY_CARD_TYPE:
                 if (!effect.energyByCardType) { error = true; } else {
-                    addEnergy(effect.energyByCardType);
+                    energyGain += effect.energyByCardType;
                 }
                 break;
             case EPassiveEffect.ENERGY_ON_LEVEL_UP:
                 if (!effect.energyOnLevelUp) { error = true; } else {
-                    addEnergy(effect.energyOnLevelUp);
+                    energyGain += effect.energyOnLevelUp;
                 }
                 break;
             case EPassiveEffect.BONUS_BY_CARD_WITH:
@@ -347,42 +353,42 @@ export function Game() {
                         if (cardAdded.category === effect.bonusByCardWithCategory
                             && effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
                         {
-                            addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
-                            addXP(effect.bonusByCardWithXPAmount);
+                            energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
+                            xpGain += effect.bonusByCardWithXPAmount;
                         }
                     }
                     else if (effect.bonusByCardWithCategory) {
                         // Card with specific category only
                         if (cardAdded.category === effect.bonusByCardWithCategory) {
-                            addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
-                            addXP(effect.bonusByCardWithXPAmount);
+                            energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
+                            xpGain += effect.bonusByCardWithXPAmount;
                         }
                     }
                     else if (effect.bonusByCardWithTags) {
                         // Card with specific tags only
                         if (effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag))) {
-                            addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
-                            addXP(effect.bonusByCardWithXPAmount);
+                            energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
+                            xpGain += effect.bonusByCardWithXPAmount;
                         }
                     }
                     else {
                         // No specific requirements
-                        addEnergy(effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier);
-                        addXP(effect.bonusByCardWithXPAmount);
+                        energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
+                        xpGain += effect.bonusByCardWithXPAmount;
                     }
                 }
                 break;
             case EPassiveEffect.XP_BY_ENERGY_SPENT:
                 if (!effect.byEnergySpent || !effect.byEnergySpentXPAmount) { error = true; } else {
                     if (energySpent > 0 && energySpent % effect.byEnergySpent === 0) {
-                        addXP(effect.byEnergySpentXPAmount);
+                        xpGain += effect.byEnergySpentXPAmount;
                     }
                 }
                 break;
             case EPassiveEffect.REVIVE:
                 if (!effect.reviveEnergy) { error = true; } else {
                     if (energy <= 0) {
-                        addEnergy(effect.reviveEnergy);
+                        energyGain += effect.reviveEnergy;
                         removeCardFromBoard(card.category);
                     }
                 }
@@ -395,6 +401,7 @@ export function Game() {
         if (error) {
             console.error("Effect", effect.effectType, "not set for card:", card.title);
         }
+        return [energyGain, xpGain];
     }
 
     return (
