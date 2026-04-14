@@ -335,16 +335,6 @@ export function Game() {
         let xpGain = 0;
         let error = false;
         switch (effect.effectType) {
-            case EPassiveEffect.ENERGY_BY_CARD_TYPE:
-                if (!effect.energyByCardType) { error = true; } else {
-                    energyGain += effect.energyByCardType;
-                }
-                break;
-            case EPassiveEffect.ENERGY_ON_LEVEL_UP:
-                if (!effect.energyOnLevelUp) { error = true; } else {
-                    energyGain += effect.energyOnLevelUp;
-                }
-                break;
             case EPassiveEffect.BONUS_BY_CARD_WITH:
                 if (!cardAdded) {
                     console.error("PassiveEffect", EPassiveEffect.BONUS_BY_CARD_WITH, "called but cardAdded was null for card", card.title);
@@ -380,6 +370,11 @@ export function Game() {
                         energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
                         xpGain += effect.bonusByCardWithXPAmount;
                     }
+                }
+                break;
+            case EPassiveEffect.ENERGY_ON_LEVEL_UP:
+                if (!effect.energyOnLevelUp) { error = true; } else {
+                    energyGain += effect.energyOnLevelUp;
                 }
                 break;
             case EPassiveEffect.XP_BY_ENERGY_SPENT:

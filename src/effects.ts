@@ -70,7 +70,6 @@ const defaultImmediateEffect = {
 
 /*--------- Passive effects ---------*/
 export const EPassiveEffect = {
-    ENERGY_BY_CARD_TYPE: "energyByCardType",
     ENERGY_ON_LEVEL_UP: "energyOnLevelUp",
     BONUS_BY_CARD_WITH: "bonusByCardWith",
     XP_BY_ENERGY_SPENT: "xpByEnergySpent",
@@ -80,7 +79,6 @@ export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffec
 
 export type CardPassiveEffect = CardEffect & {
     effectType: PassiveEffectType;
-    energyByCardType: number | null;
     energyOnLevelUp: number | null;
     bonusByCardWithEnergyAmount: number;
     bonusByCardWithXPAmount: number;
@@ -96,8 +94,7 @@ const defaultPassiveEffect: CardPassiveEffect = {
     title: "TODO",
     description: "TODO",
     condition: null,
-    effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
-    energyByCardType: null,
+    effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
     energyOnLevelUp: null,
     bonusByCardWithEnergyAmount: 0,
     bonusByCardWithXPAmount: 0,
@@ -261,12 +258,9 @@ export const BacPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Mention TB",
     description: "+{0} quand {1} est joué",
-    condition: {
-        ...defaultCondition,
-        conditionType: EConditionType.HAS_CARD_WITH_ID,
-    },
-    effectType: EPassiveEffect.ENERGY_BY_CARD_TYPE,
-    energyByCardType: 5,
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 5,
+    bonusByCardWithCategory: ECardCategory.HOBBY,
 };
 
 export const PrepaPassiveEffect: CardPassiveEffect = {
