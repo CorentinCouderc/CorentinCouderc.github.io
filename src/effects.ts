@@ -413,6 +413,24 @@ export const ConceptionJeuPassiveEffect: CardPassiveEffect = {
     bonusByCardWithTags: [ETagCategory.VIDEO_GAME],
 };
 
+export const StorylinePassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Pro du e-learning",
+    description: "Les {0} avec le tag {1} scorent x{2}",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithMultiplier: 2,
+    bonusByCardWithCategory: ECardCategory.PROJECT,
+    bonusByCardWithTags: [ETagCategory.PEDAGOGY],
+};
+
+export const OutilsIAPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Vibe coding",
+    description: "Les prochaines cartes posées scorent x{0}",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithMultiplier: 3,
+};
+
 export const UnityPassiveEffect1: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Tutoriel",
@@ -461,6 +479,15 @@ export const LeadershipPassiveEffect: CardPassiveEffect = {
     bonusByCardWithCategoryUseRandom: true,
 };
 
+export const AnalyseSynthesePassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Matière grise",
+    description: "+{0} XP tous les {1} dépensés",
+    effectType: EPassiveEffect.XP_BY_ENERGY_SPENT,
+    byEnergySpentXPAmount: 5,
+    byEnergySpent: 8,
+};
+
 // Hobbies
 export const JeuxVideoPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
@@ -476,4 +503,12 @@ export const LoLEsportPassiveEffect: CardPassiveEffect = {
     description: "+{0} par niveau gagné lorsque cette carte est sur le terrain",
     effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
     energyOnLevelUp: 10,
+};
+
+export const ChantPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "The Voice",
+    description: "+{0} par carte posée",
+    effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
+    bonusByCardWithEnergyAmount: 20,
 };

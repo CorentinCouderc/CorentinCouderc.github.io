@@ -1,20 +1,15 @@
 import {
-    AnglaisPassiveEffect,
-    BestFriendsPassiveEffect, BunnyHordePassiveEffect,
-    type CardImmediateEffect,
-    type CardPassiveEffect, ConceptionJeuPassiveEffect,
+    AnalyseSynthesePassiveEffect,
+    AnglaisPassiveEffect, BestFriendsPassiveEffect, BunnyHordePassiveEffect,
+    type CardImmediateEffect, type CardPassiveEffect, ChantPassiveEffect, ConceptionJeuPassiveEffect,
     CoursParticulierPassiveEffect, CPEPassiveEffect,
-    EducatifImmediateEffect,
-    FederateurImmediateEffect,
-    GamagoraPassiveEffect,
-    HiHoneyPassiveEffect,
+    EducatifImmediateEffect, FederateurImmediateEffect,
+    GamagoraPassiveEffect, HiHoneyPassiveEffect,
     HundredEarsWarImmediateEffect, JavascriptPassiveEffect,
     LeadershipPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
     ManagementPassiveEffect1,
-    PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
-    StageATFPassiveEffect,
-    StageBoschPassiveEffect, UnityPassiveEffect1,
-    VolleyImmediateEffect
+    OutilsIAPassiveEffect, PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
+    StageATFPassiveEffect, StageBoschPassiveEffect, StorylinePassiveEffect, UnityPassiveEffect1, VolleyImmediateEffect
 } from "./effects.ts";
 import {type CardCategory, type CardTag, ECardCategory, ETagCategory} from "./cardEnums.ts";
 import {
@@ -362,6 +357,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 30,
+            passiveEffect: StorylinePassiveEffect,
         },
         tags: [ETagCategory.PEDAGOGY],
     },
@@ -373,6 +369,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 20,
+            passiveEffect: OutilsIAPassiveEffect,
         },
     },
     {
@@ -443,6 +440,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 14,
+            passiveEffect: AnalyseSynthesePassiveEffect,
         },
         tags: [ETagCategory.SCIENTIST],
     },
@@ -501,6 +499,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 60,
+            passiveEffect: ChantPassiveEffect,
         },
     },
     {
