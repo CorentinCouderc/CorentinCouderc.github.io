@@ -1,6 +1,6 @@
 import {
     AnglaisPassiveEffect,
-    BestFriendsPassiveEffect,
+    BestFriendsPassiveEffect, BunnyHordePassiveEffect,
     type CardImmediateEffect,
     type CardPassiveEffect,
     CoursParticulierPassiveEffect, CPEPassiveEffect,
@@ -288,6 +288,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 12,
+            passiveEffect: BunnyHordePassiveEffect,
         },
         tags: [ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING],
     },

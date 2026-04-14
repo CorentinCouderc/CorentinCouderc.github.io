@@ -74,6 +74,7 @@ export const EPassiveEffect = {
     ENERGY_ON_LEVEL_UP: "energyOnLevelUp",
     BONUS_BY_CARD_WITH: "bonusByCardWith",
     XP_BY_ENERGY_SPENT: "xpByEnergySpent",
+    REVIVE: "revive",
 } as const
 export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffect];
 
@@ -88,6 +89,7 @@ export type CardPassiveEffect = CardEffect & {
     bonusByCardWithTags: CardTag[] | null;
     byEnergySpent: number | null;
     byEnergySpentXPAmount: number | null;
+    reviveEnergy: number | null;
 }
 
 const defaultPassiveEffect: CardPassiveEffect = {
@@ -104,6 +106,7 @@ const defaultPassiveEffect: CardPassiveEffect = {
     bonusByCardWithTags: null,
     byEnergySpent: null,
     byEnergySpentXPAmount: null,
+    reviveEnergy: null,
 }
 
 /* ---------------- Cards Immediate Effects -----------------------*/
@@ -306,6 +309,14 @@ export const HiHoneyPassiveEffect: CardPassiveEffect = {
     effectType: EPassiveEffect.XP_BY_ENERGY_SPENT,
     byEnergySpent: 10,
     byEnergySpentXPAmount: 15,
+};
+
+export const BunnyHordePassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Survivor",
+    description: "Si l'énergie tombe à 0 avec cette carte en jeu, ajoute {0}. Cette carte est retirée",
+    effectType: EPassiveEffect.REVIVE,
+    reviveEnergy: 50,
 };
 
 // Expériences

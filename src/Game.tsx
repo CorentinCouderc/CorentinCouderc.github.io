@@ -377,6 +377,14 @@ export function Game() {
                     }
                 }
                 break;
+            case EPassiveEffect.REVIVE:
+                if (!effect.reviveEnergy) { error = true; } else {
+                    if (energy <= 0) {
+                        addEnergy(effect.reviveEnergy);
+                        removeCardFromBoard(card.category);
+                    }
+                }
+                break;
             default:
                 console.error("Unknown passive effect type: ", effect.effectType);
                 break;
