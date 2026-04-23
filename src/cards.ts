@@ -5,7 +5,7 @@ import {
     CoursParticulierPassiveEffect, CPEPassiveEffect,
     EducatifImmediateEffect, FederateurImmediateEffect,
     GamagoraPassiveEffect, HiHoneyPassiveEffect,
-    HundredEarsWarImmediateEffect, JavascriptPassiveEffect,
+    HundredEarsWarImmediateEffect, IdeationPassiveEffect, JavascriptPassiveEffect,
     LeadershipPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
     ManagementPassiveEffect1,
     OutilsIAPassiveEffect, PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
@@ -464,6 +464,7 @@ export const allCards: CardData[] = [
             ...defaultEffects,
             energyFlat: 1,
             immediateEffect: IdeationImmediateEffect,
+            passiveEffect: IdeationPassiveEffect,
         },
     },
 

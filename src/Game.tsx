@@ -196,8 +196,24 @@ export function Game() {
         }
     }
 
+    function computeMinRerolls() {
+        let minRerolls = 0;
+        for (let i = 0; i < boardCards.length; i++) {
+            const boardCard = boardCards[i];
+            if (boardCard
+                && boardCard.effects.passiveEffect
+                && boardCard.effects.passiveEffect.effectType === EPassiveEffect.ADDITIONAL_REROLL) {
+                if (canApplyEffect(boardCard.effects.passiveEffect)) {
+                    minRerolls += 1;
+                }
+            }
+        }
+        return minRerolls;
+    }
+
     function addReroll(rerollToAdd: number) {
-        const newReroll = Math.max(rerolls + rerollToAdd, 0);
+        const minReroll = computeMinRerolls();
+        const newReroll = Math.max(rerolls + rerollToAdd, minReroll);
         setRerolls(newReroll);
     }
 

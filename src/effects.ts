@@ -77,6 +77,7 @@ export const EPassiveEffect = {
     BONUS_BY_CARD_WITH: "bonusByCardWith",
     XP_BY_ENERGY_SPENT: "xpByEnergySpent",
     REVIVE: "revive",
+    ADDITIONAL_REROLL: "additionalReroll",
 } as const
 export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffect];
 
@@ -502,6 +503,18 @@ export const AnalyseSynthesePassiveEffect: CardPassiveEffect = {
     effectType: EPassiveEffect.XP_BY_ENERGY_SPENT,
     byEnergySpentXPAmount: 5,
     byEnergySpent: 8,
+};
+
+export const IdeationPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Brainstorming",
+    description: "Tant qu'elle est en jeu, +1 relance",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.HAS_CARD_WITH_ID,
+        requiredCardId: 33, // Ideation
+    },
+    effectType: EPassiveEffect.ADDITIONAL_REROLL,
 };
 
 // Hobbies
