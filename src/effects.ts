@@ -9,6 +9,7 @@ export const EConditionType = {
     EVEN_TOTAL_CARD_PLAYED: "eventTotalCardPlayed",
     ALL_BOARD_FILLED: "allBoardFilled",
     MAX_ENERGY_ON_LEVEL_UP: "maxEnergyOnLevelUp",
+    REPLACED_CARD_WITH_ID: "replacedCardWithID",
 } as const
 export type EffectConditionType = typeof EConditionType[keyof typeof EConditionType];
 
@@ -18,6 +19,7 @@ export type EffectCondition = {
     requiredCardCategory: CardCategory | null;
     requiredCardTags: CardTag[] | null;
     maxEnergyOnLevelUp: number | null;
+    replacedCardId: number | null;
 }
 const defaultCondition: EffectCondition = {
     conditionType: EConditionType.HAS_CARD_WITH_ID,
@@ -25,6 +27,7 @@ const defaultCondition: EffectCondition = {
     requiredCardCategory: null,
     requiredCardTags: null,
     maxEnergyOnLevelUp: null,
+    replacedCardId: null,
 }
 
 /*--------- Effect base ---------*/
@@ -138,7 +141,7 @@ export const Sim2bImmediateEffect: CardImmediateEffect = {
     condition: {
         ...defaultCondition,
         conditionType: EConditionType.HAS_CARD_WITH_ID,
-        requiredCardId: 7,
+        requiredCardId: 7, // Stage ATF
     },
     effectType: EImmediateEffect.ADD_XP,
     xpToAdd: 40,
@@ -198,7 +201,7 @@ export const FederateurImmediateEffect: CardImmediateEffect = {
     condition: {
         ...defaultCondition,
         conditionType: EConditionType.HAS_CARD_WITH_ID,
-        requiredCardId: 38,
+        requiredCardId: 39, // VolleyBall
     },
     effectType: EImmediateEffect.ADD_ENERGY,
     energyToAdd: 20,
@@ -227,7 +230,7 @@ export const JeuSocieteImmediateEffect: CardImmediateEffect = {
     condition: {
         ...defaultCondition,
         conditionType: EConditionType.HAS_CARD_WITH_ID,
-        requiredCardId: 22,
+        requiredCardId: 23, // Conception de jeu
     },
     effectType: EImmediateEffect.ADD_ENERGY,
     energyToAdd: 100,
@@ -252,6 +255,19 @@ export const VolleyImmediateEffect: CardImmediateEffect = {
     },
     effectType: EImmediateEffect.ADD_ENERGY,
     energyToAdd: 5,
+};
+
+export const BadmintonImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Double mixte",
+    description: "+{0} si remplace {1}",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.REPLACED_CARD_WITH_ID,
+        replacedCardId: 39, // VolleyBall
+    },
+    effectType: EImmediateEffect.ADD_ENERGY,
+    energyToAdd: 20,
 };
 
 /* ---------------- Cards Passive Effects -----------------------*/

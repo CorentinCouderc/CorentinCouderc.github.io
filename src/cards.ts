@@ -1,6 +1,6 @@
 import {
     AnalyseSynthesePassiveEffect,
-    AnglaisPassiveEffect, BestFriendsPassiveEffect, BunnyHordePassiveEffect,
+    AnglaisPassiveEffect, BadmintonImmediateEffect, BestFriendsPassiveEffect, BunnyHordePassiveEffect,
     type CardImmediateEffect, type CardPassiveEffect, ChantPassiveEffect, ConceptionJeuPassiveEffect,
     CoursParticulierPassiveEffect, CPEPassiveEffect,
     EducatifImmediateEffect, FederateurImmediateEffect,
@@ -522,6 +522,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 20,
+            immediateEffect: BadmintonImmediateEffect,
         },
         tags: [ETagCategory.COMPETITION],
     },

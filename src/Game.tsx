@@ -29,6 +29,7 @@ export function Game() {
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
     const [playedCards, setPlayedCards] = useState<(CardData | null)[]>([]);
+    const [replacedCard, setReplacedCard] = useState<(CardData | null)>(null);
     const [cardImmediateEffectDelayed, setCardImmediateEffectDelayed] = useState<CardData | null>(null);
     const [cardPassiveEffectDelayed, setCardPassiveEffectDelayed] = useState<CardData | null>(null);
 
@@ -128,6 +129,8 @@ export function Game() {
     }
 
     function addCardToBoard(card: CardData) {
+        setReplacedCard(boardCards[getCategoryIndex(card.category)]);
+
         const newBoardCards = [...boardCards];
         newBoardCards[getCategoryIndex(card.category)] = card;
         setBoardCards(newBoardCards);
@@ -245,6 +248,8 @@ export function Game() {
                     }
                 }
                 return boardCards.length === boardCardCount;
+            case EConditionType.REPLACED_CARD_WITH_ID:
+                return (replacedCard && replacedCard.id === effect.condition.replacedCardId);
             default:
                 console.error("Unknown condition: ", effect.condition.conditionType);
                 return false;
