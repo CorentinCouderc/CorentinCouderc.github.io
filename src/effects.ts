@@ -508,7 +508,7 @@ export const AnalyseSynthesePassiveEffect: CardPassiveEffect = {
 export const IdeationPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Brainstorming",
-    description: "Tant qu'elle est en jeu, +1 relance",
+    description: "Tant que cette carte est en jeu, +1 relance pour chaque carte tirée",
     condition: {
         ...defaultCondition,
         conditionType: EConditionType.HAS_CARD_WITH_ID,

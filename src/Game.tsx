@@ -98,11 +98,12 @@ export function Game() {
     function displayCardSelection() {
         setIsSelectingCard(true);
         pickRandomCardsToDisplay();
+        addReroll(computeMinRerolls());
     }
 
     function pickRandomCardsToDisplay() {
         if (hasGameStarted) {
-            const pickedCards = [allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
+            const pickedCards = [allCards[32], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
             setRandomCards(pickedCards);
 
             // TODO : implement better card selection algorithm (no redraw of same card, priority in randomness etc..)
@@ -212,8 +213,7 @@ export function Game() {
     }
 
     function addReroll(rerollToAdd: number) {
-        const minReroll = computeMinRerolls();
-        const newReroll = Math.max(rerolls + rerollToAdd, minReroll);
+        const newReroll = Math.max(rerolls + rerollToAdd, 0);
         setRerolls(newReroll);
     }
 
