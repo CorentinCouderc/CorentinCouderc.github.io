@@ -3,6 +3,7 @@ import {getCategoryString, getTagString} from "./cardEnums.ts"
 import './Card.css';
 import * as React from "react";
 import Energy from "./Energy.tsx";
+import parse from 'html-react-parser';
 
 interface CardProperties{
     card: CardData,
@@ -72,14 +73,14 @@ function Card(props: CardProperties)
                                 props.card.effects.immediateEffect &&
                                 <div className="card-effects">
                                     <h3 className="effect-title">{props.card.effects.immediateEffect.title} :</h3>
-                                    <p className="effect-desc">{props.card.effects.immediateEffect.description}</p>
+                                    <p className="effect-desc">{parse(props.card.effects.immediateEffect.description)}</p>
                                 </div>
                             }
                             {
                                 props.card.effects.passiveEffect &&
                                 <div className="card-effects">
                                     <h3 className="effect-title">{props.card.effects.passiveEffect.title} :</h3>
-                                    <p className="effect-desc">{props.card.effects.passiveEffect.description}</p>
+                                    <p className="effect-desc">{parse(props.card.effects.passiveEffect.description)}</p>
                                 </div>
                             }
                         </div>

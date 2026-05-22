@@ -33,6 +33,39 @@ function App() {
     const homeProfilePictureRef = useRef<HTMLDivElement>(null);
     const fullDeckRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+        if (isFullDeckDisplayed || isGameDisplayed) return;
+        parseCardEffects();
+    }, [isFullDeckDisplayed, isGameDisplayed]);
+
+    function parseCardEffects() {
+        for (let i = 1; i < allCards.length; i++) {
+            const card = allCards[i];
+            if (card.effects.immediateEffect) {
+                // TODO: Remplacer tous les {0} par les bonnes valeurs selon la catégorie d'effet appliqué.
+                // const template =
+                //     "This is %FIRST%, this is %SECOND%, and this is %THIRD%.";
+                //
+                // const replacements = {
+                //     FIRST: "<b>an apple</b>",
+                //     SECOND: "<b>a banana</b>",
+                //     THIRD: "<b>a pear</b>",
+                // } satisfies Record<string, string>;
+                //
+                // const text = template.replace(
+                //     /%(\w+)%/g,
+                //     (_, key: keyof typeof replacements) =>
+                //         replacements[key] ?? key
+                // );
+
+                // card.effects.immediateEffect.description = "Coucou les <mark>loulous</mark>";
+            }
+            if (card.effects.passiveEffect) {
+                // card.effects.passiveEffect.description = "";
+            }
+        }
+    }
+
     //#region GSAP
     useGSAP(() => {
         setupScrollTimelines();
