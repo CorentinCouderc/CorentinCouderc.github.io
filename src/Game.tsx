@@ -1,7 +1,13 @@
 import "./Game.css"
 import {useEffect, useState} from 'react';
 import type {CardData} from "./cards.ts";
-import {ECardCategory, type CardCategory, orderedCategories} from './cardEnums.ts';
+import {
+    ECardCategory,
+    type CardCategory,
+    orderedCategories,
+    type CardTag,
+    orderedTags
+} from './cardEnums.ts';
 import CardSlot from "./CardSlot.tsx";
 import CardSelection from "./CardSelection.tsx";
 import Energy from "./Energy.tsx";
@@ -25,6 +31,7 @@ export function Game() {
     const [currentLevel, setCurrentLevel] = useState(0);
     const [energySpent, setEnergySpent] = useState(0);
     const [randomRequiredCategory, setRandomRequiredCategory] = useState<CardCategory>(ECardCategory.NONE);
+    const [cardTagCounts, setCardTagCounts] = useState<number[]>([0, 0, 0, 0, 0, 0]);
 
     const initialBoard: (CardData | null)[] = [null, null, null, null, null, null];
     const [boardCards, setBoardCards] = useState<(CardData | null)[]>(initialBoard);
@@ -85,7 +92,8 @@ export function Game() {
                 totalXpPerTick += boardCards[i]!.effects.xpPerTick;
             }
         }
-        return totalXpPerTick;
+        const additionalXPPerTick = computeAdditionalXPPerTick();
+        return totalXpPerTick + additionalXPPerTick;
     }
 
     function levelUp() {
@@ -129,18 +137,41 @@ export function Game() {
         return orderedCategories.indexOf(category);
     }
 
+    function getTagIndex(tag: CardTag) {
+        return orderedTags.indexOf(tag);
+    }
+
+    function updateAllCardTagCounts(newBoardCards: (CardData | null)[]) {
+        const newCardTagCounts = [0, 0, 0, 0, 0, 0];
+        for (let i = 0; i < newBoardCards.length; i++) {
+            const boardCard = newBoardCards[i];
+            if (! boardCard)
+                continue;
+
+            for (let j = 0; j < boardCard.tags.length; j++) {
+                const tag = boardCard.tags[j];
+                newCardTagCounts[getTagIndex(tag)] += 1;
+            }
+        }
+        setCardTagCounts(newCardTagCounts);
+    }
+
     function addCardToBoard(card: CardData) {
         setReplacedCard(boardCards[getCategoryIndex(card.category)]);
 
         const newBoardCards = [...boardCards];
         newBoardCards[getCategoryIndex(card.category)] = card;
         setBoardCards(newBoardCards);
+
+        updateAllCardTagCounts(newBoardCards);
     }
 
     function removeCardFromBoard(category: CardCategory) {
         const newBoardCards = [...boardCards];
         newBoardCards[getCategoryIndex(category)] = null;
         setBoardCards(newBoardCards);
+
+        updateAllCardTagCounts(newBoardCards);
     }
     function selectCard(card: CardData) {
         if (!hasGameStarted) {
@@ -222,6 +253,39 @@ export function Game() {
         addReroll(-1);
     }
 
+    /**
+     * Used the passive effect ADDITIONAL_XP_PER_TICK in combination with condition HAS_CARD_WITH_TAG with the requiredCardTags of size 1.
+     * Allows to add additionalXpPerTickAmount * numberOfCardWithTag(requiredTags[0]) to get the total additional Xp Per Tick amount.
+     */
+    function computeAdditionalXPPerTick() {
+        let result = 0;
+        for (let i = 0; i < boardCards.length; i++) {
+            const boardCard = boardCards[i];
+            const passiveEffect = boardCard?.effects.passiveEffect;
+            if (boardCard
+                && passiveEffect
+                && passiveEffect.effectType === EPassiveEffect.ADDITIONAL_XP_PER_TICK
+                && passiveEffect.condition
+                && passiveEffect.condition.conditionType === EConditionType.HAS_CARD_WITH_TAG
+                && passiveEffect.condition.requiredCardTags?.length === 1
+                && canApplyEffect(passiveEffect))
+            {
+                const numberOfCardWithTag = cardTagCounts[getTagIndex(passiveEffect.condition.requiredCardTags[0])]
+                result += passiveEffect.additionalXpPerTickAmount * numberOfCardWithTag;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns true if card has at least one tag in common with the requiredCardTags array
+     * @param card
+     * @param requiredCardTags
+     */
+    function hasOneRequiredTag(card: CardData, requiredCardTags: CardTag[]) {
+        return requiredCardTags.some(tag => card.tags.includes(tag));
+    }
+
     function canApplyEffect(effect: CardEffect | null) {
         if (!effect) { return false; }
         if (!effect.condition) { return true; } // No condition means effect can be applied
@@ -247,8 +311,7 @@ export function Game() {
                 for (let i = 0; i < boardCards.length; i++) {
                     const card = boardCards[i];
                     if (card && effect.condition.requiredCardTags) {
-                        const atLeastOne = effect.condition.requiredCardTags.some(tag => card.tags.includes(tag));
-                        if (atLeastOne) {
+                        if (hasOneRequiredTag(card, effect.condition.requiredCardTags)) {
                             return true;
                         }
                     }
@@ -386,7 +449,7 @@ export function Game() {
                             ? cardAdded.category === randomRequiredCategory
                             : cardAdded.category === effect.bonusByCardWithCategory;
                         if (correctCategory
-                            && effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag)))
+                            && hasOneRequiredTag(cardAdded, effect.bonusByCardWithTags))
                         {
                             energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
                             xpGain += effect.bonusByCardWithXPAmount;
@@ -404,7 +467,7 @@ export function Game() {
                     }
                     else if (effect.bonusByCardWithTags) {
                         // Card with specific tags only
-                        if (effect.bonusByCardWithTags.some(tag => cardAdded.tags.includes(tag))) {
+                        if (hasOneRequiredTag(cardAdded, effect.bonusByCardWithTags)) {
                             energyGain += effect.bonusByCardWithEnergyAmount + bonusEnergyFromMultiplier;
                             xpGain += effect.bonusByCardWithXPAmount;
                         }

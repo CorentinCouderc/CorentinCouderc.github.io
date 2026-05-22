@@ -78,6 +78,7 @@ export const EPassiveEffect = {
     XP_BY_ENERGY_SPENT: "xpByEnergySpent",
     REVIVE: "revive",
     ADDITIONAL_REROLL: "additionalReroll",
+    ADDITIONAL_XP_PER_TICK: "additionalXPPerTick",
 } as const
 export type PassiveEffectType = typeof EPassiveEffect[keyof typeof EPassiveEffect];
 
@@ -93,6 +94,7 @@ export type CardPassiveEffect = CardEffect & {
     byEnergySpent: number | null;
     byEnergySpentXPAmount: number | null;
     reviveEnergy: number | null;
+    additionalXpPerTickAmount: number;
 }
 
 const defaultPassiveEffect: CardPassiveEffect = {
@@ -110,6 +112,7 @@ const defaultPassiveEffect: CardPassiveEffect = {
     byEnergySpent: null,
     byEnergySpentXPAmount: null,
     reviveEnergy: null,
+    additionalXpPerTickAmount: 0,
 }
 
 /* ---------------- Cards Immediate Effects -----------------------*/
@@ -299,6 +302,19 @@ export const CPEPassiveEffect: CardPassiveEffect = {
     bonusByCardWithXPAmount: 20,
     bonusByCardWithCategory: ECardCategory.EXPERIENCE,
     bonusByCardWithTags: [ETagCategory.INTERNSHIP],
+};
+
+export const CertificationPassiveEffect: CardPassiveEffect = {
+    ...defaultPassiveEffect,
+    title: "Formateur certifié",
+    description: "+{0} XP/tick par carte avec le tag {1} sur le plateau",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.HAS_CARD_WITH_TAG,
+        requiredCardTags: [ETagCategory.PEDAGOGY],
+    },
+    effectType: EPassiveEffect.ADDITIONAL_XP_PER_TICK,
+    additionalXpPerTickAmount: 5,
 };
 
 // Projets

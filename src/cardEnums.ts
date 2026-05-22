@@ -21,6 +21,8 @@ export const ETagCategory = {
 } as const
 export type CardTag = typeof ETagCategory[keyof typeof ETagCategory];
 
+export const orderedTags = [ETagCategory.SCIENTIST, ETagCategory.COMPETITION, ETagCategory.VIDEO_GAME, ETagCategory.PROGRAMMING, ETagCategory.INTERNSHIP, ETagCategory.PEDAGOGY];
+
 export function getCategoryString(category: CardCategory)
 {
     switch (category)

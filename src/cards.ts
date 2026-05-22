@@ -1,7 +1,8 @@
 import {
     AnalyseSynthesePassiveEffect,
     AnglaisPassiveEffect, BadmintonImmediateEffect, BestFriendsPassiveEffect, BunnyHordePassiveEffect,
-    type CardImmediateEffect, type CardPassiveEffect, ChantPassiveEffect, ConceptionJeuPassiveEffect,
+    type CardImmediateEffect, type CardPassiveEffect,
+    CertificationPassiveEffect, ChantPassiveEffect, ConceptionJeuPassiveEffect,
     CoursParticulierPassiveEffect, CPEPassiveEffect,
     EducatifImmediateEffect, FederateurImmediateEffect,
     GamagoraPassiveEffect, HiHoneyPassiveEffect,
@@ -113,6 +114,7 @@ export const allCards: CardData[] = [
             ...defaultEffects,
             energyFlat: 20,
             xpPerTick: 20,
+            passiveEffect: CertificationPassiveEffect,
         },
         tags: [ETagCategory.PEDAGOGY],
     },
