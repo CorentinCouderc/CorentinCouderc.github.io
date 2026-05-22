@@ -1,6 +1,7 @@
 import {
     AnalyseSynthesePassiveEffect,
-    AnglaisPassiveEffect, BadmintonImmediateEffect, BestFriendsPassiveEffect, BunnyHordePassiveEffect,
+    AnglaisPassiveEffect,
+    ArcaneELearningImmediateEffect, BadmintonImmediateEffect, BestFriendsPassiveEffect, BunnyHordePassiveEffect,
     type CardImmediateEffect, type CardPassiveEffect,
     CertificationPassiveEffect, ChantPassiveEffect, ConceptionJeuPassiveEffect,
     CoursParticulierPassiveEffect, CPEPassiveEffect,
@@ -298,7 +299,8 @@ export const allCards: CardData[] = [
         category: ECardCategory.PROJECT,
         effects: {
             ...defaultEffects,
-            energyFlat: 20,
+            energyFlat: 30,
+            immediateEffect: ArcaneELearningImmediateEffect,
         },
         tags: [ETagCategory.PEDAGOGY, ETagCategory.PROGRAMMING],
     },

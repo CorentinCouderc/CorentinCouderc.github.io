@@ -174,6 +174,19 @@ export const MaitreDonjonImmediateEffect: CardImmediateEffect = {
     effectType: EImmediateEffect.REAPPLY_FLAT_GAIN,
 };
 
+export const ArcaneELearningImmediateEffect: CardImmediateEffect = {
+    ...defaultImmediateEffect,
+    title: "Jinx",
+    description: "+{0} XP si {1} est sur le terrain",
+    condition: {
+        ...defaultCondition,
+        conditionType: EConditionType.HAS_CARD_WITH_ID,
+        requiredCardId: 4, // Former a l'ere du digital
+    },
+    effectType: EImmediateEffect.ADD_XP,
+    xpToAdd: 70,
+};
+
 // Expériences
 
 // Compétences
