@@ -485,7 +485,7 @@ export const UnityPassiveEffect2: CardPassiveEffect = {
 };
 
 // Soft skills
-export const ManagementPassiveEffect1: CardPassiveEffect = {
+export const ManagementSituationnelPassiveEffect1: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Daily meeting",
     description: "+{0} XP tous les {1} dépensés",
@@ -494,7 +494,7 @@ export const ManagementPassiveEffect1: CardPassiveEffect = {
     byEnergySpent: 5,
 };
 
-export const ManagementPassiveEffect2: CardPassiveEffect = {
+export const ManagementSituationnelPassiveEffect2: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Discours motivationnel",
     description: "+{0} pour chaque nouvelle carte jouée",

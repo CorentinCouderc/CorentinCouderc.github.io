@@ -8,7 +8,7 @@ import {
     GamagoraPassiveEffect, HiHoneyPassiveEffect,
     HundredEarsWarImmediateEffect, IdeationPassiveEffect, JavascriptPassiveEffect,
     LeadershipPassiveEffect, LoLEsportPassiveEffect, ManagementPassiveEffect,
-    ManagementPassiveEffect1,
+    ManagementSituationnelPassiveEffect1,
     OutilsIAPassiveEffect, PrepaPassiveEffect, ProgGameplayPassiveEffect, ProgrammationPassiveEffect,
     StageATFPassiveEffect, StageBoschPassiveEffect, StorylinePassiveEffect, UnityPassiveEffect1, VolleyImmediateEffect
 } from "./effects.ts";
@@ -407,7 +407,7 @@ export const allCards: CardData[] = [
         effects: {
             ...defaultEffects,
             energyFlat: 20,
-            passiveEffect: ManagementPassiveEffect1,
+            passiveEffect: ManagementSituationnelPassiveEffect1,
         },
         tags: [ETagCategory.PEDAGOGY],
     },
