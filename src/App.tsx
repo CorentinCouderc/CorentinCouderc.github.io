@@ -181,7 +181,7 @@ function App() {
             </div>
 
             <div ref={fullDeckRef}>
-                <DeckBuilder deck={allCards} closeFullDeck={() => displayDeck(false)} />
+                <DeckBuilder closeFullDeck={() => displayDeck(false)} />
             </div>
         </>
     );
