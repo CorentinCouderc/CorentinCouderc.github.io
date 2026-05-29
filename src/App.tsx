@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import './App.css';
+import './Energy.css';
 import Home from "./Home.tsx";
 import DeckBuilder from "./DeckBuilder.tsx";
 import {Game} from "./Game.tsx";
@@ -11,6 +12,8 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import {allLevels} from "./levels.ts";
 import {clamp} from "gsap/gsap-core";
 import {allCards} from "./cards.ts";
+import {EConditionType, EImmediateEffect} from "./effects.ts";
+import {getCategoryString} from "./cardEnums.ts";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 
@@ -24,6 +27,7 @@ function App() {
     const [isPlayingAnimation, setIsPlayingAnimation] = useState(false);
     const [isFullDeckDisplayed, setIsFullDeckDisplayed] = useState(false);
     const [isGameDisplayed, setIsGameDisplayed] = useState(false);
+    const [areCardsParsed, setAreCardsParsed] = useState(false);
     const timelineConfig = {
         paused: true,
         defaults: {duration: .8, ease: "power1.inOut"},
@@ -34,14 +38,77 @@ function App() {
     const fullDeckRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (isFullDeckDisplayed || isGameDisplayed) return;
-        parseCardEffects();
-    }, [isFullDeckDisplayed, isGameDisplayed]);
+        if (!areCardsParsed) {
+            parseCardEffects();
+            setAreCardsParsed(true);
+        }
+    }, [areCardsParsed]);
 
     function parseCardEffects() {
         for (let i = 1; i < allCards.length; i++) {
             const card = allCards[i];
-            if (card.effects.immediateEffect) {
+            const immediateEffect = card.effects.immediateEffect;
+            if (immediateEffect) {
+                let newDescription = immediateEffect.description;
+
+                switch (immediateEffect.effectType) {
+                    case EImmediateEffect.ADD_ENERGY:
+                        newDescription = immediateEffect.description.replace(/\+{[0]}/g,
+                            "+" + immediateEffect.energyToAdd!.toString() + " <span class='energy-icon description'></span>");
+                        if (immediateEffect.condition) {
+                            switch (immediateEffect.condition.conditionType) {
+                                case EConditionType.HAS_CARD_WITH_ID:
+                                    const requiredCardName = allCards.find((elt) => elt.id === immediateEffect.condition?.requiredCardId)!.title;
+                                    newDescription = newDescription.replace(/{[1]}/g, "<mark>" + requiredCardName + "</mark>");
+                                    break;
+                                case EConditionType.HAS_CARD_WITH_CATEGORY:
+                                    newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getCategoryString(immediateEffect.condition?.requiredCardCategory!) + "</mark>");
+                                    break;
+                                case EConditionType.REPLACED_CARD_WITH_ID:
+                                    const replacedCardName = allCards.find((elt) => elt.id === immediateEffect.condition?.replacedCardId)!.title;
+                                    newDescription = newDescription.replace(/{[1]}/g, "<mark>" + replacedCardName + "</mark>");
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case EImmediateEffect.ADD_XP:
+                        newDescription = immediateEffect.description.replace(/{[0]}/g, immediateEffect.xpToAdd!.toString());
+                        if (immediateEffect.condition) {
+                            switch (immediateEffect.condition.conditionType) {
+                                case EConditionType.HAS_CARD_WITH_ID:
+                                    const requiredCardName = allCards.find((elt) => elt.id === immediateEffect.condition?.requiredCardId)!.title;
+                                    newDescription = newDescription.replace(/{[1]}/g, "<mark>" + requiredCardName + "</mark>");
+                                    break;
+                            }
+                        }
+                        break;
+                    case EImmediateEffect.ADD_REROLL:
+                        newDescription = immediateEffect.description.replace(/{[0]}/g, immediateEffect.rerollToAdd!.toString());
+                        break;
+                    case EImmediateEffect.REMOVE_CARD:
+                        newDescription = immediateEffect.description.replace(/{[0]}/g, "<mark>" + getCategoryString(immediateEffect.categoryToRemove!) + "</mark>");
+                        break;
+                    case EImmediateEffect.ADD_RANDOM_CARD:
+                        newDescription = immediateEffect.description.replace(/{([0-9])}/g, (_, group) =>
+                            {
+                                const cardId = immediateEffect.randomCardIndexList![Number(group)];
+                                const cardName = allCards.find((elt) => elt.id === cardId)!.title;
+                                return "<mark>" + cardName + "</mark>";
+                            }
+                        );
+                        break;
+                    case EImmediateEffect.SELECT_CARD:
+                    case EImmediateEffect.REAPPLY_FLAT_GAIN:
+                    case EImmediateEffect.XP_BY_ENERGY_LEFT:
+                        break;
+                    default:
+                        console.error("Unknown immediate effect type: ", immediateEffect.effectType);
+                        break;
+                }
+                immediateEffect.description = newDescription;
+
                 // TODO: Remplacer tous les {0} par les bonnes valeurs selon la catégorie d'effet appliqué.
                 // const template =
                 //     "This is %FIRST%, this is %SECOND%, and this is %THIRD%.";

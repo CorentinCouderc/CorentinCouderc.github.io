@@ -10,6 +10,9 @@
     justify-content: center;
     gap: 10px;
 }
+.energy.description {
+    font-size: .9rem;
+}
 
 #energyValueText {
     /* Here if we need to change font size or anything*/
@@ -25,4 +28,7 @@
 .energy-icon.hud {
     width: 24px;
     height: 24px;
+}
+.energy-icon.description {
+    display: inline-flex;
 }

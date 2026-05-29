@@ -120,7 +120,7 @@ const defaultPassiveEffect: CardPassiveEffect = {
 export const PrepaImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "Khôlle",
-    description: "Retire 1 {0}",
+    description: "Retire un {0}",
     effectType: EImmediateEffect.REMOVE_CARD,
     categoryToRemove: ECardCategory.HOBBY,
 };
@@ -129,7 +129,7 @@ export const PrepaImmediateEffect: CardImmediateEffect = {
 export const RubiksImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "Casse-tête",
-    description: "+ {0} XP si tous les emplacements ont une carte",
+    description: "+{0} XP si tous les emplacements ont une carte",
     condition: {
         ...defaultCondition,
         conditionType: EConditionType.ALL_BOARD_FILLED,
@@ -227,7 +227,7 @@ export const FederateurImmediateEffect: CardImmediateEffect = {
 export const ManagementImmediateEffect: CardImmediateEffect = {
     ...defaultImmediateEffect,
     title: "C'est moi le chef",
-    description: "+{0} relances",
+    description: "+{0} relance(s)",
     effectType: EImmediateEffect.ADD_REROLL,
     rerollToAdd: 2,
 };
