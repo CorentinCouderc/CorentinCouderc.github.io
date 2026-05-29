@@ -111,7 +111,7 @@ export function Game() {
 
     function pickRandomCardsToDisplay() {
         if (hasGameStarted) {
-            const pickedCards = [allCards[32], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
+            const pickedCards = [allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
             setRandomCards(pickedCards);
 
             // TODO : implement better card selection algorithm (no redraw of same card, priority in randomness etc..)
