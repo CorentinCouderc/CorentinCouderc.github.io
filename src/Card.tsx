@@ -86,8 +86,8 @@ function Card(props: CardProperties)
                         </div>
                         <div className="card-footer">
                             {
-                                props.card.tags.map(tag => (
-                                    <p>{getTagString(tag)}</p>
+                                props.card.tags.map((tag, index) => (
+                                    <p key={index}>{getTagString(tag)}</p>
                                 ))
                             }
                         </div>
