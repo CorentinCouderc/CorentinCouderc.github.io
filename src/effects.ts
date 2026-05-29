@@ -164,7 +164,7 @@ export const DonjonNBKImmediateEffect: CardImmediateEffect = {
     title: "\"Chaussette !\"",
     description: "Gagne une compétence aléatoire ({0}, {1} ou {2})",
     effectType: EImmediateEffect.ADD_RANDOM_CARD,
-    randomCardIndexList: [20, 21, 22],
+    randomCardIndexList: [21, 22, 23], // Unity C#, Programmation, Conception de jeu
 };
 
 export const MaitreDonjonImmediateEffect: CardImmediateEffect = {

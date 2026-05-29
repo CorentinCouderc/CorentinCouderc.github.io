@@ -382,7 +382,7 @@ export function Game() {
             case EImmediateEffect.ADD_RANDOM_CARD:
                 if (!effect.randomCardIndexList) { error = true; } else {
                     const randomIndex = Math.floor(Math.random() * effect.randomCardIndexList.length);
-                    selectCard(allCards[effect.randomCardIndexList[randomIndex]]);
+                    selectCard(allCards[effect.randomCardIndexList[randomIndex] - 1 ]);
                 }
                 break;
             case EImmediateEffect.SELECT_CARD:
