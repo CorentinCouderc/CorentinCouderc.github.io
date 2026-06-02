@@ -301,7 +301,7 @@ export const BacPassiveEffect: CardPassiveEffect = {
 export const PrepaPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Concours",
-    description: "+{0} quand une carte avec le tag {2} est jouée",
+    description: "+{0} quand une carte avec le tag {1} est jouée",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithEnergyAmount: 10,
     bonusByCardWithTags: [ETagCategory.COMPETITION],
@@ -453,7 +453,7 @@ export const ProgrammationPassiveEffect: CardPassiveEffect = {
 export const ConceptionJeuPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Hideo Kojima",
-    description: "Les cartes avec le tag {0} scorent x{1}",
+    description: "Les cartes avec le tag {1} scorent x{0}",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithMultiplier: 3,
     bonusByCardWithTags: [ETagCategory.VIDEO_GAME],
@@ -462,7 +462,7 @@ export const ConceptionJeuPassiveEffect: CardPassiveEffect = {
 export const StorylinePassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
     title: "Pro du e-learning",
-    description: "Les {0} avec le tag {1} scorent x{2}",
+    description: "Les {1} avec le tag {2} scorent x{0}",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithMultiplier: 2,
     bonusByCardWithCategory: ECardCategory.PROJECT,

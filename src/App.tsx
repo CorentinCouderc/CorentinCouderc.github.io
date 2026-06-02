@@ -12,8 +12,8 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import {allLevels} from "./levels.ts";
 import {clamp} from "gsap/gsap-core";
 import {allCards} from "./cards.ts";
-import {EConditionType, EImmediateEffect} from "./effects.ts";
-import {getCategoryString} from "./cardEnums.ts";
+import {EConditionType, EImmediateEffect, EPassiveEffect} from "./effects.ts";
+import {getCategoryString, getMultipleTagsString} from "./cardEnums.ts";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 
@@ -45,7 +45,7 @@ function App() {
     }, [areCardsParsed]);
 
     function parseCardEffects() {
-        for (let i = 1; i < allCards.length; i++) {
+        for (let i = 0; i < allCards.length; i++) {
             const card = allCards[i];
             const immediateEffect = card.effects.immediateEffect;
             if (immediateEffect) {
@@ -109,9 +109,67 @@ function App() {
                 }
                 immediateEffect.description = newDescription;
             }
-            if (card.effects.passiveEffect) {
-                // TODO : passive effects
-                // card.effects.passiveEffect.description = "";
+
+            const passiveEffect = card.effects.passiveEffect;
+            if (passiveEffect) {
+                let newDescription = passiveEffect.description;
+                switch (passiveEffect.effectType) {
+                    case EPassiveEffect.ENERGY_ON_LEVEL_UP:
+                        newDescription = newDescription.replace(/\+{[0]}/g,
+                            "+" + passiveEffect.energyOnLevelUp!.toString() + " <span class='energy-icon description'></span>");
+                        if (passiveEffect.condition) {
+                            switch (passiveEffect.condition.conditionType) {
+                                case EConditionType.MAX_ENERGY_ON_LEVEL_UP:
+                                    newDescription = newDescription.replace(/{[1]}/g, passiveEffect.condition.maxEnergyOnLevelUp!.toString() + " <span class='energy-icon description'></span>");
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case EPassiveEffect.BONUS_BY_CARD_WITH:
+                        const isEnergyAdded = passiveEffect.bonusByCardWithEnergyAmount !== 0;
+                        const amountString = isEnergyAdded ? passiveEffect.bonusByCardWithEnergyAmount!.toString() + " <span class='energy-icon description'></span>" :
+                            passiveEffect.bonusByCardWithXPAmount!.toString();
+                        newDescription = newDescription.replace(/\+{[0]}/g, "+" + amountString);
+                        newDescription = newDescription.replace(/x{[0]}/g, "x" + passiveEffect.bonusByCardWithMultiplier!.toString());
+                        if (passiveEffect.bonusByCardWithCategory && passiveEffect.bonusByCardWithTags) { // Card with specific category and tags
+                            newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getCategoryString(passiveEffect.bonusByCardWithCategory!) + "</mark>");
+                            newDescription = newDescription.replace(/{[2]}/g, "<mark>" + getMultipleTagsString(passiveEffect.bonusByCardWithTags!) + "</mark>");
+                        }
+                        else if (passiveEffect.bonusByCardWithCategory) { // Card with specific category only
+                            newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getCategoryString(passiveEffect.bonusByCardWithCategory!) + "</mark>");
+                        }
+                        else if (passiveEffect.bonusByCardWithTags) { // Card with specific tags only
+                            newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getMultipleTagsString(passiveEffect.bonusByCardWithTags!) + "</mark>");
+                        }
+                        break;
+                    case EPassiveEffect.XP_BY_ENERGY_SPENT:
+                        newDescription = newDescription.replace(/{[0]}/g, passiveEffect.byEnergySpentXPAmount!.toString());
+                        newDescription = newDescription.replace(/{[1]}/g, passiveEffect.byEnergySpent!.toString() + " <span class='energy-icon description'></span>");
+                        break;
+                    case EPassiveEffect.REVIVE:
+                        newDescription = newDescription.replace(/{[0]}/g, passiveEffect.reviveEnergy!.toString());
+                        break;
+                    case EPassiveEffect.ADDITIONAL_XP_PER_TICK:
+                        newDescription = newDescription.replace(/{[0]}/g, passiveEffect.additionalXpPerTickAmount!.toString());
+                        if (passiveEffect.condition) {
+                            switch (passiveEffect.condition.conditionType) {
+                                case EConditionType.HAS_CARD_WITH_TAG:
+                                    newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getMultipleTagsString(passiveEffect.condition?.requiredCardTags!) + "</mark>");
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case EPassiveEffect.ADDITIONAL_REROLL:
+                        break;
+                    default:
+                        console.error("Unknown passive effect type: ", passiveEffect.effectType);
+                        break;
+                }
+                passiveEffect.description = newDescription;
             }
         }
     }

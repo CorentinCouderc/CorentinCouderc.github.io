@@ -65,3 +65,17 @@ export function getTagString(tag: CardTag)
             return "";
     }
 }
+
+export function getMultipleTagsString(tagList: CardTag[]) {
+    if (!tagList || tagList.length === 0) {
+        console.error('No tags found.');
+        return null;
+    }
+
+    let result = getTagString(tagList[0]);
+    for (let i = 1; i < tagList.length; i++) {
+        result += " ou ";
+        result += getTagString(tagList[i]);
+    }
+    return result;
+}
