@@ -71,7 +71,7 @@
     align-content: center;
 }
 .q2 .bonus-container h1 {
-    --card-point-font-size: 1.4rem;
+    --card-point-font-size: 1.3rem;
     font-size: calc(var(--card-point-font-size) * var(--card-scale));
 }
 .card-body-container {

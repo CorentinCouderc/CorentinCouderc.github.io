@@ -4,6 +4,7 @@ import './Card.css';
 import * as React from "react";
 import Energy from "./Energy.tsx";
 import parse from 'html-react-parser';
+import {useFitText} from "react-use-fittext";
 
 interface CardProperties{
     card: CardData,
@@ -14,6 +15,13 @@ interface CardProperties{
 
 function Card(props: CardProperties)
 {
+    const { containerRef, textRef } = useFitText({
+        lineMode: 'multi',
+        fitMode: 'both',
+        minFontSize: 12,
+        maxFontSize: 60
+    });
+
     function onLinkClicked(event: React.MouseEvent<HTMLAnchorElement>) {
         event.stopPropagation();
     }
@@ -42,7 +50,7 @@ function Card(props: CardProperties)
             displayBonus = <Energy valueText={"+" + props.card.effects.energyFlat} isOnHUD={false}/>
         }
         else if (props.card.effects.xpFlat > 0) {
-            displayBonus = <h1>+ {props.card.effects.xpFlat} XP</h1>;
+            displayBonus = <h1 ref={textRef}>+{props.card.effects.xpFlat} XP</h1>;
         }
 
         return (
@@ -52,7 +60,7 @@ function Card(props: CardProperties)
                         <h1>{getCategoryString(props.card.category)}</h1>
                     </div>
                     <div className="q2">
-                        <div className="bonus-container">
+                        <div ref={containerRef} className="bonus-container">
                             {displayBonus}
                         </div>
                     </div>
