@@ -72,13 +72,13 @@ export function getTagString(tag: CardTag)
 export function getMultipleTagsString(tagList: CardTag[]) {
     if (!tagList || tagList.length === 0) {
         console.error('No tags found.');
-        return null;
+        return "";
     }
 
-    let result = getTagString(tagList[0]);
+    let result = "<mark class='specificTag'>" + getTagString(tagList[0]) + "</mark>";
     for (let i = 1; i < tagList.length; i++) {
         result += " ou ";
-        result += getTagString(tagList[i]);
+        result += "<mark class='specificTag'>" + getTagString(tagList[i]) + "</mark>";
     }
     return result;
 }
@@ -96,14 +96,14 @@ export function parseCardEffect(card: CardData) {
                     switch (immediateEffect.condition.conditionType) {
                         case EConditionType.HAS_CARD_WITH_ID:
                             const requiredCardName = allCards.find((elt) => elt.id === immediateEffect.condition?.requiredCardId)!.title;
-                            newDescription = newDescription.replace(/{[1]}/g, "<mark>" + requiredCardName + "</mark>");
+                            newDescription = newDescription.replace(/{[1]}/g, "<mark class='specificCard'>\"" + requiredCardName + "\"</mark>");
                             break;
                         case EConditionType.HAS_CARD_WITH_CATEGORY:
-                            newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getCategoryString(immediateEffect.condition?.requiredCardCategory!) + "</mark>");
+                            newDescription = newDescription.replace(/{[1]}/g, "<mark class='specificCategory'>" + getCategoryString(immediateEffect.condition?.requiredCardCategory!) + "</mark>");
                             break;
                         case EConditionType.REPLACED_CARD_WITH_ID:
                             const replacedCardName = allCards.find((elt) => elt.id === immediateEffect.condition?.replacedCardId)!.title;
-                            newDescription = newDescription.replace(/{[1]}/g, "<mark>" + replacedCardName + "</mark>");
+                            newDescription = newDescription.replace(/{[1]}/g, "<mark class='specificCard'>\"" + replacedCardName + "\"</mark>");
                             break;
                         default:
                             break;
@@ -116,7 +116,7 @@ export function parseCardEffect(card: CardData) {
                     switch (immediateEffect.condition.conditionType) {
                         case EConditionType.HAS_CARD_WITH_ID:
                             const requiredCardName = allCards.find((elt) => elt.id === immediateEffect.condition?.requiredCardId)!.title;
-                            newDescription = newDescription.replace(/{[1]}/g, "<mark>" + requiredCardName + "</mark>");
+                            newDescription = newDescription.replace(/{[1]}/g, "<mark class='specificCard'>\"" + requiredCardName + "\"</mark>");
                             break;
                     }
                 }
@@ -125,14 +125,14 @@ export function parseCardEffect(card: CardData) {
                 newDescription = immediateEffect.description.replace(/{[0]}/g, immediateEffect.rerollToAdd!.toString());
                 break;
             case EImmediateEffect.REMOVE_CARD:
-                newDescription = immediateEffect.description.replace(/{[0]}/g, "<mark>" + getCategoryString(immediateEffect.categoryToRemove!) + "</mark>");
+                newDescription = immediateEffect.description.replace(/{[0]}/g, "<mark class='specificCategory'>" + getCategoryString(immediateEffect.categoryToRemove!) + "</mark>");
                 break;
             case EImmediateEffect.ADD_RANDOM_CARD:
                 newDescription = immediateEffect.description.replace(/{([0-9])}/g, (_, group) =>
                     {
                         const cardId = immediateEffect.randomCardIndexList![Number(group)];
                         const cardName = allCards.find((elt) => elt.id === cardId)!.title;
-                        return "<mark>" + cardName + "</mark>";
+                        return "<mark class='specificCard'>\"" + cardName + "\"</mark>";
                     }
                 );
                 break;
@@ -171,14 +171,14 @@ export function parseCardEffect(card: CardData) {
                 newDescription = newDescription.replace(/\+{[0]}/g, "+" + amountString);
                 newDescription = newDescription.replace(/x{[0]}/g, "x" + passiveEffect.bonusByCardWithMultiplier!.toString());
                 if (passiveEffect.bonusByCardWithCategory && passiveEffect.bonusByCardWithTags) { // Card with specific category and tags
-                    newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getCategoryString(passiveEffect.bonusByCardWithCategory!) + "</mark>");
-                    newDescription = newDescription.replace(/{[2]}/g, "<mark>" + getMultipleTagsString(passiveEffect.bonusByCardWithTags!) + "</mark>");
+                    newDescription = newDescription.replace(/{[1]}/g, "<mark class='specificCategory'>" + getCategoryString(passiveEffect.bonusByCardWithCategory!) + "</mark>");
+                    newDescription = newDescription.replace(/{[2]}/g, getMultipleTagsString(passiveEffect.bonusByCardWithTags!));
                 }
                 else if (passiveEffect.bonusByCardWithCategory) { // Card with specific category only
-                    newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getCategoryString(passiveEffect.bonusByCardWithCategory!) + "</mark>");
+                    newDescription = newDescription.replace(/{[1]}/g, "<mark class='specificCategory'>" + getCategoryString(passiveEffect.bonusByCardWithCategory!) + "</mark>");
                 }
                 else if (passiveEffect.bonusByCardWithTags) { // Card with specific tags only
-                    newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getMultipleTagsString(passiveEffect.bonusByCardWithTags!) + "</mark>");
+                    newDescription = newDescription.replace(/{[1]}/g, getMultipleTagsString(passiveEffect.bonusByCardWithTags!));
                 }
                 break;
             case EPassiveEffect.XP_BY_ENERGY_SPENT:
@@ -193,7 +193,7 @@ export function parseCardEffect(card: CardData) {
                 if (passiveEffect.condition) {
                     switch (passiveEffect.condition.conditionType) {
                         case EConditionType.HAS_CARD_WITH_TAG:
-                            newDescription = newDescription.replace(/{[1]}/g, "<mark>" + getMultipleTagsString(passiveEffect.condition?.requiredCardTags!) + "</mark>");
+                            newDescription = newDescription.replace(/{[1]}/g, getMultipleTagsString(passiveEffect.condition?.requiredCardTags!));
                             break;
                         default:
                             break;
