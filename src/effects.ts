@@ -34,6 +34,7 @@ const defaultCondition: EffectCondition = {
 export type CardEffect = {
     title: string;
     description: string;
+    computedDescription: string;
     condition: EffectCondition | null;
 }
 
@@ -62,6 +63,7 @@ export type CardImmediateEffect = CardEffect & {
 const defaultImmediateEffect = {
     title: "TODO",
     description: "TODO",
+    computedDescription: "",
     condition: null,
     effectType: EImmediateEffect.ADD_XP,
     energyToAdd: null,
@@ -100,6 +102,7 @@ export type CardPassiveEffect = CardEffect & {
 const defaultPassiveEffect: CardPassiveEffect = {
     title: "TODO",
     description: "TODO",
+    computedDescription: "",
     condition: null,
     effectType: EPassiveEffect.ENERGY_ON_LEVEL_UP,
     energyOnLevelUp: null,

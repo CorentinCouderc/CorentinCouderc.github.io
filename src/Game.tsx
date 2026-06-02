@@ -6,7 +6,8 @@ import {
     type CardCategory,
     orderedCategories,
     type CardTag,
-    orderedTags
+    orderedTags,
+    parseCardEffect,
 } from './cardEnums.ts';
 import CardSlot from "./CardSlot.tsx";
 import CardSelection from "./CardSelection.tsx";
@@ -111,7 +112,7 @@ export function Game() {
 
     function pickRandomCardsToDisplay() {
         if (hasGameStarted) {
-            const pickedCards = [allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
+            const pickedCards = [allCards[31], allCards[Math.floor(Math.random() * allCards.length)], allCards[Math.floor(Math.random() * allCards.length)]];
             setRandomCards(pickedCards);
 
             // TODO : implement better card selection algorithm (no redraw of same card, priority in randomness etc..)
@@ -214,17 +215,20 @@ export function Game() {
 
     function tryChangeRequiredCategory() {
         const index = boardCards.findIndex((boardCard) => {
-            boardCard !== null
+            return boardCard !== null
             && boardCard.effects?.passiveEffect?.effectType === EPassiveEffect.BONUS_BY_CARD_WITH
-            && boardCard.effects?.passiveEffect?.bonusByCardWithCategoryUseRandom
+            && boardCard.effects?.passiveEffect?.bonusByCardWithCategoryUseRandom;
         });
 
         if (index >= 0) {
             // Change required category
-            const newCategory = orderedCategories[Math.floor(Math.random() * orderedCategories.length)];
+            let newCategory = null;
+            while (!newCategory || newCategory === boardCards[index]!.category) {
+                newCategory = orderedCategories[Math.floor(Math.random() * orderedCategories.length)];
+            }
             setRandomRequiredCategory(newCategory);
-            // TODO: update description with new Category !
-            // boardCards[index]?.effects?.passiveEffect?.description
+            boardCards[index]!.effects.passiveEffect!.bonusByCardWithCategory = newCategory;
+            parseCardEffect(boardCards[index]!);
         }
     }
 
