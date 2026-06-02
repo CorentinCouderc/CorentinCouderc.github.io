@@ -50,7 +50,7 @@ function Card(props: CardProperties)
             displayBonus = <Energy valueText={"+" + props.card.effects.energyFlat} isOnHUD={false}/>
         }
         else if (props.card.effects.xpFlat > 0) {
-            displayBonus = <h1 ref={textRef}>+{props.card.effects.xpFlat} XP</h1>;
+            displayBonus = <h1 ref={textRef as React.RefObject<HTMLHeadingElement>}>+{props.card.effects.xpFlat} XP</h1>;
         }
 
         return (
@@ -60,7 +60,7 @@ function Card(props: CardProperties)
                         <h1>{getCategoryString(props.card.category)}</h1>
                     </div>
                     <div className="q2">
-                        <div ref={containerRef} className="bonus-container">
+                        <div ref={containerRef as React.RefObject<HTMLDivElement>} className="bonus-container">
                             {displayBonus}
                         </div>
                     </div>
