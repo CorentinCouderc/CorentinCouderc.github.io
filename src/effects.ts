@@ -377,7 +377,7 @@ export const CoursParticulierPassiveEffect: CardPassiveEffect = {
 
 export const StageBoschPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
-    title: "",
+    title: "iRobot",
     description: "+{0} par {1} avec le tag {2}",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithEnergyAmount: 3,
@@ -387,7 +387,7 @@ export const StageBoschPassiveEffect: CardPassiveEffect = {
 
 export const GamagoraPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
-    title: "",
+    title: "SilverLining",
     description: "+{0} par {1} avec le tag {2}",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithEnergyAmount: 3,
@@ -397,7 +397,7 @@ export const GamagoraPassiveEffect: CardPassiveEffect = {
 
 export const StageATFPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
-    title: "",
+    title: "Thé ? Café ?",
     description: "+{0} par {1} avec le tag {2}",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithEnergyAmount: 3,
@@ -407,7 +407,7 @@ export const StageATFPassiveEffect: CardPassiveEffect = {
 
 export const ProgGameplayPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
-    title: "",
+    title: "Feature complete",
     description: "+{0} par {1} avec le tag {2}",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithEnergyAmount: 15,
@@ -417,7 +417,7 @@ export const ProgGameplayPassiveEffect: CardPassiveEffect = {
 
 export const ManagementPassiveEffect: CardPassiveEffect = {
     ...defaultPassiveEffect,
-    title: "",
+    title: "Montrer l'exemple",
     description: "+{0} par {1} avec le tag {2}",
     effectType: EPassiveEffect.BONUS_BY_CARD_WITH,
     bonusByCardWithEnergyAmount: 10,
