@@ -144,7 +144,7 @@ export function parseCardEffect(card: CardData) {
                 console.error("Unknown immediate effect type: ", immediateEffect.effectType);
                 break;
         }
-        immediateEffect.description = newDescription;
+        immediateEffect.computedDescription = newDescription;
     }
 
     const passiveEffect = card.effects.passiveEffect;
